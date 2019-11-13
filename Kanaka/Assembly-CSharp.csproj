@@ -61,8 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\Scripts\HeroSpawner.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Team\Team.cs" />
     <Compile Include="Assets\Scripts\Totem\Totem.cs" />
     <Compile Include="Assets\Scripts\Totem\TotemSpawner.cs" />
     <Reference Include="Cinemachine">

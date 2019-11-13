@@ -30,6 +30,18 @@ public class Totem : MonoBehaviour
 
     void Dead()
     {
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+ 
+        //De momento solo podemos concretar esto hasta aqui, Hero no se sabe si se llamara asi
+        /*
+        if (collision.gameObject.GetComponent<Hero>() != null)
+        {
+            Dead();
+        }
+        */
     }
 }

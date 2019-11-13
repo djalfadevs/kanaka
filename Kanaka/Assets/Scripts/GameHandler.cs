@@ -6,15 +6,8 @@ public class GameHandler : MonoBehaviour
 {   /// <summary>
     /// Guardamos dos variables de equipos que guardaran referencias a los personajes de la escena.
     /// </summary>
-    [SerializeField] private List<GameObject> Team1; //En la escena , referencia a los personajes del equipo uno
-    [SerializeField] private List<GameObject> TotemsTeam1;
-    [SerializeField] private List<GameObject> SpawnsTeam1;
-    private int AliveTotemTeam1;
 
-    [SerializeField] private List<GameObject> Team2;// En la escena , referencia a los personajes del equipo dos
-    [SerializeField] private List<GameObject> TotemsTeam2;
-    [SerializeField] private List<GameObject> SpawnsTeam2;
-    private int AliveTotemTeam2;
+    [SerializeField] private IList<Team> teamList = new List<Team>();
 
     [SerializeField] private List<GameObject> ItemsSpawns; //Referencia a la lista de items
 
@@ -29,8 +22,9 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("Tiempo Empezado");
         timer = mainTimer;
-        Team1 = new List<GameObject>();//Se inicializan vacias y luego se les guardaran las referencias a estos.
-        Team2 = new List<GameObject>();
+        
+
+        DetectTeamsSpawner();
     }
 
     // Update is called once per frame
@@ -56,6 +50,39 @@ public class GameHandler : MonoBehaviour
             doOnce = true;
             canCount = false;
             timer = 0.0f;
+        }
+    }
+    /// <summary>
+    /// Detectamos los spawns pertenecientes a cada equipo
+    /// Los gameobject que son spawns de los heroes estan identificados mediante 
+    /// -- un componente HeroSpawner
+    /// -- un tag Respawn
+    /// Una vez hayados todos los spawners en el mapa activos mediante un gameobject.findtag
+    /// Detectamos que spawners son de cada equipo, para eso el script que tienen los gameobject HeroSpawners llamado tambien HeroSpawner
+    /// tienen un atributo propio int que indica a que equipo (en funcion del orden de la lista) pertenece.
+    /// </summary>
+    void DetectTeamsSpawner()
+    {
+        GameObject[] heroSpawners = GameObject.FindGameObjectsWithTag("Respawn"); 
+       for(int i = 0; i < teamList.Count; i++)
+        {
+            DetectTeamSpawner(i,heroSpawners);
+        }
+    }
+
+    
+    void DetectTeamSpawner(int team,GameObject [] heroSpawners)
+    {
+       foreach(GameObject s in heroSpawners)
+        {
+          HeroSpawner aux =  s.gameObject.GetComponent<HeroSpawner>();
+            if(aux!=null)
+            {
+                if(aux.Getteam() == team)
+                {
+                    (teamList[team]).GetSpawnsTeam().Add(aux.gameObject);
+                }
+            }
         }
     }
 }
