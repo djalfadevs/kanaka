@@ -61,7 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameHandler.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
