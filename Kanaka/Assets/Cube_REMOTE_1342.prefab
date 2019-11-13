@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5407112662169912893}
   - component: {fileID: 1215730568554170061}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube_REMOTE_1342
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
