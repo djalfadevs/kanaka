@@ -60,14 +60,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CorruptedTotem\CorruptedTotem.cs" />
+    <Compile Include="Assets\Scripts\CorruptedTotem\CorruptedTotemSpawner.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
-    <Compile Include="Assets\Scripts\HeroSpawner.cs" />
+    <Compile Include="Assets\Scripts\HeroSpawner\HeroSpawner.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Team\Team.cs" />
     <Compile Include="Assets\Scripts\Totem\Totem.cs" />
-    <Compile Include="Assets\Scripts\Totem\TotemSpawner.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

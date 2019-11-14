@@ -636,8 +636,8 @@ GameObject:
   - component: {fileID: 1628062912}
   - component: {fileID: 1628062911}
   m_Layer: 0
-  m_Name: TotemSpawner
-  m_TagString: TotemSpawner
+  m_Name: CorruptedTotemSpawner
+  m_TagString: EnemySpawner
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 2059276399}
   m_Layer: 0
   m_Name: HeroSpawn
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

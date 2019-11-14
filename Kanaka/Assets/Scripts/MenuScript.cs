@@ -8,10 +8,11 @@ public class MenuScript
     [MenuItem("Tools/SpawnTotems")]
     public static void AssignTileScript()
     {
-        GameObject[] spawnTotems = GameObject.FindGameObjectsWithTag("TotemSpawner");
+        GameObject[] spawnTotems = GameObject.FindGameObjectsWithTag("EnemySpawner");
         foreach (GameObject t in spawnTotems)
         {
-            t.GetComponent<TotemSpawner>().SpawnTotems(3);
+            if(t.GetComponent<CorruptedTotemSpawner>()!=null)
+            t.GetComponent<CorruptedTotemSpawner>().SpawnTotems(3);
         }
     }
 }
