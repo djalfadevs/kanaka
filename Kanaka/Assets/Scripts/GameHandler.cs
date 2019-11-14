@@ -6,7 +6,7 @@ public class GameHandler : MonoBehaviour
 {   /// <summary>
     /// Guardamos dos variables de equipos que guardaran referencias a los personajes de la escena.
     /// </summary>
-
+ 
     public IList<Team> teamList = new List<Team>();//Guarda referencias a datos de una clase con datos de los equipos 
 
     [SerializeField] private List<GameObject> ItemsSpawns; //Referencia a la lista de items
@@ -22,8 +22,11 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("Tiempo Empezado");
         timer = mainTimer;
-        
 
+        //Test
+        teamList.Add(new Team());
+        teamList.Add(new Team());
+        AddTotemsTeams();
         AddTeamsSpawner();
     }
 
@@ -73,6 +76,7 @@ public class GameHandler : MonoBehaviour
     
     void AddTeamSpawner(int team,GameObject [] heroSpawners)
     {
+        teamList[team].GetSpawnsTeam().Clear();//Limpiamos la lista antes de añadir
        foreach(GameObject s in heroSpawners)
         {
           HeroSpawner aux =  s.gameObject.GetComponent<HeroSpawner>();
@@ -81,6 +85,7 @@ public class GameHandler : MonoBehaviour
                 if(aux.GetTeam() == team)
                 {
                     (teamList[team]).GetSpawnsTeam().Add(aux.gameObject);
+                    Debug.Log("Added Spawn to team " + team);
                 }
             }
         }
@@ -107,6 +112,7 @@ public class GameHandler : MonoBehaviour
 
     void AddTotemsTeam(int team, GameObject[] totems)
     {
+        teamList[team].GetTotemsTeam().Clear();//Limpiamos la lista antes de añadir
         foreach (GameObject s in totems)
         {
             Totem aux = s.gameObject.GetComponent<Totem>();
@@ -115,6 +121,7 @@ public class GameHandler : MonoBehaviour
                 if (aux.GetTeam() == team)
                 {
                     (teamList[team]).GetTotemsTeam().Add(aux.gameObject);
+                    Debug.Log("Added Totem to team " + team);
                 }
             }
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Totem : MonoBehaviour
 {
     [SerializeField] private int team;
+    [SerializeField] private float hp = 1;
     // Start is called before the first frame update
     void Start()
     {

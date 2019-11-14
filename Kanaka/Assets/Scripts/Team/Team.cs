@@ -2,31 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Team 
 {
-    [SerializeField] private IList<GameObject> team
-    {
-        get { return team; }
-        set { team = value; }
-    } //En la escena , referencia a los personajes del equipo uno
+    private IList<GameObject> team { get; set; }
+   //En la escena , referencia a los personajes del equipo uno
 
-    [SerializeField]
-    private IList<GameObject> totemsTeam
-    {
-        get { return totemsTeam; }
-        set { totemsTeam = value; }
-    }
-    [SerializeField]
-    private IList<GameObject> spawnsTeam
-    {
-        get { return spawnsTeam; }
-        set { spawnsTeam = value; }
-    }
+    
+    private IList<GameObject> totemsTeam{ get; set; }
+   
+    private IList<GameObject> spawnsTeam {get; set; }
 
     private int AliveTotemTeam1;
         
-    Team()
+    public Team()
     {
     team = new List<GameObject>(); //En la escena , referencia a los personajes del equipo uno
     totemsTeam = new List<GameObject>();

@@ -655,10 +655,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totem: {fileID: 6189242458916181754, guid: d70999a7844f626419b365e2475251b4, type: 3}
-  radius: 1
+  radius: 2
   respawnTime: 5
   keepSpawning: 1
-  numberOfTotems: 1
+  numberOfTotems: 2
 --- !u!4 &1628062912
 Transform:
   m_ObjectHideFlags: 0

@@ -20,4 +20,9 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    void Hit(Collider collider)
+    {
+
+    }
 }
