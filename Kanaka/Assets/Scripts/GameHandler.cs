@@ -9,6 +9,7 @@ public class GameHandler : MonoBehaviour
  
     public IList<Team> teamList = new List<Team>();//Guarda referencias a datos de una clase con datos de los equipos 
 
+    [SerializeField] private List<Color> teamColorList;
     [SerializeField] private List<GameObject> ItemsSpawns; //Referencia a la lista de items
 
     //Timer
@@ -24,10 +25,22 @@ public class GameHandler : MonoBehaviour
         timer = mainTimer;
 
         //Test
-        teamList.Add(new Team());
-        teamList.Add(new Team());
+        for(var j = 0; j<2; j++)
+        {
+            if (teamColorList[j] != null)
+            {
+                teamList.Add(new Team(teamColorList[j]));
+            }
+            else
+            {
+                teamList.Add(new Team());
+            }
+        }
+        
         AddTotemsTeams();
         AddTeamsSpawner();
+        AddHerosTeams();
+        ///////////////
     }
 
     // Update is called once per frame
@@ -66,28 +79,11 @@ public class GameHandler : MonoBehaviour
     /// </summary>
     void AddTeamsSpawner()
     {
-        GameObject[] heroSpawners = GameObject.FindGameObjectsWithTag("Respawn"); 
+       GameObject[] heroSpawners = GameObject.FindGameObjectsWithTag("Respawn"); 
        for(int i = 0; i < teamList.Count; i++)
         {
-            AddTeamSpawner(i,heroSpawners);
-        }
-    }
-
-    
-    void AddTeamSpawner(int team,GameObject [] heroSpawners)
-    {
-        teamList[team].GetSpawnsTeam().Clear();//Limpiamos la lista antes de añadir
-       foreach(GameObject s in heroSpawners)
-        {
-          HeroSpawner aux =  s.gameObject.GetComponent<HeroSpawner>();
-            if(aux!=null)
-            {
-                if(aux.GetTeam() == team)
-                {
-                    (teamList[team]).GetSpawnsTeam().Add(aux.gameObject);
-                    Debug.Log("Added Spawn to team " + team);
-                }
-            }
+            Team auxT = teamList[i];
+            auxT.AddTeamSpawner(i,heroSpawners);
         }
     }
 
@@ -99,31 +95,27 @@ public class GameHandler : MonoBehaviour
     /// Una vez hayados todos los totems en el mapa activos mediante un gameobject.findtag
     /// Detectamos que totems son de cada equipo, para eso el script que tienen los gameobject Totem llamado tambien Totem
     /// tienen un atributo propio int que indica a que equipo (en funcion del orden de la lista) pertenece.
+    /// Se ha movido parte de la funcionalidad a la clase Team.cs
     /// </summary>
     void AddTotemsTeams()
     {
         GameObject[] totems = GameObject.FindGameObjectsWithTag("Totem");
         for (int i = 0; i < teamList.Count; i++)
         {
-            AddTotemsTeam(i, totems);
+            Team auxT = teamList[i];
+            auxT.AddTotemsTeam(i, totems);
         }
     }
 
-
-    void AddTotemsTeam(int team, GameObject[] totems)
+    //Lo mismo que en los anteriores pero para los heroes
+    void AddHerosTeams()
     {
-        teamList[team].GetTotemsTeam().Clear();//Limpiamos la lista antes de añadir
-        foreach (GameObject s in totems)
+        GameObject[] heros = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < teamList.Count; i++)
         {
-            Totem aux = s.gameObject.GetComponent<Totem>();
-            if (aux != null)
-            {
-                if (aux.GetTeam() == team)
-                {
-                    (teamList[team]).GetTotemsTeam().Add(aux.gameObject);
-                    Debug.Log("Added Totem to team " + team);
-                }
-            }
+            Team auxT = teamList[i];
+            auxT.AddHerosTeam(i, heros);
         }
     }
+
 }

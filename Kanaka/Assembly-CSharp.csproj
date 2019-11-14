@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HeroGroundCircle.cs" />
     <Compile Include="Assets\Scripts\CorruptedTotem\CorruptedTotem.cs" />
     <Compile Include="Assets\Scripts\CorruptedTotem\CorruptedTotemSpawner.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
