@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Team 
+public class Team
 {
+
     private IList<GameObject> herosTeam { get; set; }
-   //En la escena , referencia a los personajes del equipo uno
+    //En la escena , referencia a los personajes del equipo uno
 
-    
-    private IList<GameObject> totemsTeam{ get; set; }
-   
-    private IList<GameObject> spawnsTeam {get; set; }
 
-    private int AliveTotemTeam{ get; set; }
+    private IList<GameObject> totemsTeam { get; set; }
+
+    private IList<GameObject> spawnsTeam { get; set; }
+
+    private int AliveTotemTeam { get; set; }
 
     private Color teamColor { get; set; }
 
     public Team()
     {
-    herosTeam = new List<GameObject>(); //En la escena , referencia a los personajes del equipo uno
-    totemsTeam = new List<GameObject>();
-    spawnsTeam = new List<GameObject>();
-    teamColor = new Color(0, 0, 0);//Color por defecto
-    AliveTotemTeam = 0;
+        herosTeam = new List<GameObject>(); //En la escena , referencia a los personajes del equipo uno
+        totemsTeam = new List<GameObject>();
+        spawnsTeam = new List<GameObject>();
+        teamColor = new Color(0, 0, 0);//Color por defecto
+        AliveTotemTeam = 0;
     }
 
     public Team(Color color)
@@ -61,7 +62,7 @@ public class Team
                 {
                     this.totemsTeam.Add(aux.gameObject);
                     aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
-                    Debug.Log("Added Totem to team " + team);
+                    Debug.Log("Added Totem to team " + team + " and set color " + teamColor);
                 }
             }
         }
@@ -79,7 +80,7 @@ public class Team
                 {
                     this.spawnsTeam.Add(aux.gameObject);
                     aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
-                    Debug.Log("Added Spawn to team " + team + "and set color" + teamColor);
+                    Debug.Log("Added Spawn to team " + team + " and set color " + teamColor);
                 }
             }
         }
@@ -97,10 +98,37 @@ public class Team
                 {
                     this.herosTeam.Add(aux.gameObject);
                     aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
-                    Debug.Log("Added Team to team " + team);
+                    Debug.Log("Added Team to team " + team + " and set color " + teamColor);
                 }
             }
         }
+    }
+
+    public void CountAliveTotems()
+    {
+        int auxAliveTotems = 0;
+        foreach (GameObject t in totemsTeam)
+        {
+            if (t.GetComponent<Totem>() != null)
+            {
+                if (t.GetComponent<Totem>().GetHp() > 0)
+                {
+                    auxAliveTotems++;
+                }
+            }
+        }
+        AliveTotemTeam = auxAliveTotems;
+        //A partir de aqui si los totems vivos son 0 se llama a fin de partida
+        if (auxAliveTotems <= 0)
+        {
+            Lose();
+        }
+    }
+   
+    public void Lose()
+    {
+        GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
+        gameHandler.GetComponent<GameHandler>().FinDePartida();
     }
 }
 

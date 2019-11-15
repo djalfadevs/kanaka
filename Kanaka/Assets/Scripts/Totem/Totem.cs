@@ -5,13 +5,16 @@ using UnityEngine;
 public class Totem : MonoBehaviour
 {
     [SerializeField] private int team;
-    [SerializeField] private float hp = 1;
+    [SerializeField] private float hp;
     [SerializeField] private Color teamColor;
+    private Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+       
+        animator = GetComponent<Animator>();
+        animator.SetFloat("HP", hp);
     }
 
     // Update is called once per frame
@@ -34,5 +37,26 @@ public class Totem : MonoBehaviour
     public void setTeamColor(Color color)
     {
         teamColor = color;
+    }
+
+    public void Dead()
+    {
+        hp = 0;
+        animator.SetFloat("HP", hp);
+
+        //Actualizamos los totems vivos de los equipos ya que uno de ellos ha muerto
+        GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
+        gameHandler.GetComponent<GameHandler>().CountAliveTotemsinTeams();
+    }
+
+    public void Hit(Collider collider)
+    {
+        Dead();
+        animator.SetFloat("HP", hp);
+    }
+
+    public float GetHp()
+    {
+        return hp;
     }
 }
