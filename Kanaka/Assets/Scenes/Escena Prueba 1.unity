@@ -1846,12 +1846,12 @@ PrefabInstance:
     - target: {fileID: 1694237959559774526, guid: e0422f238c7809640b7c552a9db26787,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4679303
+      value: 8.85
       objectReference: {fileID: 0}
     - target: {fileID: 1694237959559774526, guid: e0422f238c7809640b7c552a9db26787,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.41083223
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 1694237959559774526, guid: e0422f238c7809640b7c552a9db26787,
         type: 3}
@@ -1901,7 +1901,7 @@ PrefabInstance:
     - target: {fileID: 1694237959559774529, guid: e0422f238c7809640b7c552a9db26787,
         type: 3}
       propertyPath: respawnTime
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0422f238c7809640b7c552a9db26787, type: 3}
@@ -1991,17 +1991,37 @@ PrefabInstance:
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].r
-      value: 0.9137255
+      value: 0.4361567
       objectReference: {fileID: 0}
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].g
-      value: 0.22730035
+      value: 0.9137255
       objectReference: {fileID: 0}
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].b
       value: 0.11764703
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
+        type: 3}
+      propertyPath: mainTimer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
+        type: 3}
+      propertyPath: teamColorList.Array.data[1].r
+      value: 0.8773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
+        type: 3}
+      propertyPath: teamColorList.Array.data[1].g
+      value: 0.062077243
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
+        type: 3}
+      propertyPath: teamColorList.Array.data[1].b
+      value: 0.08420953
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7064ef5e8ae50f4c9469a48d210e8e3, type: 3}
