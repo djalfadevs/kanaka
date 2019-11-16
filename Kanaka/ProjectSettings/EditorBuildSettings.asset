@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Escena Photon Prueba.unity
+    path: Assets/Scenes/Test Photon/Escena Photon Prueba.unity
     guid: c8d147862d1c46548a83f11de245b0a7
+  - enabled: 1
+    path: Assets/Scenes/Test Photon/Escena Photon Prueba2.unity
+    guid: 019cd9d69e50eb9429e5957256ddec61
   m_configObjects: {}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Chat;
 using UnityEngine.UI;
 
 public class Lobby : MonoBehaviourPunCallbacks
@@ -16,6 +17,11 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public int playerCounter;
     public Text PlayerCounter;
+
+    public void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
 
     public void Connect()
     {
@@ -54,7 +60,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         Log.text += "\n No existen salas a las que unirse, creando una nueva";
 
-        if(PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions() {MaxPlayers = maxPlayersInRoom }))
+        if (PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions() { MaxPlayers = maxPlayersInRoom}))
         {
             Log.text += "\n Sala creada con exito";
         }
@@ -64,15 +70,26 @@ public class Lobby : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == minPlayersInRoom)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                PhotonNetwork.LoadLevel("Escena Photon Prueba2");
+        }
+    }
+    
+
     public override void OnJoinedRoom()
     {
         Log.text += "\n Unido a la sala";
         joinRandomRoomBtn.interactable = false;
+        
     }
 
-    public void FixedUpdate()
+        public void FixedUpdate()
     {
-        if(PhotonNetwork.CurrentRoom != null)
+        if(PhotonNetwork.CurrentRoom != null )
         {
             playerCounter = PhotonNetwork.CurrentRoom.PlayerCount;
         }
