@@ -76,7 +76,7 @@
     <Compile Include="Assets\Scripts\CorruptedTotem\CorruptedTotemSpawner.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\Scripts\HeroSpawner\HeroSpawner.cs" />
-    <Compile Include="Assets\Scripts\MenuScript.cs" />
+    <Compile Include="Assets\Scripts\Photon\Lobby\Lobby.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Team\Team.cs" />
@@ -310,6 +310,12 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/2018.4.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -318,12 +324,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/lmml_/Desktop/URJC/Primer Cuatrimestre/Juegos para Web y Redes Sociales/kanaka/Kanaka/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/2018.4.12f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
