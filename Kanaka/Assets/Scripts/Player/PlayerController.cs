@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     Vector3 object_pos;
     float angle;
     private Camera cam;
+    public float deadzone;
+    private Vector3 rotvec;
 
     private RuntimePlatform platform
     {
@@ -59,11 +61,16 @@ public class PlayerController : MonoBehaviour
             mouse_pos = Input.mousePosition;
             mouse_pos.z = 5; //The distance between the camera and object
             object_pos = cam.WorldToScreenPoint(target.position);
-            mouse_pos.x = mouse_pos.x - object_pos.x;
-            mouse_pos.y = mouse_pos.y - object_pos.y;
-            angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+            rotvec.x = mouse_pos.x - object_pos.x;
+            rotvec.y = mouse_pos.y - object_pos.y;
+
             //if distancia entre mouse y object
-            transform.rotation = Quaternion.LookRotation(new Vector3(mouse_pos.x, 0, mouse_pos.y));
+            if (Vector3.Distance(mouse_pos,object_pos) > deadzone)
+            {
+                transform.rotation = Quaternion.LookRotation(new Vector3(rotvec.x, 0, rotvec.y));
+
+                Debug.Log(Vector3.Distance(mouse_pos, object_pos));
+            }
 
             Vector3 move = Input.GetAxis("Vertical") * transform.TransformDirection(Vector3.forward) * MoveSpeed;
             cc.Move(move * Time.deltaTime);
