@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class User 
 {
     private string name { get; set; }
@@ -19,5 +20,9 @@ public class User
         this.realMoney = realMoney;
     }
 
+    public string ToJson()
+    {
+        return JsonUtility.ToJson(this);
+    }
 
 }

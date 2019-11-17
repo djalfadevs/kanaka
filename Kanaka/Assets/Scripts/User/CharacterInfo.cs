@@ -23,6 +23,7 @@ using UnityEngine;
  *        
  * En realidad la informacion sera suministrada desde la clase User , en sustitucion de CharacterInfo
  */
+[System.Serializable]
 public class CharacterInfo
 {
     private int characterID { get; set; } //Sirve para identificar que personaje nos referimos y tenemos desbloqueado
