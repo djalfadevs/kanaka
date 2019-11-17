@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private Player player;
+    [SerializeField] private Player player;
   
 
     private RuntimePlatform platform
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             player.attack();
+            Debug.Log("Atacamos");
         }
         if (Input.GetMouseButtonUp(1))
         {

@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(rotvec.x, 0, rotvec.y));
 
-            Debug.Log(Vector3.Distance(mouse_pos, object_pos));
+            //Debug.Log(Vector3.Distance(mouse_pos, object_pos));
         }
 
         Vector3 move = vertical* transform.TransformDirection(Vector3.forward) * MoveSpeed;
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         if (attackCD<=0)
         {
             attackCD = baseAttackCD;
-            Attack.use();
+            Attack.GetComponent<Attack>().use(this.gameObject);
         }
        
    
@@ -119,9 +119,9 @@ public class Player : MonoBehaviour
         if (abilityCD<=0)
         {
             abilityCD = baseAbilityCD;
-            //Ability.use();
+            //Ability.GetComponent<Ability>().use();
         }
-        
+
 
     }
 }
