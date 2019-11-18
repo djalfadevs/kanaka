@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
 {
     public float HP;
     public float MaxHP;
-    [SerializeField] private GameObject Ability;
-    [SerializeField] private GameObject Attack;
     [SerializeField] private GameObject Item;
     [SerializeField] private int team;
     [SerializeField] private Color teamColor;
@@ -25,9 +23,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float baseAttackCD;
     [SerializeField] private float abilityCD;
     [SerializeField] private float baseAbilityCD;
+    [SerializeField] private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInParent<Animator>();
         cam = FindObjectOfType<Camera>();
         cc = GetComponent<CharacterController>();
     }
@@ -53,9 +53,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Hit(Collider collider)
+    public void Hit(Collider collider)
     {
-
+        Debug.Log("He recibido "+collider.gameObject.GetComponent<Mareas1>().getDmg()+" puntos de dmg");
     }
 
     public int GetTeam()
@@ -107,8 +107,9 @@ public class Player : MonoBehaviour
     {
         if (attackCD<=0)
         {
+            animator.SetTrigger("Attack");
             attackCD = baseAttackCD;
-            Attack.GetComponent<Attack>().use(this.gameObject);
+           // Attack.GetComponent<Attack>().use(this.gameObject);
         }
        
    

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/testno.unity
+- path: Assets/Scenes/Kanaka/Select First Chapter/Select First Chapter.unity
   isLoaded: 1
   isActive: 1

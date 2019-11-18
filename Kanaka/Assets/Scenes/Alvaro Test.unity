@@ -237,6 +237,13 @@ MonoBehaviour:
   Item: {fileID: 0}
   team: 0
   teamColor: {r: 0, g: 0, b: 0, a: 0}
+  MoveSpeed: 8
+  target: {fileID: 31732793}
+  deadzone: 0
+  attackCD: 0
+  baseAttackCD: 0
+  abilityCD: 0
+  baseAbilityCD: 0
 --- !u!1001 &226962678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,6 +321,11 @@ PrefabInstance:
       propertyPath: deadzone
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6504240292687557063, guid: d56fc291863521443bf99713a7daef52,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 31732794}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d56fc291863521443bf99713a7daef52, type: 3}
 --- !u!1 &557310772

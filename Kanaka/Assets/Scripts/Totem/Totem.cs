@@ -51,6 +51,7 @@ public class Totem : MonoBehaviour
 
     public void Hit(Collider collider)
     {
+        Debug.Log("He recibido " + collider.gameObject.GetComponent<Mareas1>().getDmg() + " puntos de dmg");
         Dead();
         animator.SetFloat("HP", hp);
     }
