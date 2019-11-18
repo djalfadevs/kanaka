@@ -378,7 +378,7 @@ MonoBehaviour:
   teamColor: {r: 0, g: 0, b: 0, a: 0}
   MoveSpeed: 2
   target: {fileID: 537045807}
-  deadzone: 0
+  deadzone: 20
   attackCD: 0
   baseAttackCD: 1
   abilityCD: 0
@@ -1705,13 +1705,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011570796}
-  m_LocalRotation: {x: 0.16377452, y: -0.026680363, z: -0.012068533, w: 0.9860631}
-  m_LocalPosition: {x: -0.11, y: 4.43, z: -7.53}
+  m_LocalRotation: {x: 0.2792593, y: 0, z: 0, w: 0.96021575}
+  m_LocalPosition: {x: -0.11, y: 7.91, z: -7.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.804, y: -3.426, z: -1.9700001}
+  m_LocalEulerAnglesHint: {x: 32.432003, y: 0, z: 0}
 --- !u!1 &2112337877
 GameObject:
   m_ObjectHideFlags: 0

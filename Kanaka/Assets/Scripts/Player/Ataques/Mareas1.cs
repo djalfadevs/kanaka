@@ -10,7 +10,8 @@ public class Mareas1 : MonoBehaviour
     [SerializeField] private int speed=2;
 
     private List<GameObject> points=new List<GameObject>();
-    
+    private List<Vector3> pointsPos = new List<Vector3>();
+
     private Player p;
     private int fase;
     //0 no
@@ -26,6 +27,12 @@ public class Mareas1 : MonoBehaviour
     public void setPoints(List<GameObject>l)
     {
         this.points = l;
+        pointsPos.Add(new Vector3(points[0].GetComponent<Transform>().position.x,
+            points[0].GetComponent<Transform>().position.y,
+            points[0].GetComponent<Transform>().position.z));
+        pointsPos.Add(new Vector3(points[1].GetComponent<Transform>().position.x,
+            points[1].GetComponent<Transform>().position.y,
+            points[1].GetComponent<Transform>().position.z));
     }
     public void setPlayer(Player p2,int f)
     {
@@ -93,9 +100,9 @@ public class Mareas1 : MonoBehaviour
         {
             if (fase == 0)
             {
-                if (Vector3.Distance(this.gameObject.transform.position,this.points[0].transform.position)>0.5f)
+                if (Vector3.Distance(this.gameObject.transform.position,this.pointsPos[0])>0.5f)
                 {
-                    Vector3 move =  Vector3.Normalize(this.points[0].transform.position-this.gameObject.transform.position);
+                    Vector3 move =  Vector3.Normalize(this.pointsPos[0]-this.gameObject.transform.position);
                     transform.Translate(this.transform.InverseTransformDirection(move *speed* Time.deltaTime));
                     Debug.Log(move);
                 }
@@ -107,9 +114,9 @@ public class Mareas1 : MonoBehaviour
             else if (fase == 1)
             {
                 Debug.Log("inicio fase1");
-                if (Vector3.Distance(this.gameObject.transform.position, this.points[1].transform.position) > 0.5f)
+                if (Vector3.Distance(this.gameObject.transform.position, this.pointsPos[1]) > 0.5f)
                 {
-                    Vector3 move = Vector3.Normalize(this.points[1].transform.position - this.gameObject.transform.position);
+                    Vector3 move = Vector3.Normalize(this.pointsPos[1] - this.gameObject.transform.position);
                     transform.Translate(this.transform.InverseTransformDirection(move * speed * Time.deltaTime));
                 }
                 else
