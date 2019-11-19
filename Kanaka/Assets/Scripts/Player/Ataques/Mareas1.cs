@@ -104,7 +104,7 @@ public class Mareas1 : MonoBehaviour
                 {
                     Vector3 move =  Vector3.Normalize(this.pointsPos[0]-this.gameObject.transform.position);
                     transform.Translate(this.transform.InverseTransformDirection(move *speed* Time.deltaTime));
-                    Debug.Log(move);
+                    //Debug.Log(move);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ public class Mareas1 : MonoBehaviour
             }
             else if (fase == 1)
             {
-                Debug.Log("inicio fase1");
+                //Debug.Log("inicio fase1");
                 if (Vector3.Distance(this.gameObject.transform.position, this.pointsPos[1]) > 0.5f)
                 {
                     Vector3 move = Vector3.Normalize(this.pointsPos[1] - this.gameObject.transform.position);

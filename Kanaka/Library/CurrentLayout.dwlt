@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 398}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -44,10 +44,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 683, y: 498}
-  m_MaxSize: {x: 14004, y: 14048}
+  m_MinSize: {x: 683, y: 348}
+  m_MaxSize: {x: 12008, y: 8048}
   vertical: 0
-  controlID: 121
+  controlID: 52
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,14 +119,14 @@ MonoBehaviour:
     y: 452
     width: 1092
     height: 279
-  m_MinSize: {x: 232, y: 274}
-  m_MaxSize: {x: 10002, y: 10024}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 14}
   - {fileID: 19}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 1092
     height: 731
-  m_MinSize: {x: 406, y: 498}
-  m_MaxSize: {x: 10002, y: 14048}
+  m_MinSize: {x: 406, y: 348}
+  m_MaxSize: {x: 8006, y: 8048}
   vertical: 1
   controlID: 53
 --- !u!114 &10
@@ -294,10 +294,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 400
-    y: 73
-    width: 961
-    height: 565
+    x: 320
+    y: 73.6
+    width: 768
+    height: 432
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ViewTransforms:
     m_KeySerializationHelper:
@@ -337,14 +337,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.7854412
+    - e00: 1.2158105
       e01: 0
       e02: 0
-      e03: -51.656815
+      e03: -731.959
       e10: 0
-      e11: 0.7854412
+      e11: 1.2158105
       e12: 0
-      e13: 15.747406
+      e13: -269.36755
       e20: 0
       e21: 0
       e22: 1
@@ -354,10 +354,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: c2984b7b17498ea4ea4c35a50cce82de,
+  m_AnimatorController: {fileID: 9100000, guid: ffdf38ff77daf524a97bd7bdd593a028,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107147210172675320, guid: c2984b7b17498ea4ea4c35a50cce82de,
+  - m_Target: {fileID: 1107877472682703852, guid: ffdf38ff77daf524a97bd7bdd593a028,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -435,20 +435,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player/Ataques
+    - Assets/Prefabs/Ataques
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player/Ataques
+  - Assets/Prefabs/Ataques
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\lmml_\Desktop\URJC\Primer Cuatrimestre\Juegos para Web
     y Redes Sociales\kanaka\Kanaka
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 462}
-    m_SelectedIDs: ac320000
-    m_LastClickedID: 12972
+    scrollPos: {x: 0, y: 190}
+    m_SelectedIDs: 562c0000
+    m_LastClickedID: 11350
     m_ExpandedIDs: 00000000b82a0000f02a0000962b0000122c0000162c0000802c00009c2d0000682e0000ca2f0000a8300000ac310000c231000070320000b0320000963300009833000026370000283700002a37000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -502,8 +502,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 66faffff
+    m_LastClickedInstanceID: -1434
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
@@ -596,9 +596,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ae360000
-      m_LastClickedID: 13998
-      m_ExpandedIDs: d4fbffff94360000
+      m_SelectedIDs: 66faffff
+      m_LastClickedID: -1434
+      m_ExpandedIDs: d4fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -653,9 +653,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.11, y: 4.43, z: -7.53}
+    m_Target: {x: -1.6567214, y: 0.15294188, z: 3.6785748}
     speed: 2
-    m_Value: {x: -0.11, y: 4.43, z: -7.53}
+    m_Value: {x: -1.6567214, y: 0.15294188, z: 3.6785748}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -683,13 +683,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.27511156, y: 0.32608733, z: -0.09980047, w: 0.8988996}
+    m_Target: {x: 0.20037591, y: 0.53008753, z: -0.13056603, w: 0.81351656}
     speed: 2
-    m_Value: {x: 0.27511156, y: 0.32608733, z: -0.09980047, w: 0.8988996}
+    m_Value: {x: 0.20037591, y: 0.53008753, z: -0.13056603, w: 0.81351656}
   m_Size:
-    m_Target: 22
+    m_Target: 6.331513
     speed: 2
-    m_Value: 22
+    m_Value: 6.331513
   m_Ortho:
     m_Target: 0
     speed: 2

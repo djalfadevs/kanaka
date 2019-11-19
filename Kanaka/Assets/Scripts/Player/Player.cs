@@ -11,11 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] private int team;
     [SerializeField] private Color teamColor;
     public float MoveSpeed;
+    [SerializeField] private bool canMove = true;
     CharacterController cc;
     Vector3 mouse_pos;
     public Transform target; //Assign to the object you want to rotate
     Vector3 object_pos;
-    float angle;
     private Camera cam;
     public float deadzone;
     private Vector3 rotvec;
@@ -75,32 +75,40 @@ public class Player : MonoBehaviour
 
     public void moveAndroid(float auxAxisHorizontal,float auxAxisVertical)
     {
-        Vector3 move = new Vector3(auxAxisHorizontal * MoveSpeed, 0f, auxAxisVertical * MoveSpeed);
-        Vector3 v3 = new Vector3(auxAxisHorizontal, 0.0f, auxAxisVertical);
-        Quaternion qTo = Quaternion.LookRotation(v3);
-        transform.rotation = Quaternion.Slerp(transform.rotation, qTo, MoveSpeed * Time.deltaTime);
+        if (canMove)
+        {
+            Vector3 move = new Vector3(auxAxisHorizontal * MoveSpeed, 0f, auxAxisVertical * MoveSpeed);
+            Vector3 v3 = new Vector3(auxAxisHorizontal, 0.0f, auxAxisVertical);
+            Quaternion qTo = Quaternion.LookRotation(v3);
+            transform.rotation = Quaternion.Slerp(transform.rotation, qTo, MoveSpeed * Time.deltaTime);
 
-        cc.Move(move * Time.deltaTime);
-        cc.SimpleMove(Physics.gravity);
+            cc.Move(move * Time.deltaTime);
+            cc.SimpleMove(Physics.gravity);
+        }
+       
     }
 
     public void move(Vector3 mouse_pos,float vertical)
     {
-        object_pos = cam.WorldToScreenPoint(target.position);
-        rotvec.x = mouse_pos.x - object_pos.x;
-        rotvec.y = mouse_pos.y - object_pos.y;
-
-        //if distancia entre mouse y object
-        if (Vector3.Distance(mouse_pos, object_pos) > deadzone)
+        if (canMove)//Si puede moverse
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(rotvec.x, 0, rotvec.y));
+            object_pos = cam.WorldToScreenPoint(target.position);
+            rotvec.x = mouse_pos.x - object_pos.x;
+            rotvec.y = mouse_pos.y - object_pos.y;
 
-            //Debug.Log(Vector3.Distance(mouse_pos, object_pos));
+            //if distancia entre mouse y object
+            if (Vector3.Distance(mouse_pos, object_pos) > deadzone)
+            {
+                transform.rotation = Quaternion.LookRotation(new Vector3(rotvec.x, 0, rotvec.y));
+
+                //Debug.Log(Vector3.Distance(mouse_pos, object_pos));
+            }
+
+            Vector3 move = vertical * transform.TransformDirection(Vector3.forward) * MoveSpeed;
+            cc.Move(move * Time.deltaTime);
+            cc.SimpleMove(Physics.gravity);
         }
-
-        Vector3 move = vertical* transform.TransformDirection(Vector3.forward) * MoveSpeed;
-        cc.Move(move * Time.deltaTime);
-        cc.SimpleMove(Physics.gravity);
+        
     }
 
     public void attack()
@@ -124,5 +132,10 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    public void setCanMove(bool b)
+    {
+        canMove = b;
     }
 }

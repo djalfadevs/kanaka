@@ -21,7 +21,8 @@ public class MareasAgresivas : MonoBehaviour
     public void FirstCall()
     {
         FirstSpawn();
-        Debug.Log("hola");
+        //Debug.Log("hola");
+        player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
     }
 
     private void FirstSpawn()
@@ -34,7 +35,7 @@ public class MareasAgresivas : MonoBehaviour
     public void SecondCall()
     {
         SecondSpawn();
-        Debug.Log("Segundohola");
+        //Debug.Log("Segundohola");
         GetComponent<Animator>().ResetTrigger("Attack");
     }
 
@@ -46,6 +47,10 @@ public class MareasAgresivas : MonoBehaviour
         q.GetComponent<Mareas1>().setPoints(this.points);
     }
     
+    public void LastCall()
+    {
+        player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+    }
 
 
 }

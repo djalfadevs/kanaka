@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             player.attack();
-            Debug.Log("Atacamos");
+            //Debug.Log("Atacamos");
         }
         if (Input.GetMouseButtonUp(1))
         {

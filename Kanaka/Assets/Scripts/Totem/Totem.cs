@@ -46,6 +46,7 @@ public class Totem : MonoBehaviour
 
         //Actualizamos los totems vivos de los equipos ya que uno de ellos ha muerto
         GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
+        if(gameHandler!=null)
         gameHandler.GetComponent<GameHandler>().CountAliveTotemsinTeams();
     }
 
