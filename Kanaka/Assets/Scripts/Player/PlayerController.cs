@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     [SerializeField] private Player player;
   
@@ -52,6 +54,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (PhotonNetwork.IsConnected == true)
+        { 
+            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
+        }
 
         if (platform == RuntimePlatform.Android)
         {
