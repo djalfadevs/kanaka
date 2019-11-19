@@ -1917,5 +1917,15 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.65929365
       objectReference: {fileID: 0}
+    - target: {fileID: 114532492130619440, guid: cc7172859a0fcde46b0eb794a37c3e6b,
+        type: 3}
+      propertyPath: hp
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532492130619440, guid: cc7172859a0fcde46b0eb794a37c3e6b,
+        type: 3}
+      propertyPath: maxHp
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc7172859a0fcde46b0eb794a37c3e6b, type: 3}
