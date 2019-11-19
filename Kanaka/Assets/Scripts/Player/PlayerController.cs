@@ -11,6 +11,7 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviourPun
 {
     [SerializeField] private Player player;
+    private PhotonView ph;
   
 
     private RuntimePlatform platform
@@ -32,6 +33,10 @@ public class PlayerController : MonoBehaviourPun
         }
     }
 
+    private void Awake()
+    {
+        ph = GetComponentInParent<PhotonView>();
+    }
 
     void Start()
     {
@@ -54,13 +59,10 @@ public class PlayerController : MonoBehaviourPun
 
     void Update()
     {
-
-        if (PhotonNetwork.IsConnected == true)
-        { 
-            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
-            {
-                return;
-            }
+        
+        if (ph.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
         }
 
         if (platform == RuntimePlatform.Android)
@@ -78,8 +80,11 @@ public class PlayerController : MonoBehaviourPun
             mouse_pos = Input.mousePosition;
             mouse_pos.z = 5; //The distance between the camera and object
             float vertical = Input.GetAxis("Vertical");
-            player.move(mouse_pos,vertical);
-            attackInput();
+            if (mouse_pos != null)
+            {
+                player.move(mouse_pos, vertical);
+                attackInput();
+            }
         }
         
     }

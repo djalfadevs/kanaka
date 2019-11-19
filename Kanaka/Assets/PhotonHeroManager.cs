@@ -13,9 +13,8 @@ public class PhotonHeroManager : MonoBehaviourPun
     void Start()
     {
         PhotonView photonview = GetComponent<PhotonView>();
-        PhotonTransformView aux = model.AddComponent<PhotonTransformView>();
+        PhotonTransformView aux = model.GetComponent<PhotonTransformView>();
         photonview.ObservedComponents.Add(aux);
-
         if (photonView.IsMine)
         {
             LocalPlayerInstance = this.gameObject;

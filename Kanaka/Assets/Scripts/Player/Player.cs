@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float HP;
     public float MaxHP;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float abilityCD;
     [SerializeField] private float baseAbilityCD;
     [SerializeField] private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -137,5 +139,19 @@ public class Player : MonoBehaviour
     public void setCanMove(bool b)
     {
         canMove = b;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(HP);
+        }
+        else
+        {
+            // Network player, receive data
+            //this.IsFiring = (bool)stream.ReceiveNext();
+        }
     }
 }
