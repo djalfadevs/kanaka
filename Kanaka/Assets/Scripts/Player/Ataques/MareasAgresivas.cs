@@ -27,7 +27,7 @@ public class MareasAgresivas : MonoBehaviourPun
     }
     public void FirstCall()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return ;
         
         animator.SetBool("Attack", false);
@@ -38,7 +38,7 @@ public class MareasAgresivas : MonoBehaviourPun
 
     private void FirstSpawn()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
 
         Debug.Log("Lo estoy intentando seriamente");
@@ -52,12 +52,12 @@ public class MareasAgresivas : MonoBehaviourPun
         {
             q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation);
         }
-        q.GetComponent<Mareas1>().setPlayer(player.GetComponent<Player>(),-1);
+        q.GetComponent<Mareas1>().setPlayer(player.GetComponent<Player>().GetTeam(),-1);
     }
 
     public void SecondCall()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
 
         SecondSpawn();
@@ -77,13 +77,13 @@ public class MareasAgresivas : MonoBehaviourPun
         {
             q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation);
         }  
-        q.GetComponent<Mareas1>().setPlayer(player.GetComponent<Player>(),0);
+        q.GetComponent<Mareas1>().setPlayer(player.GetComponent<Player>().GetTeam(),0);
         q.GetComponent<Mareas1>().setPoints(this.points);
     }
     
     public void LastCall()
     {
-        if (!photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
         player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mareas1 : MonoBehaviourPun
+public class Mareas1 : MonoBehaviourPun, IPunObservable
 {
     private int dmg;
     [SerializeField] private float duracion;
@@ -13,7 +13,7 @@ public class Mareas1 : MonoBehaviourPun
     private List<GameObject> points=new List<GameObject>();
     private List<Vector3> pointsPos = new List<Vector3>();
 
-    private Player p;
+    private float team;
     private int fase;
     private PhotonView photonView;
     //0 no
@@ -40,7 +40,7 @@ public class Mareas1 : MonoBehaviourPun
             points[1].GetComponent<Transform>().position.y,
             points[1].GetComponent<Transform>().position.z));
     }
-    public void setPlayer(Player p2,int f)
+    public void setPlayer(float p2,int f)
     {
         this.fase = f;
         switch (f)
@@ -52,7 +52,7 @@ public class Mareas1 : MonoBehaviourPun
                 dmg = 15;
                 break;
         }
-        this.p = p2;
+        this.team = p2;
         
     }
     // Update is called once per frame
@@ -79,27 +79,29 @@ public class Mareas1 : MonoBehaviourPun
         }
         if (duracion <= 0)
         {
-            Destroy(this.gameObject, 0.1f);
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         PhotonView photonView = collider.GetComponent<PhotonView>();
-        if (photonView != null && photonView.IsMine)
+        if (!PhotonNetwork.IsMasterClient)
             return;
 
-        Debug.Log(collider.gameObject.name);
+        //Debug.Log(collider.gameObject.name);
+        //Debug.Log(team.ToString());
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (collider.gameObject.GetComponent<Player>().GetTeam() != p.GetTeam())
+            if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
             {
                 collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
             }
         }
         if (collider.gameObject.CompareTag("Totem"))
         {
-            if (collider.gameObject.GetComponent<Totem>().GetTeam() != p.GetTeam())
+            Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+            if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
             {
                 collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
             }
@@ -144,5 +146,19 @@ public class Mareas1 : MonoBehaviourPun
                 }
             }
         }       
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(team);
+        }
+        else
+        {
+            // Network player, receive data
+            this.team = (float)stream.ReceiveNext();
+        }
     }
 }

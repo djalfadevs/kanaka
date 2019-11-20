@@ -130,6 +130,7 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
         {
             // Network player, receive data
             this.hp = (float)stream.ReceiveNext();
+            Debug.Log("hp: "+ hp);
         }
     }
 }
