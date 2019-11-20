@@ -129,6 +129,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (abilityCD<=0)
         {
+            Debug.Log("bolsa");
+            animator.SetBool("Habilidad",true);
             abilityCD = baseAbilityCD;
             //Ability.GetComponent<Ability>().use();
         }

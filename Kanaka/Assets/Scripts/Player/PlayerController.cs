@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviourPun
         }
         if (Input.GetMouseButtonUp(1))
         {
-          //  player.ability();
+            player.ability();
         }
 
     }
