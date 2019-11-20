@@ -59,10 +59,13 @@ public class PlayerController : MonoBehaviourPun
 
     void Update()
     {
-        
-        if (ph.IsMine == false && PhotonNetwork.IsConnected == true)
+
+        if (PhotonNetwork.IsConnected == true)
         {
-            return;
+            if (ph.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
         }
 
         if (platform == RuntimePlatform.Android)

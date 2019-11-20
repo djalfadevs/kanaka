@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,23 +57,41 @@ public class Totem : MonoBehaviour
 
     public void Hit(Collider collider)
     {
-        Debug.Log("He recibido " + collider.gameObject.GetComponent<Mareas1>().getDmg() + " puntos de dmg");
-        animator.SetTrigger("isDamaged");
-        //Dead();
         float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        Debug.Log("He recibido " + damage + " puntos de dmg");
+        //Dead();
 
         if (!(hp - damage <= 0))//Si con el golpe no muere
         {
+            animator.SetBool("isDamaged",true);
             hp -= damage;
             float hpPorcentaje = hp / maxHp;
             animator.SetFloat("HP%",hpPorcentaje);
-            
+            CalculateState((hp+damage)/maxHp,(hp/maxHp));
         }
         else//Si se muere
         {
+            animator.SetBool("isDamaged", true);
+            CalculateState((hp + damage) / maxHp, (hp / maxHp));
             Dead();
         }
        
+    }
+
+    private void CalculateState(float currentValue, float nextValue)
+    {
+        if(currentValue>=0.6 && nextValue <= 0.6)//En el punto del 0.6
+        {
+            animator.SetInteger("State",1);
+        }
+        else if (currentValue >= 0.3 && nextValue <= 0.3)//En el punto del 0.6
+        {
+            animator.SetInteger("State", 2);
+        }
+        else if (nextValue <= 0)//En el punto del 0.6
+        {
+            animator.SetInteger("State", 3);
+        }
     }
 
     public float GetHp()
@@ -81,9 +100,21 @@ public class Totem : MonoBehaviour
     }
 
     //Se utiliza  cuando se realizan cambios de estados que seran dados por el uso de ciertas animaciones.
+    /*
     public void setStage(int stage)
     {
         animator.SetInteger("Stage", stage);
         this.stage = stage; //Solo como informacion para ver posibles fallos
+    }
+    */
+
+    public void SetBoolDamageg(int i)
+    {
+        if (i == 0)
+            animator.SetBool("isDamaged", false);
+        else if(i==1)
+        {
+            animator.SetBool("isDamaged", true);
+        }
     }
 }
