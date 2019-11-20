@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mareas1 : MonoBehaviour
+public class Mareas1 : MonoBehaviourPun
 {
     private int dmg;
     [SerializeField] private float duracion;
@@ -14,12 +15,17 @@ public class Mareas1 : MonoBehaviour
 
     private Player p;
     private int fase;
+    private PhotonView photonView;
     //0 no
     //1 si
     //2 slow
     //3 mas rapido
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
     void Start()
     {
         
@@ -52,6 +58,9 @@ public class Mareas1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         Timemanager();
         moveManager();
 
@@ -76,6 +85,10 @@ public class Mareas1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        PhotonView photonView = collider.GetComponent<PhotonView>();
+        if (photonView != null && photonView.IsMine)
+            return;
+
         Debug.Log(collider.gameObject.name);
         if (collider.gameObject.CompareTag("Player"))
         {
@@ -100,28 +113,34 @@ public class Mareas1 : MonoBehaviour
         {
             if (fase == 0)
             {
-                if (Vector3.Distance(this.gameObject.transform.position,this.pointsPos[0])>0.5f)
+                if (this.pointsPos.Count != 0)
                 {
-                    Vector3 move =  Vector3.Normalize(this.pointsPos[0]-this.gameObject.transform.position);
-                    transform.Translate(this.transform.InverseTransformDirection(move *speed* Time.deltaTime));
-                    //Debug.Log(move);
-                }
-                else
-                {
-                    fase = 1;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.pointsPos[0]) > 0.5f)
+                    {
+                        Vector3 move = Vector3.Normalize(this.pointsPos[0] - this.gameObject.transform.position);
+                        transform.Translate(this.transform.InverseTransformDirection(move * speed * Time.deltaTime));
+                        //Debug.Log(move);
+                    }
+                    else
+                    {
+                        fase = 1;
+                    }
                 }
             }
             else if (fase == 1)
             {
-                //Debug.Log("inicio fase1");
-                if (Vector3.Distance(this.gameObject.transform.position, this.pointsPos[1]) > 0.5f)
+                if (this.pointsPos.Count != 0)
                 {
-                    Vector3 move = Vector3.Normalize(this.pointsPos[1] - this.gameObject.transform.position);
-                    transform.Translate(this.transform.InverseTransformDirection(move * speed * Time.deltaTime));
-                }
-                else
-                {
-                    fase = 2;
+                    //Debug.Log("inicio fase1");
+                    if (Vector3.Distance(this.gameObject.transform.position, this.pointsPos[1]) > 0.5f)
+                    {
+                        Vector3 move = Vector3.Normalize(this.pointsPos[1] - this.gameObject.transform.position);
+                        transform.Translate(this.transform.InverseTransformDirection(move * speed * Time.deltaTime));
+                    }
+                    else
+                    {
+                        fase = 2;
+                    }
                 }
             }
         }       

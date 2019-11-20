@@ -117,7 +117,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (attackCD<=0)
         {
-            animator.SetTrigger("Attack");
+            animator.SetBool("Attack",true);
             attackCD = baseAttackCD;
            // Attack.GetComponent<Attack>().use(this.gameObject);
         }
@@ -146,7 +146,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            stream.SendNext(HP);
         }
         else
         {

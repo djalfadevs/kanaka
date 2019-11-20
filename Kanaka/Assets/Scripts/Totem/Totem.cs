@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Totem : MonoBehaviour
+
+public class Totem : MonoBehaviourPunCallbacks , IPunObservable
 {
     [SerializeField] private int team;
     [SerializeField] private float maxHp;
@@ -35,7 +37,7 @@ public class Totem : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = teamColor;
-        Gizmos.DrawWireCube(transform.position, new Vector3(0.2f,0.2f,0.2f));
+        Gizmos.DrawWireCube(transform.position, new Vector3(2f,2f,2f));
     }
 
     public void setTeamColor(Color color)
@@ -115,6 +117,19 @@ public class Totem : MonoBehaviour
         else if(i==1)
         {
             animator.SetBool("isDamaged", true);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(hp);
+        }
+        else
+        {
+            // Network player, receive data
+            this.hp = (float)stream.ReceiveNext();
         }
     }
 }
