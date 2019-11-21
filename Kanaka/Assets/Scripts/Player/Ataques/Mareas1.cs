@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Mareas1 : MonoBehaviourPun, IPunObservable
 {
-    private int dmg;
+    [SerializeField] private int dmg;
     [SerializeField] private float duracion;
     [SerializeField] private int distancia;
     [SerializeField] private int speed=2;
@@ -40,6 +40,16 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
             points[1].GetComponent<Transform>().position.y,
             points[1].GetComponent<Transform>().position.z));
     }
+    public void setDamage(int damage)
+    {
+        this.dmg = damage;
+    }
+
+    public void setTeam(float team)
+    {
+        this.team = team;
+    }
+
     public void setPlayer(float p2,int f)
     {
         this.fase = f;
@@ -58,9 +68,6 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (!photonView.IsMine)
-            return;
-
         Timemanager();
         moveManager();
 
@@ -79,33 +86,45 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
         }
         if (duracion <= 0)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            //Photon.
+            Destroy(this.gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        PhotonView photonView = collider.GetComponent<PhotonView>();
-        if (!PhotonNetwork.IsMasterClient)
-            return;
 
         //Debug.Log(collider.gameObject.name);
         //Debug.Log(team.ToString());
-        if (collider.gameObject.CompareTag("Player"))
+        PhotonView photonview2 = collider.GetComponent<PhotonView>();
+        if (photonview2 != null)
         {
-            if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
+            if (photonview2.IsMine)
             {
-                collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                if (collider.gameObject.CompareTag("Player"))
+                {
+                    if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
+                    {
+                        collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                    }
+                }
             }
         }
-        if (collider.gameObject.CompareTag("Totem"))
+    
+
+        //Caso Objeto de escena (se regula por la vista del usuario que lanza dicho cubo)
+        if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
-            if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
+            if (collider.gameObject.CompareTag("Totem"))
             {
-                collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
+                {
+                    collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                }
             }
         }
+    
         
     }
 
@@ -154,11 +173,17 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
         {
             // We own this player: send the others our data
             stream.SendNext(team);
+            stream.SendNext(dmg);
         }
         else
         {
             // Network player, receive data
             this.team = (float)stream.ReceiveNext();
+            this.dmg = (int)stream.ReceiveNext();
+            if (dmg != 0)
+            {
+                Debug.Log("PASPDSPDSDSPDSDSDSD "+dmg);
+            }
         }
     }
 }

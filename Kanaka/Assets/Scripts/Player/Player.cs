@@ -25,8 +25,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float abilityCD;
     [SerializeField] private float baseAbilityCD;
     [SerializeField] private Animator animator;
+    private PhotonView ph;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        ph = GetComponentInParent<PhotonView>();
+        ph.ObservedComponents.Add(this);
+    }
     void Start()
     {
         animator = GetComponentInParent<Animator>();
@@ -37,6 +43,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if (!ph.IsMine)
+        {
+            return;
+        }
+
         if (attackCD >= 0)
         {
             attackCD -= Time.deltaTime;
@@ -115,7 +126,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void attack()
     {
-        if (attackCD<=0)
+        if (attackCD<=0 && !animator.GetBool("Attack"))
         {
             animator.SetBool("Attack",true);
             attackCD = baseAttackCD;
@@ -147,12 +158,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            // We own this player: send the others our data
+            stream.SendNext(attackCD);
         }
         else
         {
             // Network player, receive data
-            //this.IsFiring = (bool)stream.ReceiveNext();
+            this.attackCD = (float)stream.ReceiveNext();
         }
     }
 }

@@ -1369,10 +1369,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 6853959956044118081, guid: 2993632afdc4b4f4484d2aa2d9db7238, type: 3}
+  Photoncube: {fileID: 6853959956044118081, guid: 9af23fdcda2a1c54692a87ffc90c91e8,
+    type: 3}
   player: {fileID: 7205895237406354414}
   points:
   - {fileID: 7205895237921460824}
   - {fileID: 7205895238128454564}
+  dmg1: 20
+  dmg2: 15
 --- !u!114 &7205895238563332710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,10 +1430,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Attack
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Habilidad
   m_SynchronizeLayers:
   - SynchronizeType: 0

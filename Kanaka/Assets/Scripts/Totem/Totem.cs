@@ -60,6 +60,7 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
     public void Hit(Collider collider)
     {
         float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        Debug.Log(collider.ToString());
         Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();
 
@@ -124,13 +125,13 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(hp);
+            //stream.SendNext(hp);
         }
         else
         {
             // Network player, receive data
-            this.hp = (float)stream.ReceiveNext();
-            Debug.Log("hp: "+ hp);
+            //this.hp = (float)stream.ReceiveNext();
+            //Debug.Log("hp: "+ hp);
         }
     }
 }
