@@ -58,6 +58,10 @@ public class Ruptura : MonoBehaviour
                 collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
             }
         }
+        if (collider.gameObject.CompareTag("CorruptedTotem"))
+        {
+            collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
+        }
 
     }
     public void setPlayer(Player p2)
