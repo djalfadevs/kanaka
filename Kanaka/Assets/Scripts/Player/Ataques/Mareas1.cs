@@ -94,10 +94,11 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
     private void OnTriggerEnter(Collider collider)
     {
 
+        //PARTE ONLINE PLAYERS
         //Debug.Log(collider.gameObject.name);
         //Debug.Log(team.ToString());
         PhotonView photonview2 = collider.GetComponent<PhotonView>();
-        if (photonview2 != null)
+        if (photonview2 != null && PhotonNetwork.IsConnected)
         {
             if (photonview2.IsMine)
             {
@@ -111,9 +112,9 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
             }
         }
     
-
+        //PARTE ONLINE TOTEMS
         //Caso Objeto de escena (se regula por la vista del usuario que lanza dicho cubo)
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
             if (collider.gameObject.CompareTag("Totem"))
             {
@@ -124,7 +125,34 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
                 }
             }
         }
-    
+
+        //Parte OFFLINE
+        if (!PhotonNetwork.IsConnected)
+        {
+            //totem
+            if (collider.gameObject.CompareTag("Totem"))
+            {
+                //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
+                {
+                    collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                }
+            }
+            //player
+            if (collider.gameObject.CompareTag("Player"))
+            {
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
+                {
+                    collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                }
+            }
+
+            //Corrupted Totem
+            if (collider.gameObject.CompareTag("CorruptedTotem"))
+            {
+                collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
+            }
+        }
         
     }
 
@@ -180,10 +208,6 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
             // Network player, receive data
             this.team = (float)stream.ReceiveNext();
             this.dmg = (int)stream.ReceiveNext();
-            if (dmg != 0)
-            {
-                Debug.Log("PASPDSPDSDSPDSDSDSD "+dmg);
-            }
         }
     }
 }

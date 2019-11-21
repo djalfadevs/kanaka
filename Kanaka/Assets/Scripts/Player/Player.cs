@@ -31,6 +31,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
+        if(ph!=null)
         ph.ObservedComponents.Add(this);
     }
     void Start()
@@ -43,9 +44,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (!ph.IsMine)
+        if (PhotonNetwork.IsConnected)
         {
-            return;
+            if (!ph.IsMine)
+            {
+                return;
+            }
         }
 
         if (attackCD >= 0)

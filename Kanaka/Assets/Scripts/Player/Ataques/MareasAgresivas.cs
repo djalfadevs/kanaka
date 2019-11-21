@@ -41,8 +41,10 @@ public class MareasAgresivas : MonoBehaviourPun
 
     private void FirstSpawn()
     {
+        if (PhotonNetwork.IsConnected){ 
         if (!photonView.IsMine)
             return;
+        }
 
         Debug.Log("Lo estoy intentando seriamente");
         Vector3 aux= player.transform.position + player.transform.TransformDirection(Vector3.forward)*2;
@@ -61,8 +63,11 @@ public class MareasAgresivas : MonoBehaviourPun
 
     public void SecondCall()
     {
-        if (!photonView.IsMine)
-            return;
+        if (PhotonNetwork.IsConnected)
+        {
+            if (!photonView.IsMine)
+                return;
+        }
         //if (!PhotonNetwork.IsMasterClient)
         //    return;
 
@@ -91,11 +96,15 @@ public class MareasAgresivas : MonoBehaviourPun
     
     public void LastCall()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected)
         {
-            animator.SetBool("Attack", false);
+            if (!photonView.IsMine)
+            {
+                return;
+            }
         }
 
+        animator.SetBool("Attack", false);
         //if (!PhotonNetwork.IsMasterClient)
         //    return;
 
