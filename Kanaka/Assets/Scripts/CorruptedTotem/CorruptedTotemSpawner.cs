@@ -38,7 +38,8 @@ public class CorruptedTotemSpawner : MonoBehaviour
             if (auxY != -1)
             {
                 pos.y = auxY;//Cambiamos la posicion en Y
-                Instantiate(totem, pos, Quaternion.Euler(new Vector3(0, 0, 0)));
+                //La rotacion del totem en Y es aleatoria
+                Instantiate(totem, pos, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0.0f, 360.0f), 0)));
             }     
         }
     }
@@ -47,17 +48,18 @@ public class CorruptedTotemSpawner : MonoBehaviour
     //Si no devuelve el valor para colocar el totemcorrupto de forma correcta en el mapa
     private float FindPositionInY(Vector3 pos)
     {
+        float auxPosSpawnerY = this.GetComponent<Transform>().position.y;
         RaycastHit hit;
         float positionY = -1;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(pos, Vector3.down, out hit, raycastDepth))
+        if (Physics.Raycast(new Vector3(pos.x,auxPosSpawnerY,pos.z), Vector3.down, out hit, raycastDepth))
         {
-            Debug.DrawRay(pos, Vector3.down * hit.distance, Color.yellow);
+            Debug.DrawRay(new Vector3(pos.x, auxPosSpawnerY, pos.z), Vector3.down * hit.distance, Color.yellow,100);
             Collider auxColl = totem.GetComponent<Collider>();
             //Si no choca con ningun totem ya intanciado y tampoco choca con el jugador
             if (!Physics.CheckBox(hit.point, auxColl.bounds.size / 2))
             {
-                Debug.DrawRay(pos, Vector3.down * hit.distance, Color.yellow, 100);
+                Debug.DrawRay(pos, Vector3.up * hit.distance, Color.yellow, 100);
                 Debug.DrawLine(pos + (auxColl.bounds.size / 2), pos - (auxColl.bounds.size / 2), Color.red, 100);
                 positionY = hit.point.y + (auxColl.bounds.size.y / 2);
             }
