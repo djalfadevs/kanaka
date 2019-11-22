@@ -60,8 +60,8 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
     public void Hit(Collider collider)
     {
         float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
-        Debug.Log(collider.ToString());
-        Debug.Log("He recibido " + damage + " puntos de dmg");
+        //Debug.Log(collider.ToString());
+        //Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();
 
         if (!(hp - damage <= 0))//Si con el golpe no muere

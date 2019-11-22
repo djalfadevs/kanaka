@@ -46,7 +46,7 @@ public class MareasAgresivas : MonoBehaviourPun
             return;
         }
 
-        Debug.Log("Lo estoy intentando seriamente");
+        //Debug.Log("Lo estoy intentando seriamente");
         Vector3 aux= player.transform.position + player.transform.TransformDirection(Vector3.forward)*2;
         GameObject q;
         if (!PhotonNetwork.IsConnected)
