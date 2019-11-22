@@ -1,0 +1,27 @@
+Acta 22/11/19
+
+Programacion
+
+Controles hechos en PC, Android no.
+Interfaz en progreso, faltan creditos, seleccion de personajes, menu que acceda a la coleccion, la tienda.
+Spawner de totem corrupto completado.
+Multijugador hay combate, faltan objetos y los datos del combate.
+Cuentas de usuario completadas, falta reglas del juego.
+
+Arte
+
+Objetos modelados y animados,totems,personajes terminados, faltan animaciones y rigging de 3. 
+Faltan escenarios
+
+GDD
+
+Actualizaciones importantes gdd
+
+MUSICA
+
+Efectos de menu y de combate, faltan esquema escenarios, faltan las canciones
+
+Avances miscelaneos
+
+fernando va a hacer el logo
+el juego se pasa a llamar Hakapuni
