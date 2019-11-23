@@ -54,7 +54,7 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
         //Actualizamos los totems vivos de los equipos ya que uno de ellos ha muerto
         GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
         if(gameHandler!=null)
-        gameHandler.GetComponent<GameHandler>().CountAliveTotemsinTeams();
+        gameHandler.GetComponent<PhotonGameManager>().recalculateAliveTotems = true;//Manda ejecutar un recalculo de los totems vivos
     }
 
     public void Hit(Collider collider)
@@ -125,12 +125,12 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
     {
         if (stream.IsWriting)
         {
-            //stream.SendNext(hp);
+            stream.SendNext(hp);
         }
         else
         {
             // Network player, receive data
-            //this.hp = (float)stream.ReceiveNext();
+            this.hp = (float)stream.ReceiveNext();
             //Debug.Log("hp: "+ hp);
         }
     }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Photon/Escena Photon Prueba2.unity
     guid: 019cd9d69e50eb9429e5957256ddec61
+  - enabled: 1
+    path: Assets/Scenes/Test Photon/Escena Photon Resultados.unity
+    guid: 438b64cf39ad39e408a9cb6826bb4257
   m_configObjects: {}

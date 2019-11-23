@@ -13,7 +13,9 @@ public class Team
 
     private IList<GameObject> spawnsTeam { get; set; }
 
-    private int AliveTotemTeam { get; set; }
+    public int AliveTotemTeam;
+
+    public int TotalTotemsTeam;
 
     private Color teamColor { get; set; }
 
@@ -24,6 +26,7 @@ public class Team
         spawnsTeam = new List<GameObject>();
         teamColor = new Color(0, 0, 0);//Color por defecto
         AliveTotemTeam = 0;
+        TotalTotemsTeam = 0;
     }
 
     public Team(Color color)
@@ -33,6 +36,7 @@ public class Team
         spawnsTeam = new List<GameObject>();
         teamColor = color;
         AliveTotemTeam = 0;
+        TotalTotemsTeam = 0;
     }
 
     public IList<GameObject> GetTeam()
@@ -52,6 +56,7 @@ public class Team
 
     public void AddTotemsTeam(int team, GameObject[] totems)
     {
+        TotalTotemsTeam = 0;
         this.totemsTeam.Clear();//Limpiamos la lista antes de añadir
         foreach (GameObject s in totems)
         {
@@ -62,6 +67,7 @@ public class Team
                 {
                     this.totemsTeam.Add(aux.gameObject);
                     aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
+                    TotalTotemsTeam++;//
                     Debug.Log("Added Totem to team " + team + " and set color " + teamColor);
                 }
             }
@@ -117,19 +123,23 @@ public class Team
                 }
             }
         }
+        //Debug.Log("Recalculando totems vivos " + auxAliveTotems);
         AliveTotemTeam = auxAliveTotems;
+
         //A partir de aqui si los totems vivos son 0 se llama a fin de partida
-        if (auxAliveTotems <= 0)
-        {
-            Lose();
-        }
+        //if (auxAliveTotems <= 0)
+        //{
+        //    Lose();
+        //}
     }
-   
+    
+    /*
     public void Lose()
     {
         GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
         gameHandler.GetComponent<GameHandler>().FinDePartida();
     }
+    */
 }
 
 

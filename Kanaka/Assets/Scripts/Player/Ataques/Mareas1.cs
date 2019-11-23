@@ -118,7 +118,7 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
         {
             if (collider.gameObject.CompareTag("Totem"))
             {
-                Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+                //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
                 if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
                 {
                     collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());

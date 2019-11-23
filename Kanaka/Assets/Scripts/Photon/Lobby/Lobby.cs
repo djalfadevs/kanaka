@@ -25,10 +25,10 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
-        Debug.Log("Do something");
+        //Debug.Log("Do something");
         if (!PhotonNetwork.IsConnected)
         {
-            Debug.Log("Do something");
+            //Debug.Log("Do something");
             if (PhotonNetwork.ConnectUsingSettings())
             {
                 Log.text += "\nEstamos conectados al servidor";
