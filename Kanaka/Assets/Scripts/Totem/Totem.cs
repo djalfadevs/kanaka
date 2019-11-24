@@ -59,25 +59,28 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
 
     public void Hit(Collider collider)
     {
+        animator.SetBool("isDamaged", true);
         float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
         //Debug.Log(collider.ToString());
         //Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();
 
-        if (!(hp - damage <= 0))//Si con el golpe no muere
+        if (PhotonNetwork.IsMasterClient)
         {
-            animator.SetBool("isDamaged",true);
-            hp -= damage;
-            float hpPorcentaje = hp / maxHp;
-            animator.SetFloat("HP%",hpPorcentaje);
-            CalculateState((hp+damage)/maxHp,(hp/maxHp));
+            if (!(hp - damage <= 0))//Si con el golpe no muere
+            {
+                float hpPorcentaje = hp / maxHp;
+                hp -= damage;
+                animator.SetFloat("HP%", hpPorcentaje);
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+            }
+            else//Si se muere
+            {
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+                Dead();
+            }
         }
-        else//Si se muere
-        {
-            animator.SetBool("isDamaged", true);
-            CalculateState((hp + damage) / maxHp, (hp / maxHp));
-            Dead();
-        }
+       
        
     }
 

@@ -90,6 +90,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         return teamColor; 
     }
 
+    public void setTeam(int team)
+    {
+        this.team = team;
+    }
     public void moveAndroid(float auxAxisHorizontal,float auxAxisVertical)
     {
         if (canMove)
@@ -163,11 +167,20 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(attackCD);
+            stream.SendNext(team);
+            //Debug.LogError("Color send " + "#"+teamColor + " "+ph.GetInstanceID() );
+            stream.SendNext("#"+ColorUtility.ToHtmlStringRGBA(teamColor));
         }
         else
         {
             // Network player, receive data
             this.attackCD = (float)stream.ReceiveNext();
+            this.team = (int)stream.ReceiveNext();
+
+            Color aux;
+            ColorUtility.TryParseHtmlString((string) stream.ReceiveNext(),out aux);
+            //Debug.LogError("Color get " + aux + " " + ph.GetInstanceID());
+            this.teamColor = aux;
         }
     }
 }

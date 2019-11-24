@@ -5,6 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Chat;
 using UnityEngine.UI;
+using System.IO;
+using System;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
@@ -18,9 +20,15 @@ public class Lobby : MonoBehaviourPunCallbacks
     public int playerCounter;
     public Text PlayerCounter;
 
+    private string MatchInputFilePath;
+    private int team;
+    private string CharacterSelected;
+    [SerializeField] private InputField input;
+
     public void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        MatchInputFilePath = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
     }
 
     public void Connect()
@@ -94,5 +102,25 @@ public class Lobby : MonoBehaviourPunCallbacks
             playerCounter = PhotonNetwork.CurrentRoom.PlayerCount;
         }
         PlayerCounter.text = playerCounter + "/" + maxPlayersInRoom;
+    }
+
+    public void WriteData()
+    {
+        string auxS = "";
+        auxS += team.ToString() + Environment.NewLine;
+        auxS += CharacterSelected + Environment.NewLine;
+        File.WriteAllText(MatchInputFilePath, auxS);
+    }
+
+    public void setTeam()
+    {
+        this.team = int.Parse(input.text);
+        WriteData();
+    }
+
+    public void setCharacterSelected(string character)
+    {
+        this.CharacterSelected = character;
+        WriteData();
     }
 }

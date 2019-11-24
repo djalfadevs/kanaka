@@ -19,8 +19,8 @@ public class GameSignUpInManager : MonoBehaviour
 
     void Awake()
     {
-       path = Application.dataPath + "/UsersData/Users.json";
-       path2 = Application.dataPath + "/UsersData/User.json";
+       path = Application.streamingAssetsPath + "/UsersData/Users.json";
+       path2 = Application.streamingAssetsPath + "/UsersData/User.json";
     }
 
     void Start()

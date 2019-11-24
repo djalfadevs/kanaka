@@ -12,7 +12,7 @@ public class GameManagerPlayerSelection : MonoBehaviour
 
     void Awake()
     {
-        path = Application.dataPath + "/UsersData/User.json";
+        path = Application.streamingAssetsPath + "/UsersData/User.json";
     }
 
     //Has pulsado un personaje y te sale su informacion;

@@ -103,7 +103,7 @@ public class Team
                 if (aux.GetTeam() == team)
                 {
                     this.herosTeam.Add(aux.gameObject);
-                    aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
+                    //aux.setTeamColor(teamColor);//Se le pasa el color del equipo establecido desde el gamehandler
                     Debug.Log("Added Team to team " + team + " and set color " + teamColor);
                 }
             }

@@ -114,7 +114,7 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
     
         //PARTE ONLINE TOTEMS
         //Caso Objeto de escena (se regula por la vista del usuario que lanza dicho cubo)
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
             if (collider.gameObject.CompareTag("Totem"))
             {

@@ -340,6 +340,23 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7205895237004780435, guid: baa6498809e03c342a99cc74f365ff80,
+        type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 253484712, guid: baa6498809e03c342a99cc74f365ff80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 253484712, guid: baa6498809e03c342a99cc74f365ff80, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 253484712, guid: baa6498809e03c342a99cc74f365ff80, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa6498809e03c342a99cc74f365ff80, type: 3}
 --- !u!1001 &855213969
@@ -422,17 +439,17 @@ PrefabInstance:
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].r
-      value: 0.9137255
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].g
-      value: 0.11764723
+      value: 0.07075471
       objectReference: {fileID: 0}
     - target: {fileID: 5578173761202351019, guid: c7064ef5e8ae50f4c9469a48d210e8e3,
         type: 3}
       propertyPath: teamColorList.Array.data[0].b
-      value: 0.11764703
+      value: 0.07075471
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7064ef5e8ae50f4c9469a48d210e8e3, type: 3}
@@ -507,6 +524,11 @@ PrefabInstance:
         type: 3}
       propertyPath: raycastDepth
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694237959559774529, guid: 44fd8084e5d36814fb8cbd3ea67147b5,
+        type: 3}
+      propertyPath: keepSpawning
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44fd8084e5d36814fb8cbd3ea67147b5, type: 3}

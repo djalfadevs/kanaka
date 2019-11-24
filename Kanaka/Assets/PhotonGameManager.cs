@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ExitGames.Client.Photon;
+using System;
+using System.IO;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable 
 {
@@ -39,11 +41,18 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private bool matchIsFinished = false;
     [SerializeField] public bool recalculateAliveTotems = false;
 
+    private bool StartTimers = false;
     //Timer
     private double incTimer = 0;
     private double startTime = 0;
     private double decTimer = 111;
     [SerializeField] private double matchDuration = 120000;
+
+    //Timer 2
+    private double incTimer2 = 0;
+    private double prestartTime = 0;
+    private double decTimer2 = 111;
+    [SerializeField] private double preMatchDuration = 60;
 
     [SerializeField] private Text TimerText;//Debug
     [SerializeField] private Text Team1TotalTotemsText;//Debug
@@ -62,24 +71,45 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     }
     void Start()
     {
+        
+
         if (!PhotonNetwork.IsConnected)
         {
             return;
         }
+        InstanciateHero();
+        InitializeTeamsInfo(); 
+        InitializeMatch();
+    }
 
+    void InstanciateHero()
+    {
         if (playerPrefab == null)
         {
             Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
         }
         else
         {
+            
             Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            GameObject a = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+
+            //LEEMOS LOS DATOS FIJADOS EN LA ANTERIOR PANTALLA Y GUARDADOS EN MATCHINPUT
+            if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
+            {
+                FileInfo fileinfo = new FileInfo(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
+                StreamReader reader = fileinfo.OpenText();
+                string aux = reader.ReadLine();
+                //Debug.LogError(int.Parse(aux));
+                a.GetComponentInChildren<Player>().setTeam(int.Parse(aux));
+                a.GetComponentInChildren<Player>().setTeamColor(teamColorList[int.Parse(aux)]);
+            }
+                
         }
-
-        SetStartTime();//DEBUG (IRA EN OTRO LADO)
-
+    }
+    void InitializeTeamsInfo()
+    {
         //Añadimos dos equipos al comienzo
         for (var j = 0; j < 2; j++)
         {
@@ -106,21 +136,16 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         Team2TotalTotemsText.text = "TotalTotems: " + teamList[1].TotalTotemsTeam;
         Team2AliveTotemsText.text = "AliveTotems: " + teamList[1].AliveTotemTeam;
         //DEBUG
-
-        //Si es el cliente master añadimos la propiedad del tiempo inicial a la partida
-        if (PhotonNetwork.IsMasterClient)
-        { 
-              
-        }
-
-        //startTime = (double) PhotonNetwork.CurrentRoom.CustomProperties["StartTime"]; 
-        
-        //Debug.Log("Tiempo Empezado");
-        //timer = mainTimer;
-
-
     }
 
+    void InitializeMatch()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable { { "PreStartTime", PhotonNetwork.Time } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }
+    }
     void SetStartTime()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -129,6 +154,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }    
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -137,8 +163,22 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
             return;
         }
 
-        CountTimer();
+        RecalculateAliveTotems();
+        if (StartTimers)
+        {
+            CountTimer();
+            CountTimer2();
+        }
 
+        if (matchIsFinished)
+        {
+            FinDePartida();
+        } 
+        
+    }
+
+    public void RecalculateAliveTotems()
+    {
         //DEBUG
         if (recalculateAliveTotems)
         {
@@ -155,51 +195,69 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
             }
         }
         /////
-        
-        if (matchIsFinished)
-        {
-            FinDePartida();
-        } 
-        
     }
 
-    public void FinDePartida()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("Escena Photon Resultados");
-        }
-
-        //FALTA GESTIONAR TODO EL TEMA DE VICTORIA DERROTA
-    }
-
+    //LLeva el tiempo de la partida
     public void CountTimer()
     {
         if (!gameStarted)
         {
             return;
         }
-
-        //Debug.Log(startTime);
-        //Debug.Log(PhotonNetwork.Time);
         // Example for a increasing timer
         incTimer = PhotonNetwork.Time - startTime;
-
-        //Debug.Log(incTimer);
         // Example for a decreasing timer
-
         decTimer = matchDuration - incTimer;
 
+        if (decTimer < 0)
+            decTimer = 0;
+
         //Debug
-        TimerText.text = "Time: " + decTimer;
+        TimerText.text = "Time: " +  TimeSpan.FromSeconds(Math.Round(decTimer)).ToString(@"m\:ss"); ;
         //////
-        
-        if (decTimer<0)
+
+        if (decTimer<=0)
         {
             Debug.Log("Fin de Partida");
             matchIsFinished = true;
         }
     }
+
+    //LLeva el tiempo Pre Partida
+    public void CountTimer2()
+    {
+        if (gameStarted)
+        {
+            return;
+        }
+
+        incTimer2 = PhotonNetwork.Time - prestartTime;
+        decTimer2 = preMatchDuration - incTimer2;
+
+        if (decTimer2 < 0)
+            decTimer2 = 0;
+
+        TimerText.text = "Game Starts in: " + Math.Round(decTimer2);
+
+        if (decTimer2 <= 0)
+        {
+            //Debug.Log("Fin de Pre-Partida");
+            StartTimers = false;
+            SetStartTime();
+            gameStarted = true;
+        }
+    }
+
+    public void FinDePartida()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            //PhotonNetwork.LoadLevel("Escena Photon Resultados");
+        }
+
+        //FALTA GESTIONAR TODO EL TEMA DE VICTORIA DERROTA
+    }
+
     /// <summary>
     /// Detectamos los spawns pertenecientes a cada equipo
     /// Los gameobject que son spawns de los heroes estan identificados mediante 
@@ -312,7 +370,14 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         if (propertiesThatChanged.TryGetValue("StartTime", out propsTime))
         {
             startTime = (double)propsTime;
-           // Debug.Log(startTime);
+            StartTimers = true;
+            // Debug.Log(startTime);
+        }
+        if (propertiesThatChanged.TryGetValue("PreStartTime", out propsTime))
+        {
+            prestartTime = (double)propsTime;
+            Debug.Log(prestartTime +" aa");
+            StartTimers = true;
         }
     }
 }
