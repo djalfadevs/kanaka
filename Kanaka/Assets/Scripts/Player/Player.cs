@@ -72,7 +72,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Hit(Collider collider)
     {
-        Debug.Log("He recibido "+collider.gameObject.GetComponent<Mareas1>().getDmg()+" puntos de dmg");
+        float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        Debug.Log("He recibido "+ damage +" puntos de dmg");
+        if (HP - damage>0)
+        {
+            HP -= damage;
+        }
+        else
+        {
+            HP = 0;
+        }
     }
 
     public int GetTeam()
@@ -170,6 +179,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(team);
             //Debug.LogError("Color send " + "#"+teamColor + " "+ph.GetInstanceID() );
             stream.SendNext("#"+ColorUtility.ToHtmlStringRGBA(teamColor));
+            stream.SendNext(HP);
         }
         else
         {
@@ -179,8 +189,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
             Color aux;
             ColorUtility.TryParseHtmlString((string) stream.ReceiveNext(),out aux);
-            //Debug.LogError("Color get " + aux + " " + ph.GetInstanceID());
             this.teamColor = aux;
+
+            this.HP = (float)stream.ReceiveNext();
         }
     }
 }

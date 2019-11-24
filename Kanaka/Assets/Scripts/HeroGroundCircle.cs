@@ -27,6 +27,7 @@ public class HeroGroundCircle : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        //Cambiar para que setspritecolor y setheroline sean llamados solo cuando se instancie un prefab heroe
         transform.position = new Vector3(player.position.x,player.gameObject.GetComponent<CapsuleCollider>().bounds.min.y,player.position.z);  //Momentaneo , habra que ajustar bien las posiciones
         setSpriteColor();
         setHeroLine();
@@ -36,7 +37,7 @@ public class HeroGroundCircle : MonoBehaviourPun
     {
         Color auxColor = player.GetComponent<Player>().getTeamColor();
         sprite.color = auxColor;
-        if (player.GetComponent<PlayerController>()!=null && ph.IsMine)
+        if (player.GetComponent<PlayerController>()!=null && ph.IsMine)//Solo se ve en el heroe que manejamos
         {
             sprite.color = Color.yellow;
         }
@@ -45,32 +46,39 @@ public class HeroGroundCircle : MonoBehaviourPun
 
     void setHeroLine()
     {
-        numberOfAliesInRoom = 0;
-        foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player"))
-           {
-                if(p != player.gameObject && player.GetComponent<Player>().GetTeam()==p.GetComponent<Player>().GetTeam())
+        if (ph.IsMine)//Solo se ve en el heroe que manejamos
+        {
+            numberOfAliesInRoom = 0;
+            foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (p != player.gameObject && player.GetComponent<Player>().GetTeam() == p.GetComponent<Player>().GetTeam())
                 {
                     numberOfAliesInRoom++;
                     Ally = p.transform;
-                   
-           }
-        }
 
-        if (numberOfAliesInRoom >= 1)
-        {
-            TeamAllyIndicator.enabled = true;
-            Vector3 fin = new Vector3(Ally.transform.position.x, player.gameObject.GetComponent<CapsuleCollider>().bounds.min.y + TeamAllyIndicatorHeightAdapt, Ally.transform.position.z);
-            Vector3 ini = new Vector3(player.transform.position.x, player.gameObject.GetComponent<CapsuleCollider>().bounds.min.y + TeamAllyIndicatorHeightAdapt, player.transform.position.z);
-            Vector3 AuxDirUnit = Vector3.Normalize(fin - ini);
-            TeamAllyIndicator.gameObject.transform.position = ini + AuxDirUnit * radius;
-            TeamAllyIndicator.material.color = player.GetComponent<Player>().getTeamColor();
+                }
+            }
+
+            if (numberOfAliesInRoom >= 1)
+            {
+                TeamAllyIndicator.enabled = true;
+                Vector3 fin = new Vector3(Ally.transform.position.x, player.gameObject.GetComponent<CapsuleCollider>().bounds.min.y + TeamAllyIndicatorHeightAdapt, Ally.transform.position.z);
+                Vector3 ini = new Vector3(player.transform.position.x, player.gameObject.GetComponent<CapsuleCollider>().bounds.min.y + TeamAllyIndicatorHeightAdapt, player.transform.position.z);
+                Vector3 AuxDirUnit = Vector3.Normalize(fin - ini);
+                TeamAllyIndicator.gameObject.transform.position = ini + AuxDirUnit * radius;
+                TeamAllyIndicator.material.color = player.GetComponent<Player>().getTeamColor();
+            }
+            else
+            {
+                if (TeamAllyIndicator.enabled)
+                {
+                    TeamAllyIndicator.enabled = false;
+                }
+            }
         }
         else
         {
-            if (TeamAllyIndicator.enabled)
-            {
-                TeamAllyIndicator.enabled = false;
-            }
+            TeamAllyIndicator.enabled = false;
         }
     }
 }

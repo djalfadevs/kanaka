@@ -25,6 +25,10 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        //Debug.Log(photonView.InstantiationData[0].ToString());
+        float aux;
+        float.TryParse(photonView.InstantiationData[0].ToString(), out aux);
+        team = aux;
     }
     void Start()
     {

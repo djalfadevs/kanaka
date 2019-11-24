@@ -56,7 +56,9 @@ public class MareasAgresivas : MonoBehaviourPun
         else
         {
             //PhotonNetwork
-            q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation);
+            object[] instanceData = new object[1];
+            instanceData[0] = player.GetComponent<Player>().GetTeam();
+            q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation,0,instanceData);
         }
         q.GetComponent<Mareas1>().setDamage(dmg1);
     }
@@ -87,8 +89,11 @@ public class MareasAgresivas : MonoBehaviourPun
         }
         else
         {
-            q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation);
-            q.GetComponent<Mareas1>().setTeam(photonView.gameObject.GetComponentInChildren<Player>().GetTeam());
+            object[] instanceData = new object[1];
+            instanceData[0] = player.GetComponent<Player>().GetTeam();
+
+            q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation,0,instanceData);
+            //q.GetComponent<Mareas1>().setTeam(photonView.gameObject.GetComponentInChildren<Player>().GetTeam());
         }
         q.GetComponent<Mareas1>().setDamage(dmg2);
         q.GetComponent<Mareas1>().setPoints(this.points);
