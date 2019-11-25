@@ -77,8 +77,9 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         {
             return;
         }
+        InitializeTeamsInfo();
         InstanciateHero();
-        InitializeTeamsInfo(); 
+        InitializeTeamsInfo();
         InitializeMatch();
     }
 
@@ -90,10 +91,6 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         }
         else
         {
-            
-            Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-            // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            GameObject a = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
 
             //LEEMOS LOS DATOS FIJADOS EN LA ANTERIOR PANTALLA Y GUARDADOS EN MATCHINPUT
             if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
@@ -101,11 +98,18 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
                 FileInfo fileinfo = new FileInfo(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
                 StreamReader reader = fileinfo.OpenText();
                 string aux = reader.ReadLine();
-                //Debug.LogError(int.Parse(aux));
-                a.GetComponentInChildren<Player>().setTeam(int.Parse(aux));
-                a.GetComponentInChildren<Player>().setTeamColor(teamColorList[int.Parse(aux)]);
-            }
-                
+               
+                object[] instanceData = new object[2];
+                instanceData[0] = aux;
+                instanceData[1] = "#"+ ColorUtility.ToHtmlStringRGBA(teamColorList[int.Parse(aux)]);
+
+                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
+                Player p = this.playerPrefab.GetComponentInChildren<Player>();
+                Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, int.Parse(aux));
+                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                GameObject a = PhotonNetwork.Instantiate(this.playerPrefab.name, spawnPoint, Quaternion.identity, 0,instanceData);
+            }          
+            
         }
     }
     void InitializeTeamsInfo()

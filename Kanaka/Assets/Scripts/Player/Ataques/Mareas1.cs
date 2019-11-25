@@ -13,7 +13,7 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
     private List<GameObject> points=new List<GameObject>();
     private List<Vector3> pointsPos = new List<Vector3>();
 
-    private float team;
+    [SerializeField] private float team;
     private int fase;
     private PhotonView photonView;
     //0 no
@@ -27,8 +27,12 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
         photonView = GetComponent<PhotonView>();
         //Debug.Log(photonView.InstantiationData[0].ToString());
         float aux;
-        float.TryParse(photonView.InstantiationData[0].ToString(), out aux);
-        team = aux;
+        if(photonView ?? null)
+        {
+            float.TryParse(photonView.InstantiationData[0].ToString(), out aux);
+            team = aux;
+        }
+        
     }
     void Start()
     {

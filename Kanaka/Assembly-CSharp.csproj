@@ -80,7 +80,7 @@
     <Compile Include="Assets\Scripts\GameHandlers\GameHandlerPhoton.cs" />
     <Compile Include="Assets\Scripts\GameHandlers\TestGameHandler\GameHandlerPhotonTry.cs" />
     <Compile Include="Assets\Scripts\HeroGroundCircle.cs" />
-    <Compile Include="Assets\Scripts\HeroSpawner\HeroSpawner.cs" />
+    <Compile Include="Assets\Scripts\HeroSpawner\HeroSpawners.cs" />
     <Compile Include="Assets\Scripts\InstanciaCuboDelante.cs" />
     <Compile Include="Assets\Scripts\Photon\Lobby\Lobby.cs" />
     <Compile Include="Assets\Scripts\Player\Ataques\Corriente.cs" />

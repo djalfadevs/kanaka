@@ -31,14 +31,24 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
-        if(ph!=null)
-        ph.ObservedComponents.Add(this);
+        //if(ph!=null)
+        //ph.ObservedComponents.Add(this);
     }
     void Start()
     {
         animator = GetComponentInParent<Animator>();
         cam = FindObjectOfType<Camera>();
         cc = GetComponent<CharacterController>();
+
+        int aux;
+        Color aux2;
+        if (photonView ?? null)
+        {
+            int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
+            team = aux;
+            ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(),out aux2);
+            teamColor = aux2;
+        }
     }
 
     // Update is called once per frame
@@ -89,20 +99,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         return team;
     }
 
-    public void setTeamColor(Color color)
-    {
-        teamColor = color;
-    }
-
     public Color getTeamColor()
     {
         return teamColor; 
     }
 
-    public void setTeam(int team)
-    {
-        this.team = team;
-    }
     public void moveAndroid(float auxAxisHorizontal,float auxAxisVertical)
     {
         if (canMove)

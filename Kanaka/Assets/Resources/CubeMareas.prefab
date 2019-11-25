@@ -110,6 +110,7 @@ MonoBehaviour:
   duracion: 5
   distancia: 0
   speed: 2
+  team: 0
 --- !u!114 &114747482239200180
 MonoBehaviour:
   m_ObjectHideFlags: 0

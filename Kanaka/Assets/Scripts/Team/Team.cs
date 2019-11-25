@@ -79,7 +79,7 @@ public class Team
         this.spawnsTeam.Clear();//Limpiamos la lista antes de añadir
         foreach (GameObject s in heroSpawners)
         {
-            HeroSpawner aux = s.gameObject.GetComponent<HeroSpawner>();
+            HeroSpawners aux = s.gameObject.GetComponent<HeroSpawners>();
             if (aux != null)
             {
                 if (aux.GetTeam() == team)

@@ -53,8 +53,14 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
 
         //Actualizamos los totems vivos de los equipos ya que uno de ellos ha muerto
         GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
-        if(gameHandler!=null)
-        gameHandler.GetComponent<PhotonGameManager>().recalculateAliveTotems = true;//Manda ejecutar un recalculo de los totems vivos
+        if (gameHandler != null)
+        {
+            if(gameHandler.GetComponent<PhotonGameManager>() ?? null)
+            {
+                gameHandler.GetComponent<PhotonGameManager>().recalculateAliveTotems = true;//Manda ejecutar un recalculo de los totems vivos
+            }
+        }
+        
     }
 
     public void Hit(Collider collider)
@@ -65,7 +71,7 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
         //Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();
 
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
             if (!(hp - damage <= 0))//Si con el golpe no muere
             {
@@ -80,8 +86,23 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
                 Dead();
             }
         }
-       
-       
+
+        if (!PhotonNetwork.IsConnected)
+        {
+            if (!(hp - damage <= 0))//Si con el golpe no muere
+            {
+                float hpPorcentaje = hp / maxHp;
+                hp -= damage;
+                animator.SetFloat("HP%", hpPorcentaje);
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+            }
+            else//Si se muere
+            {
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+                Dead();
+            }
+        }
+
     }
 
     private void CalculateState(float currentValue, float nextValue)
