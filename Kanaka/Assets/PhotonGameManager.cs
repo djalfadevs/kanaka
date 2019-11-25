@@ -71,8 +71,6 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     }
     void Start()
     {
-        
-
         if (!PhotonNetwork.IsConnected)
         {
             return;
@@ -81,6 +79,19 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         InstanciateHero();
         InitializeTeamsInfo();
         InitializeMatch();
+    }
+
+    void SetTimers()
+    {
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("PreStartTime"))
+        {
+            prestartTime = (double) PhotonNetwork.CurrentRoom.CustomProperties["PreStartTime"];
+        }
+
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTime"))
+        {
+            startTime = (double) PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+        }
     }
 
     void InstanciateHero()
@@ -148,7 +159,18 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         {
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable { { "PreStartTime", PhotonNetwork.Time } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+
+            ExitGames.Client.Photon.Hashtable ht2 = new ExitGames.Client.Photon.Hashtable { { "StartTimers", true } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht2);
         }
+        SetTimers();
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("StartTimers"))
+        {
+            StartTimers = (bool)PhotonNetwork.CurrentRoom.CustomProperties["StartTimers"];
+        }
+            
+
+
     }
     void SetStartTime()
     {
@@ -156,7 +178,17 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         {
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable { { "StartTime", PhotonNetwork.Time } };
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-        }    
+            ExitGames.Client.Photon.Hashtable ht2 = new ExitGames.Client.Photon.Hashtable { { "GameStarted", true } };
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht2);    
+        }
+        SetTimers();
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("GameStarted"))
+        {
+            gameStarted = (bool)PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"];
+        }
+        
+
+
     }
 
     // Update is called once per frame
@@ -246,9 +278,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         if (decTimer2 <= 0)
         {
             //Debug.Log("Fin de Pre-Partida");
-            StartTimers = false;
             SetStartTime();
-            gameStarted = true;
         }
     }
 
@@ -348,7 +378,8 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
             stream.SendNext(loserTeam);
 
             stream.SendNext(matchIsFinished);
-            
+
+            //stream.SendNext(StartTimers);
         }
         else
         {
@@ -364,6 +395,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
 
             this.matchIsFinished = (bool)stream.ReceiveNext();
 
+            //this.StartTimers = (bool)stream.ReceiveNext();
         }
     }
 
@@ -374,14 +406,22 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         if (propertiesThatChanged.TryGetValue("StartTime", out propsTime))
         {
             startTime = (double)propsTime;
-            StartTimers = true;
             // Debug.Log(startTime);
         }
         if (propertiesThatChanged.TryGetValue("PreStartTime", out propsTime))
         {
             prestartTime = (double)propsTime;
-            Debug.Log(prestartTime +" aa");
-            StartTimers = true;
+            //Debug.Log(prestartTime +" aa");
+        }
+        if (propertiesThatChanged.TryGetValue("GameStarted", out propsTime))
+        {
+            gameStarted = (bool)propsTime;
+            //Debug.Log(prestartTime +" aa");
+        }
+        if (propertiesThatChanged.TryGetValue("StartTimers", out propsTime))
+        {
+            StartTimers = (bool)propsTime;
+            //Debug.Log(prestartTime +" aa");
         }
     }
 }

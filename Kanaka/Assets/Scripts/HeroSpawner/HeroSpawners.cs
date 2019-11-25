@@ -30,7 +30,7 @@ public class HeroSpawners : MonoBehaviour
         {
             transformSpawnerTeam2.Add(this.transform);
         }
-        Debug.LogError("Los resultados son " + transformSpawner.Count + " " + transformSpawnerTeam1.Count + " " + transformSpawnerTeam2.Count);
+        //Debug.LogError("Los resultados son " + transformSpawner.Count + " " + transformSpawnerTeam1.Count + " " + transformSpawnerTeam2.Count);
     }
 
     // Start is called before the first frame update
@@ -83,7 +83,7 @@ public class HeroSpawners : MonoBehaviour
         //Debug.LogError("Result: " + " " + auxL.Count);
         do
         {
-        Debug.LogError("Result: " + isBusyaux + " " + auxL.Count);
+        //Debug.LogError("Result: " + isBusyaux + " " + auxL.Count);
         Transform auxT = auxL[(int) Mathf.Round(UnityEngine.Random.Range(0.0f, auxL.Count - 1.0f))]; //Se elige un sitio de despliegue aleatorio dentro de la lista.
         Vector3 spawnPointXZ = RandomCircle(auxT.position, radious); 
         isBusyaux = (CheckIsBusy(spawnPointXZ));
