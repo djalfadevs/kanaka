@@ -26,6 +26,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float baseAbilityCD;
     [SerializeField] private Animator animator;
     private PhotonView ph;
+    private Vector3 movement;
+    private Vector3 networkPosition;
+    private Quaternion networkRotation;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,6 +57,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        Vector3 oldPosition = transform.position;
+
+        // Handling position updates related to the given input
+
+        movement = transform.position - oldPosition;
+
+        if (!ph.IsMine)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,networkPosition, Time.deltaTime * MoveSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 30);
+            return;
+        }
+
         if (PhotonNetwork.IsConnected)
         {
             if (!ph.IsMine)
@@ -78,6 +94,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 abilityCD = 0;
             }
         }
+
+        
     }
 
     public void Hit(Collider collider)
@@ -181,6 +199,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             //Debug.LogError("Color send " + "#"+teamColor + " "+ph.GetInstanceID() );
             stream.SendNext("#"+ColorUtility.ToHtmlStringRGBA(teamColor));
             stream.SendNext(HP);
+
+            stream.SendNext(this.transform.position);
+            stream.SendNext(this.transform.rotation);
         }
         else
         {
@@ -193,6 +214,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             this.teamColor = aux;
 
             this.HP = (float)stream.ReceiveNext();
+
+            this.networkPosition = (Vector3)stream.ReceiveNext();
+            this.networkRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }
