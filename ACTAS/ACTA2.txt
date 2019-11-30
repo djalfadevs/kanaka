@@ -1,0 +1,49 @@
+Programacion
+++++++++++++
+Respawn implementado
+Barra de vida
+Pausa implementada
+Ajustes implementados
+Logica multiplayer terminada salvo por retoques
+------------
+Pantalla de coleccion terminada base y seleccion de personajes iniciada.
+____________
+Arte
+++++++++++++
+Dos escenarios y objetos terminados
+Avance animacion de personaje acuatico
+falta resto de personajes
+Establecemos prioridad desarrollo de juego luego de menus pensamos poder recortar personajes y menus no fundamentales para la presentacion
+____________
+Assets
++++++++++++
+Rework de assets en desarrollo
+____________
+Sonidos
+todos terminados
+musica en desarrollo
+____________
+Presentacion
+incio desarrollo
+
+
+FALTA:
+ATAQUES
+HABILIDADES
+OBJETOS
+BANDA SONORA
+PERSONAJES NUEVOS
+INCLUIR ARTE Y MUSICA
+PUNTUACIONES
+ENDGAME
+"MATCHMAKING"
+Respecto a la programacion de logica
+IMPLEMENTAR ASSETS DE MENU
+en cuanto a aspecto
+DESARROLLO DE ANIMACIONES FACIALES PARA TODOS LOS PERSONAJES
+DESARROLLO DE ANIMACIONES PARA EL RESTO DE PERSONAJES
+Finalizar rework de Assets
+en cuanto a visual
+Finalizar banda sonora
+en cuanto a sonido
+finalizar presentacion trailer y portfolio en miscelaneo
