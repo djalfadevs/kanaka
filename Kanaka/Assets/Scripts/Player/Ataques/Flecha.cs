@@ -1,34 +1,26 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-
-public class Ruptura : MonoBehaviour
+public class Flecha : Attack
 {
-    [SerializeField]private int dmg;
-    [SerializeField] private float duracion;
-    [SerializeField] private int distancia;
-    [SerializeField] private int speed = 2;
-    [SerializeField] private float team;
-    private PhotonView photonView;
+    [SerializeField] private float duracion = 30;
+    [SerializeField] private int speed;
+    private float t;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    private void Awake()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         Timemanager();
-    }
+        moveManager();
 
+    }
     private void Timemanager()
     {
         if (duracion > 0)
@@ -38,78 +30,83 @@ public class Ruptura : MonoBehaviour
         }
         if (duracion <= 0)
         {
-            Destroy(this.gameObject, 0.1f);
+            Destroy(this.gameObject);
         }
     }
 
+
     private void OnTriggerEnter(Collider collider)
     {
-        //PARTE ONLINE PLAYERS
-        PhotonView photonview2 = collider.GetComponent<PhotonView>();
-        if (photonview2 != null && PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
-            if (photonview2.IsMine)
+            PhotonView photonView = collider.GetComponent<PhotonView>();
+
+            Debug.Log(collider.gameObject.name);
+            if (collider.gameObject.CompareTag("Player"))
             {
-                if (collider.gameObject.CompareTag("Player"))
-                {
-                    if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != t)
+                {   
+                    if (PhotonNetwork.IsMasterClient)
                     {
                         collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
                     }
+                    Destroy(this.gameObject);
                 }
             }
-        }
-
-        //PARTE ONLINE TOTEMS
-        if (PhotonNetwork.IsConnected)
-        {
             if (collider.gameObject.CompareTag("Totem"))
             {
-                //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
-                if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
-                {
-                    collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != t)
+                { 
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                    }
+                    Destroy(this.gameObject);
                 }
             }
         }
-
-        //Parte OFFLINE
-        if (!PhotonNetwork.IsConnected)
+        else
         {
             //totem
             if (collider.gameObject.CompareTag("Totem"))
             {
                 //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
-                if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != t)
                 {
                     collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                    Destroy(this.gameObject);
+
                 }
             }
             //player
             if (collider.gameObject.CompareTag("Player"))
             {
-                if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
-                {
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != t)
+                {      
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                    Destroy(this.gameObject);
+
                 }
             }
 
             //Corrupted Totem
             if (collider.gameObject.CompareTag("CorruptedTotem"))
-            {
+            {    
                 collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
+                Destroy(this.gameObject);
             }
         }
 
+    }
+    public void setTeam(float p2)
+    {
+        this.t = p2;
+    }
 
-    }
-    public void setDamage(int damage)
+    private void moveManager()
     {
-        this.dmg = damage;
-    }
-    public int getDmg()
-    {
-        return this.dmg;
+        Vector3 aux =this.transform.TransformDirection(Vector3.forward);
+        transform.Translate(this.transform.InverseTransformDirection(aux * speed * Time.deltaTime));
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -117,14 +114,12 @@ public class Ruptura : MonoBehaviour
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            stream.SendNext(team);
-            stream.SendNext(dmg);
+            stream.SendNext(t);
         }
         else
         {
             // Network player, receive data
-            this.team = (float)stream.ReceiveNext();
-            this.dmg = (int)stream.ReceiveNext();
+            this.t = (float)stream.ReceiveNext();
         }
     }
 

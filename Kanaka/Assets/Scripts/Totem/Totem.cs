@@ -66,7 +66,7 @@ public class Totem : MonoBehaviourPunCallbacks , IPunObservable
     public void Hit(Collider collider)
     {
         animator.SetBool("isDamaged", true);
-        float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        float damage = collider.gameObject.GetComponent<Attack>().getDmg();
         //Debug.Log(collider.ToString());
         //Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();

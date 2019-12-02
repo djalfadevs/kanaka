@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mareas1 : MonoBehaviourPun, IPunObservable
+public class Mareas1 : Attack, IPunObservable
 {
-    [SerializeField] private int dmg;
     [SerializeField] private float duracion;
     [SerializeField] private int distancia;
     [SerializeField] private int speed=2;
@@ -79,11 +78,6 @@ public class Mareas1 : MonoBehaviourPun, IPunObservable
         Timemanager();
         moveManager();
 
-    }
-
-    public int getDmg()
-    {
-        return this.dmg;
     }
 
     private void Timemanager (){

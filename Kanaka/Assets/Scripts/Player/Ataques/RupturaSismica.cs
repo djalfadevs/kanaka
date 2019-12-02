@@ -9,6 +9,8 @@ public class RupturaSismica : MonoBehaviour
     public GameObject player;
     public List<GameObject> points;
     private Animator animator;
+    private PhotonView photonView;
+    [SerializeField] private int dmg;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class RupturaSismica : MonoBehaviour
 
     void Awake()
     {
-        //photonView = GetComponent<PhotonView>();
+        photonView = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -27,35 +29,26 @@ public class RupturaSismica : MonoBehaviour
     }
     public void CallRuptura()
     {
-        //if (!photonView.IsMine)
-        //   return ;
+        if (photonView.IsMine)
+        {
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
         SpawnRuptura();
-        player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
-        Debug.Log("holaR");
     }
 
     private void SpawnRuptura()
     {
-        // if (!photonView.IsMine)
-        //     return;
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 2;
         GameObject q;
-        // if (!PhotonNetwork.IsConnected)
-        // {
         q =Instantiate(cube2, aux, player.transform.rotation);
-        //  }
-        //else
-        // {
-        //     q = PhotonNetwork.Instantiate("CubeMareas", aux, player.transform.rotation);
-        // }
-        
-        q.GetComponent<Ruptura>().setPlayer(player.GetComponent<Player>());
-        animator.SetBool("Attack", false);
+        q.GetComponent<Ruptura>().setDamage(dmg);
     }
     public void LastCallRuptura()
     {
-        //if (!photonView.IsMine)
-        //     return;
-        player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+        if (photonView.IsMine)
+        {
+            animator.SetBool("Attack",false);
+            player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+        }
     }
 }

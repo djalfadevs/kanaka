@@ -3,45 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Corriente : Attack
+public class TajoDcha : Attack
 {
-    [SerializeField] private float radius;
-    [SerializeField] private float duracion;
-    private float p;
+    private float t;
+    private TajoArdiente tajo;
+    [SerializeField] private int speed;
+    private Vector3 destino;
     // Start is called before the first frame update
     void Start()
     {
-        if (radius==0f)
-        {
-            radius = 1f;
-        }
-        this.gameObject.transform.localScale=new Vector3(radius,radius,radius);
-    }
 
-    void Awake()
-    {
     }
 
     // Update is called once per frame
     void Update()
     {
-        Timemanager();
+        moveManager();
     }
 
-    private void Timemanager()
+    private void moveManager()
     {
-        if (duracion > 0)
+        if (Vector3.Distance(this.gameObject.transform.position, this.destino) > 0.5f)
         {
-            duracion -= Time.deltaTime;
-            if (duracion < 0) duracion = 0;
+            Vector3 aux = this.transform.TransformDirection(Vector3.left);
+            this.transform.Translate(this.transform.InverseTransformDirection(aux * speed * Time.deltaTime));
         }
-        if (duracion <= 0)
+        else
         {
+            tajo.ReturnIz();
             Destroy(this.gameObject);
         }
     }
 
+    public void setItems(float tt, TajoArdiente tA, Vector3 d)
+    {
+        this.t = tt;
+        this.tajo = tA;
+        this.destino = d;
+    }
     private void OnTriggerEnter(Collider collider)
     {
         if (PhotonNetwork.IsConnected)
@@ -52,13 +51,9 @@ public class Corriente : Attack
             Debug.Log(collider.gameObject.name);
             if (collider.gameObject.CompareTag("Player"))
             {
-                if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != t)
                 {
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
-                    if (Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position) < radius)
-                    {
-                        //hit2
-                    }
                 }
             }
         }
@@ -68,7 +63,7 @@ public class Corriente : Attack
             if (collider.gameObject.CompareTag("Totem"))
             {
                 //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
-                if (collider.gameObject.GetComponent<Totem>().GetTeam() !=p)
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != t)
                 {
                     collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
                 }
@@ -76,7 +71,7 @@ public class Corriente : Attack
             //player
             if (collider.gameObject.CompareTag("Player"))
             {
-                if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != t)
                 {
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
                 }
@@ -88,24 +83,19 @@ public class Corriente : Attack
                 collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
             }
         }
-        
-    }
-    public void setPlayer(float p2)
-    {
-        this.p = p2;
-    }
 
+    }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            stream.SendNext(p);
+            stream.SendNext(t);
         }
         else
         {
             // Network player, receive data
-            this.p = (float)stream.ReceiveNext();
+            this.t = (float)stream.ReceiveNext();
         }
     }
 }
