@@ -1,8 +1,6 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Ruptura : MonoBehaviour
 {
@@ -20,8 +18,6 @@ public class Ruptura : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (!photonView.IsMine)
-        //     return;
         Timemanager();
     }
 
@@ -40,9 +36,6 @@ public class Ruptura : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        //  PhotonView photonView = collider.GetComponent<PhotonView>();
-        //  if (photonView != null && photonView.IsMine)
-        //     return;
         Debug.Log(collider.gameObject.name);
         if (collider.gameObject.CompareTag("Player"))
         {
@@ -57,10 +50,6 @@ public class Ruptura : MonoBehaviour
             {
                 collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
             }
-        }
-        if (collider.gameObject.CompareTag("CorruptedTotem"))
-        {
-            collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
         }
 
     }

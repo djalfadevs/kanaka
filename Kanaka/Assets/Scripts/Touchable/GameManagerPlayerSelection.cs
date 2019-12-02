@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManagerPlayerSelection : MonoBehaviour
 {
     string path;
+
     int idCharacterSelect;
     [SerializeField] private GameObject LockButton;
 
     void Awake()
     {
-        path = Application.streamingAssetsPath + "/UsersData/User.json";
+        path = Application.dataPath + "/UsersData/User.json";
     }
 
     //Has pulsado un personaje y te sale su informacion;
@@ -32,12 +33,8 @@ public class GameManagerPlayerSelection : MonoBehaviour
         {
             User auxU = JsonUtility.FromJson<User>(text);
             auxU.charactersID.Add(this.idCharacterSelect);//Se añade el nuevo personaje al archivo;
+            File.WriteAllText(path, JsonUtility.ToJson(auxU));//Guardamos la nueva info del usuario
 
-            File.WriteAllText(path, JsonUtility.ToJson(auxU));//Guardamos la nueva info del usuario;
-
-            //SceneManager.LoadScene("");
         }
-       
     }
-
 }

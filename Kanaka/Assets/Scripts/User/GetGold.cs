@@ -12,7 +12,7 @@ public class GetGold : MonoBehaviour
 
     void Awake()
     {
-        path = Application.streamingAssetsPath+ "/UsersData/User.json";
+        path = Application.dataPath + "/UsersData/User.json";
     }
 
     void Start()

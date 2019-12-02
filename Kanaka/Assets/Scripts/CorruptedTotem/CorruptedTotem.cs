@@ -5,9 +5,8 @@ using UnityEngine;
 public class CorruptedTotem : MonoBehaviour
 {
     [SerializeField] private float hp = 1;
-    [SerializeField] private float aliveTime = 30;
+    [SerializeField] private float aliveTime = 3;
     private float currentAliveTime;
-
 
     //Animator
     private Animator animator;
@@ -16,7 +15,7 @@ public class CorruptedTotem : MonoBehaviour
     {
         currentAliveTime = aliveTime;
         animator = GetComponent<Animator>();
-        animator.SetInteger("STATE",0);
+        animator.SetFloat("HP", hp);
     }
 
     // Update is called once per frame
@@ -36,13 +35,9 @@ public class CorruptedTotem : MonoBehaviour
 
     void Dead()
     {
-        //animator.SetInteger("STATE",2);
-        //Destroy();
-        //
-    }
-    void Destroy()
-    {
-        Destroy(this.gameObject);
+        hp = 0;
+        animator.SetFloat("HP", hp);
+        //Destroy(this.gameObject);
     }
 
     /*
@@ -61,7 +56,6 @@ public class CorruptedTotem : MonoBehaviour
 
     public void Hit(Collider collider)
     {
-        animator.SetInteger("STATE",1);
         Dead();
     }
 }

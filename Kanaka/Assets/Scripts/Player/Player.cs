@@ -25,59 +25,18 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float abilityCD;
     [SerializeField] private float baseAbilityCD;
     [SerializeField] private Animator animator;
-    private PhotonView ph;
-    private Vector3 movement;
-    private Vector3 networkPosition;
-    private Quaternion networkRotation;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        ph = GetComponentInParent<PhotonView>();
-        //if(ph!=null)
-        //ph.ObservedComponents.Add(this);
-    }
     void Start()
     {
         animator = GetComponentInParent<Animator>();
         cam = FindObjectOfType<Camera>();
         cc = GetComponent<CharacterController>();
-
-        int aux;
-        Color aux2;
-        if (photonView ?? null)
-        {
-            int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
-            team = aux;
-            ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(),out aux2);
-            teamColor = aux2;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 oldPosition = transform.position;
-
-        // Handling position updates related to the given input
-
-        movement = transform.position - oldPosition;
-
-        if (!ph.IsMine)
-        {
-            transform.position = Vector3.MoveTowards(transform.position,networkPosition, Time.deltaTime * MoveSpeed);
-            transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 30);
-            return;
-        }
-
-        if (PhotonNetwork.IsConnected)
-        {
-            if (!ph.IsMine)
-            {
-                return;
-            }
-        }
-
         if (attackCD >= 0)
         {
             attackCD -= Time.deltaTime;
@@ -94,27 +53,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 abilityCD = 0;
             }
         }
-
-        
     }
 
     public void Hit(Collider collider)
     {
-        float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
-        Debug.Log("He recibido "+ damage +" puntos de dmg");
-        if (HP - damage>0)
-        {
-            HP -= damage;
-        }
-        else
-        {
-            HP = 0;
-        }
+        Debug.Log("He recibido "+collider.gameObject.GetComponent<Mareas1>().getDmg()+" puntos de dmg");
     }
 
     public int GetTeam()
     {
         return team;
+    }
+
+    public void setTeamColor(Color color)
+    {
+        teamColor = color;
     }
 
     public Color getTeamColor()
@@ -162,9 +115,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void attack()
     {
-        if (attackCD<=0 && !animator.GetBool("Attack"))
+        if (attackCD<=0)
         {
-            animator.SetBool("Attack",true);
+            animator.SetTrigger("Attack");
             attackCD = baseAttackCD;
            // Attack.GetComponent<Attack>().use(this.gameObject);
         }
@@ -176,8 +129,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (abilityCD<=0)
         {
-            Debug.Log("bolsa");
-            animator.SetBool("Habilidad",true);
             abilityCD = baseAbilityCD;
             //Ability.GetComponent<Ability>().use();
         }
@@ -194,29 +145,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(attackCD);
-            stream.SendNext(team);
-            //Debug.LogError("Color send " + "#"+teamColor + " "+ph.GetInstanceID() );
-            stream.SendNext("#"+ColorUtility.ToHtmlStringRGBA(teamColor));
+            // We own this player: send the others our data
             stream.SendNext(HP);
-
-            stream.SendNext(this.transform.position);
-            stream.SendNext(this.transform.rotation);
         }
         else
         {
             // Network player, receive data
-            this.attackCD = (float)stream.ReceiveNext();
-            this.team = (int)stream.ReceiveNext();
-
-            Color aux;
-            ColorUtility.TryParseHtmlString((string) stream.ReceiveNext(),out aux);
-            this.teamColor = aux;
-
-            this.HP = (float)stream.ReceiveNext();
-
-            this.networkPosition = (Vector3)stream.ReceiveNext();
-            this.networkRotation = (Quaternion)stream.ReceiveNext();
+            //this.IsFiring = (bool)stream.ReceiveNext();
         }
     }
 }
