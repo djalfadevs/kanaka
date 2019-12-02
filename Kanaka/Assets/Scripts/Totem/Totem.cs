@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Totem : MonoBehaviour
+
+public class Totem : MonoBehaviourPunCallbacks , IPunObservable
 {
     [SerializeField] private int team;
     [SerializeField] private float maxHp;
@@ -35,7 +37,7 @@ public class Totem : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = teamColor;
-        Gizmos.DrawWireCube(transform.position, new Vector3(0.2f,0.2f,0.2f));
+        Gizmos.DrawWireCube(transform.position, new Vector3(2f,2f,2f));
     }
 
     public void setTeamColor(Color color)
@@ -51,31 +53,56 @@ public class Totem : MonoBehaviour
 
         //Actualizamos los totems vivos de los equipos ya que uno de ellos ha muerto
         GameObject gameHandler = GameObject.FindGameObjectWithTag("GameController");
-        if(gameHandler!=null)
-        gameHandler.GetComponent<GameHandler>().CountAliveTotemsinTeams();
+        if (gameHandler != null)
+        {
+            if(gameHandler.GetComponent<PhotonGameManager>() ?? null)
+            {
+                gameHandler.GetComponent<PhotonGameManager>().recalculateAliveTotems = true;//Manda ejecutar un recalculo de los totems vivos
+            }
+        }
+        
     }
 
     public void Hit(Collider collider)
     {
+        animator.SetBool("isDamaged", true);
         float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
-        Debug.Log("He recibido " + damage + " puntos de dmg");
+        //Debug.Log(collider.ToString());
+        //Debug.Log("He recibido " + damage + " puntos de dmg");
         //Dead();
 
-        if (!(hp - damage <= 0))//Si con el golpe no muere
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
-            animator.SetBool("isDamaged",true);
-            hp -= damage;
-            float hpPorcentaje = hp / maxHp;
-            animator.SetFloat("HP%",hpPorcentaje);
-            CalculateState((hp+damage)/maxHp,(hp/maxHp));
+            if (!(hp - damage <= 0))//Si con el golpe no muere
+            {
+                float hpPorcentaje = hp / maxHp;
+                hp -= damage;
+                animator.SetFloat("HP%", hpPorcentaje);
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+            }
+            else//Si se muere
+            {
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+                Dead();
+            }
         }
-        else//Si se muere
+
+        if (!PhotonNetwork.IsConnected)
         {
-            animator.SetBool("isDamaged", true);
-            CalculateState((hp + damage) / maxHp, (hp / maxHp));
-            Dead();
+            if (!(hp - damage <= 0))//Si con el golpe no muere
+            {
+                float hpPorcentaje = hp / maxHp;
+                hp -= damage;
+                animator.SetFloat("HP%", hpPorcentaje);
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+            }
+            else//Si se muere
+            {
+                //CalculateState((hp + damage) / maxHp, (hp / maxHp));
+                Dead();
+            }
         }
-       
+
     }
 
     private void CalculateState(float currentValue, float nextValue)
@@ -115,6 +142,20 @@ public class Totem : MonoBehaviour
         else if(i==1)
         {
             animator.SetBool("isDamaged", true);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(hp);
+        }
+        else
+        {
+            // Network player, receive data
+            this.hp = (float)stream.ReceiveNext();
+            //Debug.Log("hp: "+ hp);
         }
     }
 }

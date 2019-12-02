@@ -15,14 +15,12 @@ public class GameSignUpInManager : MonoBehaviour
     private User user;
     private string path;
     private string path2;
-    public bool correctlog;
     // Start is called before the first frame update
 
     void Awake()
     {
-       path = Application.dataPath + "/UsersData/Users.json";
-       path2 = Application.dataPath + "/UsersData/User.json";
-        correctlog = false;
+       path = Application.streamingAssetsPath + "/UsersData/Users.json";
+       path2 = Application.streamingAssetsPath + "/UsersData/User.json";
     }
 
     void Start()
@@ -152,7 +150,7 @@ public class GameSignUpInManager : MonoBehaviour
                 string a = JsonUtility.ToJson((auxlistUsers[auxN]));
                 File.WriteAllText(path2,a );
                 //////////////
-                correctlog = true;
+                
 
             }
             else

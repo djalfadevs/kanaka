@@ -13,7 +13,7 @@ public class GetUsername : MonoBehaviour
 
     void Awake()
     {
-        path = Application.dataPath + "/UsersData/User.json";
+        path = Application.streamingAssetsPath + "/UsersData/User.json";
     }
 
     void Start()
