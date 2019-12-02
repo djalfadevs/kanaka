@@ -45,6 +45,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         int aux;
         Color aux2;
+  
         if (photonView ?? null)
         {
             int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
@@ -52,6 +53,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(),out aux2);
             teamColor = aux2;
         }
+       
     }
 
     // Update is called once per frame
@@ -100,7 +102,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Hit(Collider collider)
     {
-        float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        float damage = collider.gameObject.GetComponent<Attack>().getDmg();
         Debug.Log("He recibido "+ damage +" puntos de dmg");
         if (HP - damage>0)
         {
@@ -110,6 +112,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             HP = 0;
         }
+    }
+
+    public void Hit(Collider collider,float distance)
+    {
+        float damage = collider.gameObject.GetComponent<Attack>().getDmg();
+        Debug.Log("He recibido " + damage + " puntos de dmg");
+        if (HP - damage > 0)
+        {
+            HP -= damage;
+        }
+        else
+        {
+            HP = 0;
+        }
+        this.transform.Translate(this.transform.TransformDirection(Vector3.back)*distance);
     }
 
     public int GetTeam()
