@@ -54,10 +54,9 @@ public class Corriente : Attack
             {
                 if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
                 {
-                    collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
                     if (Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position) < radius)
                     {
-                        //hit2
+                        collider.gameObject.GetComponent<setPlayer>().Hit(this.GetComponent<Collider>(),this.radius- Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position));
                     }
                 }
             }
