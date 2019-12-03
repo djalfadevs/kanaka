@@ -13,6 +13,7 @@ public class CharacterSelect : MonoBehaviour
     private User u;
     private OnlineUser ou;
     private string un;
+    private bool im;
     
 
 
@@ -31,13 +32,16 @@ public class CharacterSelect : MonoBehaviour
             StreamReader reader = fileinfo.OpenText();
             string text = reader.ReadLine();
             u = JsonUtility.FromJson<User>(text);
-            un = u.userName;
+            un = u.name;
             reader.Close();
 
             string text2 = File.ReadAllText(path2);
             if (text != null)
             {
-                ou = new OnlineUser(un, ch);
+                ou = JsonUtility.FromJson<OnlineUser>(text);
+                un = ou.userName;
+                im = ou.ismobile;
+                ou = new OnlineUser(un, ch, im);
                 File.WriteAllText(path2, JsonUtility.ToJson(ou));
                 SceneManager.LoadScene("Escena Photon Prueba");
             }

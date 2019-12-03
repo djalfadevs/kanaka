@@ -6,41 +6,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.IO;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviourPun
 {
     [SerializeField] private Player player;
     private PhotonView ph;
-  
 
-    private RuntimePlatform platform
-    {
-        get
-        {
-            #if UNITY_ANDROID
-                return RuntimePlatform.Android;
-            #elif UNITY_IOS
-                return RuntimePlatform.IPhonePlayer;
-            #elif UNITY_STANDALONE_OSX
-                return RuntimePlatform.OSXPlayer;
-            #elif UNITY_STANDALONE_WIN
-                return RuntimePlatform.WindowsPlayer;
-            #else
-            return RuntimePlatform.WebGLPlayer;
+    private string path = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
+    private OnlineUser ou;
+    private GameObject fj;
 
-            #endif
-        }
-    }
 
     private void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
+
     }
 
     void Start()
     {
+        fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
         player = this.GetComponent<Player>();
+        string text = File.ReadAllText(path);
+        if (text != null)
+        {
+            ou = JsonUtility.FromJson<OnlineUser>(text);
+        }
     }
 
     void attackInput()
@@ -68,11 +61,11 @@ public class PlayerController : MonoBehaviourPun
             }
         }
 
-        if (platform == RuntimePlatform.Android)
+        if (ou.ismobile)
         {
-            float auxAxisHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-            float auxAxisVertical = CrossPlatformInputManager.GetAxis("Vertical");
-
+            fj.SetActive(true);
+            float auxAxisHorizontal = fj.GetComponent<FixedJoystick>().Horizontal;
+            float auxAxisVertical = fj.GetComponent<FixedJoystick>().Vertical;
             player.moveAndroid(auxAxisHorizontal,auxAxisVertical);
             
         }

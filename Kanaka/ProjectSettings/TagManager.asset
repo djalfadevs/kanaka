@@ -8,6 +8,8 @@ TagManager:
   - EnemySpawner
   - Totem
   - CorruptedTotem
+  - Bullet
+  - MobileInput
   layers:
   - Default
   - TransparentFX

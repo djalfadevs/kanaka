@@ -172,9 +172,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             Vector3 move = new Vector3(auxAxisHorizontal * MoveSpeed, 0f, auxAxisVertical * MoveSpeed);
             Vector3 v3 = new Vector3(auxAxisHorizontal, 0.0f, auxAxisVertical);
-            Quaternion qTo = Quaternion.LookRotation(v3);
-            transform.rotation = Quaternion.Slerp(transform.rotation, qTo, MoveSpeed * Time.deltaTime);
-
+            if (auxAxisHorizontal != 0.0f && auxAxisVertical != 0.0f)
+            {
+                Quaternion qTo = Quaternion.LookRotation(v3);
+                transform.rotation = Quaternion.Slerp(transform.rotation, qTo, MoveSpeed * Time.deltaTime);
+            }
             cc.Move(move * Time.deltaTime);
             cc.SimpleMove(Physics.gravity);
         }
