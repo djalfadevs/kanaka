@@ -47,6 +47,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         int aux;
         Color aux2;
+  
         if (photonView ?? null)
         {
             int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
@@ -62,6 +63,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         transform.position = p;
         Debug.LogError("Se actualiza la posicion de golpe");
+
     }
 
     // Update is called once per frame
@@ -103,7 +105,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Hit(Collider collider)
     {
-        float damage = collider.gameObject.GetComponent<Mareas1>().getDmg();
+        float damage = collider.gameObject.GetComponent<Attack>().getDmg();
         Debug.Log("He recibido "+ damage +" puntos de dmg");
         if (HP - damage>0)
         {
@@ -117,9 +119,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     public void DeadFinish()
     {
-        
+
         if (ph.IsMine)
         {
             Debug.LogError("Estoy Intentando Resucitar");
@@ -129,10 +132,25 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             //Lo colocamos en otra posicion
             GameObject gameManager = GameObject.FindGameObjectWithTag("GameController");
             Vector3 newSpawnPoint = (gameManager.GetComponent<PhotonGameManager>().teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(this, team);
-            photonView.RpcSecure("RPC_MoveExactlyOnTransform", RpcTarget.All, false,newSpawnPoint);
+            photonView.RpcSecure("RPC_MoveExactlyOnTransform", RpcTarget.All, false, newSpawnPoint);
         }
-       
 
+    }
+
+    public void Hit(Collider collider,float distance)
+    {
+        float damage = collider.gameObject.GetComponent<Attack>().getDmg();
+        Debug.Log("He recibido " + damage + " puntos de dmg");
+        if (HP - damage > 0)
+        {
+            HP -= damage;
+        }
+        else
+        {
+            HP = 0;
+            animator.SetBool("IsDead", true);
+        }
+        this.transform.Translate(this.transform.TransformDirection(Vector3.back)*distance);
     }
 
     public int GetTeam()

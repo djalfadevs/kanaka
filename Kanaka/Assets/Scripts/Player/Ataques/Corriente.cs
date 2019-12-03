@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Corriente : MonoBehaviour, IPunObservable
+public class Corriente : Attack
 {
-    private int dmg;
     [SerializeField] private float radius;
     [SerializeField] private float duracion;
     private float p;
-    private PhotonView photonView;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +21,11 @@ public class Corriente : MonoBehaviour, IPunObservable
 
     void Awake()
     {
-        photonView = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-         if (!photonView.IsMine)
-             return;
         Timemanager();
     }
 
@@ -43,25 +38,53 @@ public class Corriente : MonoBehaviour, IPunObservable
         }
         if (duracion <= 0)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-         PhotonView photonView = collider.GetComponent<PhotonView>();
-          if (!PhotonNetwork.IsMasterClient)
-            return;
-        Debug.Log(collider.gameObject.name);
-        if (collider.gameObject.CompareTag("Player"))
+        if (PhotonNetwork.IsConnected)
         {
-            if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
+            PhotonView photonView = collider.GetComponent<PhotonView>();
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            Debug.Log(collider.gameObject.name);
+            if (collider.gameObject.CompareTag("Player"))
             {
-                collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
-                if (Vector3.Distance(this.transform.position,collider.gameObject.GetComponent<Player>().transform.position)<radius)
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
                 {
-                    Debug.Log("cRINGe");
+                    if (Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position) < radius)
+                    {
+                        collider.gameObject.GetComponent<setPlayer>().Hit(this.GetComponent<Collider>(),this.radius- Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position));
+                    }
                 }
+            }
+        }
+        else
+        {
+            //totem
+            if (collider.gameObject.CompareTag("Totem"))
+            {
+                //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() !=p)
+                {
+                    collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                }
+            }
+            //player
+            if (collider.gameObject.CompareTag("Player"))
+            {
+                if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
+                {
+                    collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                }
+            }
+
+            //Corrupted Totem
+            if (collider.gameObject.CompareTag("CorruptedTotem"))
+            {
+                collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
             }
         }
         
@@ -69,10 +92,6 @@ public class Corriente : MonoBehaviour, IPunObservable
     public void setPlayer(float p2)
     {
         this.p = p2;
-    }
-    public int getDmg()
-    {
-        return this.dmg;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -27,33 +27,27 @@ public class CorrienteProfunda : MonoBehaviour
     }
     public void CallCorriente()
     {
-        if (!PhotonNetwork.IsMasterClient)
-           return ;
+        if (photonView.IsMine)
+        {
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
         SpawnCorriente();
-        player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         Debug.Log("holaR");
     }
 
     private void SpawnCorriente()
     {
-         if (!PhotonNetwork.IsMasterClient)
-             return;
         GameObject q;
-         if (!PhotonNetwork.IsConnected)
-         {
-            q = Instantiate(Sphere, player.transform.position, player.transform.rotation);
-         }
-        else
-         {
-             q = PhotonNetwork.Instantiate("Sphere", player.transform.position, player.transform.rotation);
-        }
+        q = Instantiate(Sphere, player.transform.position, player.transform.rotation);
         q.GetComponent<Corriente>().setPlayer(player.GetComponent<Player>().GetTeam());
-        animator.SetBool("Habilidad",false);
     }
     public void LastCallCorriente()
     {
-        if (!PhotonNetwork.IsMasterClient)
-             return;
-        player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+        if (photonView.IsMine)
+        {
+            animator.SetBool("Habilidad", false);
+            player.GetComponent<Player>().setCanMove(true);
+
+        }
     }
 }
