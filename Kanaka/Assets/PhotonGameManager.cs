@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using ExitGames.Client.Photon;
 using System;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable 
 {
@@ -62,6 +63,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     
 
     public GameObject playerPrefab;
+    public GameObject menu;
     //public static GameObject LocalPlayerInstance;
 
     // Start is called before the first frame update
@@ -117,6 +119,8 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
                 Player p = this.playerPrefab.GetComponentInChildren<Player>();
                 Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, int.Parse(aux));
+                //Debug.DrawLine(spawnPoint,spawnPoint+Vector3.up,Color.yellow);
+                //Debug.LogError(spawnPoint);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 GameObject a = PhotonNetwork.Instantiate(this.playerPrefab.name, spawnPoint, Quaternion.identity, 0,instanceData);
             }          
@@ -423,5 +427,23 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
             StartTimers = (bool)propsTime;
             //Debug.Log(prestartTime +" aa");
         }
+    }
+
+    public void OnPauseButt()
+    {
+        menu.SetActive(true);
+    }
+
+    public void mainMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        //SceneManager.LoadScene();
+        Debug.LogError("Se cargaria la escena de menu principal");
+    }
+
+    public override void OnLeftRoom()
+    {
+        //PhotonNetwork.LoadLevel("");
+        Debug.LogError("Se cargaria un mensaje de que alguien ha abandonado la sala y al aceptar se permitiria volver al menu principal");
     }
 }

@@ -10,6 +10,7 @@ public class HeroSpawners : MonoBehaviour
     [SerializeField] private int team;
     [SerializeField] private Color teamColor;
     [SerializeField] private float radious;
+    [SerializeField] private float playerHeight = 3;
 
     private static List<Transform> transformSpawner = new List<Transform>();
     private static List<Transform> transformSpawnerTeam1 = new List<Transform>();
@@ -143,10 +144,10 @@ public class HeroSpawners : MonoBehaviour
     private Vector3 CalculateExactPoint(Vector3 spawnPointXZ, Player player)
     {
         RaycastHit hit;
-        if (Physics.Raycast(spawnPointXZ, Vector3.down, out hit))
+        if (Physics.Raycast(spawnPointXZ, Vector3.down, out hit,20))
         {
             spawnPointXZ.y = hit.point.y;
-            spawnPointXZ += new Vector3(0, (player.gameObject.GetComponent<Collider>().bounds.size.y) / 2, 0);
+            spawnPointXZ += new Vector3(0, playerHeight / 2, 0);
         }
 
         return spawnPointXZ;

@@ -25,6 +25,11 @@ public class PhotonHeroManager : MonoBehaviourPun
         
     }
 
+    void DeadFinish()
+    {
+        model.GetComponent<Player>().DeadFinish();
+    }
+
     // Update is called once per frame
     void Update()
     {
