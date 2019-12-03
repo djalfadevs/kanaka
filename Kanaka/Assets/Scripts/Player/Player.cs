@@ -29,7 +29,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 movement;
     private Vector3 networkPosition;
     private Quaternion networkRotation;
- 
+    private float changeDuration;
+    [SerializeField] private float baseSpeed;
 
     // Start is called before the first frame update
     void Awake()
@@ -100,7 +101,29 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 abilityCD = 0;
             }
         }
-        
+        if (this.MoveSpeed != this.baseSpeed)
+        {
+            if (changeDuration <= 0)
+            {
+                this.MoveSpeed = this.baseSpeed;
+            }
+            else
+            {
+                this.changeDuration -= Time.deltaTime;
+            }
+        }
+    }
+
+    public void changeSpeed(float percentage, float d )
+    {
+        this.changeDuration = d;
+        this.MoveSpeed *= percentage;
+    }
+
+    public void Heal(int amount)
+    {
+        HP += amount;
+        if (HP >= MaxHP) HP = MaxHP;
     }
 
     public void Hit(Collider collider)

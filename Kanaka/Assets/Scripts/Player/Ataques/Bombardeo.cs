@@ -54,6 +54,13 @@ public class Bombardeo : MonoBehaviour
                     if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
                     {
                         collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                        collider.gameObject.GetComponent<Player>().changeSpeed(0.8f,1f);
+
+                    }
+                    else
+                    {
+                        collider.gameObject.GetComponent<Player>().Heal(this.dmg);
+                        collider.gameObject.GetComponent<Player>().changeSpeed(0.8f, 1f);
                     }
                 }
             }
