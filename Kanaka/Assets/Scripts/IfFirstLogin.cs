@@ -16,7 +16,7 @@ public class IfFirstLogin : MonoBehaviour
 
     void Awake()
     {
-        path = Application.dataPath + "/UsersData/User.json";
+        path = Application.streamingAssetsPath + "/UsersData/User.json";
         first = "Select First Chapter";
         not = "MainMenu";
 
@@ -26,6 +26,7 @@ public class IfFirstLogin : MonoBehaviour
     {
         if (gsm.correctlog)
         {
+            Debug.LogError("LLEGA AQUI");
             if (System.IO.File.Exists(path))
             {
                 FileInfo fileinfo = new FileInfo(path);

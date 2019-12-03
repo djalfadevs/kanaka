@@ -18,8 +18,8 @@ public class CharacterSelect : MonoBehaviour
 
     void Awake()
     {
-        path = Application.dataPath + "/UsersData/User.json";
-        path2 = Application.dataPath + "/StreamingAssets/UsersData/MatchInput.json";
+        path = Application.streamingAssetsPath + "/UsersData/User.json";
+        path2 = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
 
     }
 
