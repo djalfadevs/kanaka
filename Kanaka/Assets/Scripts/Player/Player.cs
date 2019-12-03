@@ -137,7 +137,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
-    public void Hit(Collider collider,float distance)
+    public void Hit(Collider collider,Vector3 destino)
     {
         float damage = collider.gameObject.GetComponent<Attack>().getDmg();
         Debug.Log("He recibido " + damage + " puntos de dmg");
@@ -150,7 +150,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             HP = 0;
             animator.SetBool("IsDead", true);
         }
-        this.transform.Translate(this.transform.TransformDirection(Vector3.back)*distance);
+       
+            cc.Move(Vector3.Normalize(destino-transform.position)*2);
+        
+       
     }
 
     public int GetTeam()

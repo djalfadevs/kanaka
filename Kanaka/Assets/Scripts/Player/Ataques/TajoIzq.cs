@@ -46,7 +46,7 @@ public class TajoIzq : Attack
         if (PhotonNetwork.IsConnected)
         {
             PhotonView photonView = collider.GetComponent<PhotonView>();
-            if (!PhotonNetwork.IsMasterClient)
+            if (!photonView.IsMine)
                 return;
             Debug.Log(collider.gameObject.name);
             if (collider.gameObject.CompareTag("Player"))

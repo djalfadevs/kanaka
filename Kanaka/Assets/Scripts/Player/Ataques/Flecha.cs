@@ -46,7 +46,7 @@ public class Flecha : Attack
             {
                 if (collider.gameObject.GetComponent<Player>().GetTeam() != t)
                 {   
-                    if (PhotonNetwork.IsMasterClient)
+                    if (photonView.IsMine)
                     {
                         collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
                     }
@@ -57,7 +57,7 @@ public class Flecha : Attack
             {
                 if (collider.gameObject.GetComponent<Totem>().GetTeam() != t)
                 { 
-                    if (PhotonNetwork.IsMasterClient)
+                    if (photonView.IsMine)
                     {
                         collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
                     }

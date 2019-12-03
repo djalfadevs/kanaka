@@ -47,17 +47,25 @@ public class Corriente : Attack
         if (PhotonNetwork.IsConnected)
         {
             PhotonView photonView = collider.GetComponent<PhotonView>();
-            if (!PhotonNetwork.IsMasterClient)
-                return;
+            //if (!PhotonNetwork.IsMasterClient)
+            //    return;
             Debug.Log(collider.gameObject.name);
+            if (!photonView.IsMine)
+            {
+                return;
+            }
             if (collider.gameObject.CompareTag("Player"))
             {
                 if (collider.gameObject.GetComponent<Player>().GetTeam() != p)
                 {
                     if (Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position) < radius)
                     {
-                        collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>(),this.radius- Vector3.Distance(this.transform.position, collider.gameObject.GetComponent<Player>().transform.position));
+                        Vector3 dir = (collider.gameObject.transform.position - this.transform.position);
+                        Vector3 aux = Vector3.Normalize(dir) * (Vector3.Distance((this.radius * Vector3.Normalize(dir)+this.transform.position),collider.gameObject.transform.position));
+                        collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>(),aux);
                     }
+
+
                 }
             }
         }

@@ -1479,6 +1479,7 @@ MonoBehaviour:
   cube2: {fileID: 6853959956044118081, guid: 6bfa2ff6585528445933aa0b5dfe025e, type: 3}
   player: {fileID: 7205895237406354414}
   points: []
+  dmg: 0
 --- !u!114 &8950902571953487116
 MonoBehaviour:
   m_ObjectHideFlags: 0

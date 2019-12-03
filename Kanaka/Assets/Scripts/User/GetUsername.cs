@@ -24,7 +24,7 @@ public class GetUsername : MonoBehaviour
             StreamReader reader = fileinfo.OpenText();
             string text = reader.ReadLine();
             u = JsonUtility.FromJson<User>(text);
-            t.text = u.userName;
+            t.text = u.name;
             reader.Close();
 
         }
