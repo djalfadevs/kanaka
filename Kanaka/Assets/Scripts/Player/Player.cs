@@ -29,11 +29,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 movement;
     private Vector3 networkPosition;
     private Quaternion networkRotation;
+ 
 
     // Start is called before the first frame update
     void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
+        photonView.RpcSecure("RPC_MoveExactlyOnTransform", RpcTarget.Others, false, transform.position);
         //if(ph!=null)
         //ph.ObservedComponents.Add(this);
     }
@@ -52,22 +54,24 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(),out aux2);
             teamColor = aux2;
         }
+
+    }
+
+    [PunRPC]
+    void RPC_MoveExactlyOnTransform(Vector3 p)
+    {
+        transform.position = p;
+        Debug.LogError("Se actualiza la posicion de golpe");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 oldPosition = transform.position;
-
-        // Handling position updates related to the given input
-
-        movement = transform.position - oldPosition;
-
         if (!ph.IsMine)
         {
-            transform.position = Vector3.MoveTowards(transform.position,networkPosition, Time.deltaTime * MoveSpeed);
+            
+            transform.position = Vector3.MoveTowards(transform.position, networkPosition, Time.deltaTime * MoveSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 30);
-            return;
         }
 
         if (PhotonNetwork.IsConnected)
@@ -94,7 +98,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 abilityCD = 0;
             }
         }
-
         
     }
 
@@ -109,7 +112,27 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             HP = 0;
+            animator.SetBool("IsDead", true);
+            Debug.LogError("Estoy Muerto");
         }
+    }
+
+    public void DeadFinish()
+    {
+        
+        if (ph.IsMine)
+        {
+            Debug.LogError("Estoy Intentando Resucitar");
+            //Restauramos la vida
+            animator.SetBool("IsDead", false);
+            HP = MaxHP;
+            //Lo colocamos en otra posicion
+            GameObject gameManager = GameObject.FindGameObjectWithTag("GameController");
+            Vector3 newSpawnPoint = (gameManager.GetComponent<PhotonGameManager>().teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(this, team);
+            photonView.RpcSecure("RPC_MoveExactlyOnTransform", RpcTarget.All, false,newSpawnPoint);
+        }
+       
+
     }
 
     public int GetTeam()
@@ -202,6 +225,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
             stream.SendNext(this.transform.position);
             stream.SendNext(this.transform.rotation);
+
         }
         else
         {
