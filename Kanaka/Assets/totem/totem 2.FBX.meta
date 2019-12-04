@@ -52,37 +52,7 @@ ModelImporter:
     7400016: totem_perdida3
     7400018: totem_idle_muerto
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02 - Default
-    second: {fileID: 2100000, guid: 9b0722865cbc7f74e8782fac99ccf15e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 03 - Default
-    second: {fileID: 2100000, guid: 1dd64f82eecc36147a55e799d25790af, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 07 - Default
-    second: {fileID: 2100000, guid: 83803db5b988af74dac4ca65ac8e6705, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 09 - Default
-    second: {fileID: 2100000, guid: 7760d2817f079574aadb2a6e9f196404, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 15 - Default
-    second: {fileID: 2100000, guid: 8f408f3cdaacb864895975b3c8d1df20, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 'Material #117'
-    second: {fileID: 2100000, guid: 933f08a0f5796ee40a257cbe7a55648a, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

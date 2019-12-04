@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviourPun
     private PhotonView ph;
 
     private string path = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
-    private OnlineUser ou = null;
+    private OnlineUser ou;
     private GameObject fj;
 
 
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviourPun
 
     void Start()
     {
-        //fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
+        fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
         player = this.GetComponent<Player>();
         string text = File.ReadAllText(path);
         if (text != null)
@@ -61,28 +61,15 @@ public class PlayerController : MonoBehaviourPun
             }
         }
 
-        if (ou !=null) {
-            if (ou.ismobile)
-            {
-                fj.SetActive(true);
-                float auxAxisHorizontal = fj.GetComponent<FixedJoystick>().Horizontal;
-                float auxAxisVertical = fj.GetComponent<FixedJoystick>().Vertical;
-                player.moveAndroid(auxAxisHorizontal, auxAxisVertical);
-
-            }
-            else
-            {
-                Vector3 mouse_pos;
-                mouse_pos = Input.mousePosition;
-                mouse_pos.z = 5; //The distance between the camera and object
-                float vertical = Input.GetAxis("Vertical");
-                if (mouse_pos != null)
-                {
-                    player.move(mouse_pos, vertical);
-                    attackInput();
-                }
-            }
+        if (ou.ismobile)
+        {
+            fj.SetActive(true);
+            float auxAxisHorizontal = fj.GetComponent<FixedJoystick>().Horizontal;
+            float auxAxisVertical = fj.GetComponent<FixedJoystick>().Vertical;
+            player.moveAndroid(auxAxisHorizontal,auxAxisVertical);
+            
         }
+
         else
         {
             Vector3 mouse_pos;
