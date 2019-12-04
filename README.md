@@ -208,7 +208,8 @@ Tras seleccionar a un ganador de la partida (en multijugador) o al finalizar el 
 + Paso a una pantalla en blanco y a continuación una pequeña animación de burla de los ganadores a los perdedores de fondo (cambio de cámara a la que precise la animación, a nivel del suelo, frontal).
 
 #### DIAGRAMA DE FLUJO
-AQUÍ VA IMAGEN
+![1](https://github.com/djalfadevs/kanaka/blob/master/Documento%20de%20Dise%C3%B1o%20de%20Juego/Diagramas/DiagramaMec%C3%A1nicas.png)
+
 
 #### CÁMARA
 + Centrada en el jugador, le sigue.
@@ -298,7 +299,8 @@ En la pantalla de selección podremos elegir nuestro personaje, y en caso del mo
 Tras haber seleccionado el personaje entraremos en partida (en multijugador se esperará a que todos los jugadores hayan elegido). Desde aquí podremos jugar o abrir el menú de ajustes in game, que contendrá un botón para salir de partida, llevándonos al menú principal, tras mostrar la puntuación final.
 
 #### DIAGRAMA DE FLUJO
-AQUÍ VA IMAGEN 
+![2](https://github.com/djalfadevs/kanaka/blob/master/Documento%20de%20Dise%C3%B1o%20de%20Juego/Diagramas/DiagramaEstados.png)
+
 
 #### INTERFACES
 + Nombre de la pantalla: Pantalla de log in/sign in.
@@ -306,7 +308,23 @@ AQUÍ VA IMAGEN
 + Estados del juego involucrados: 1, 2, 3, 4 (ocasional).
 + Referencias visuales: 
 
-AQUÍ VAN VARIAS IMÁGENES (6)
+
+![3](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/3login.png)
+
+
+![4](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/4singin.png)
+
+
+![5](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/5entrar.png)
+
+
+![6](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/6seleccion%20inicial1.png)
+
+
+![7](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/7seleccion%20inicial2.png)
+
+
+![8](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/2carga.png)
 
 
 - Nombre de la pantalla: Menú principal.
@@ -314,7 +332,8 @@ AQUÍ VAN VARIAS IMÁGENES (6)
 - Estados del juego involucrados: 2, 3, 5, 6, 10, 13, 16, 17, 20.
 - Referencias visuales: 
 
-AQUÍ VA IMAGEN
+
+![9](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/8menu%20principal.png)
 
 
 * Nombre de la pantalla: Selección de personaje.
@@ -322,11 +341,20 @@ AQUÍ VA IMAGEN
 * Estados del juego involucrados: 2, 5, 7, 8, 10, 11.
 * Referencias visuales (multijugador): 
 
-AQUÍ VAN VARIAS IMÁGENES (3)
+
+![10](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/9buscar%20partida.png)
+
+
+![11](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/10seleccion%20personaje.png)
+
+
+![12](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/11preparacion%20partida.png)
+
 
 + Referencias visuales (un jugador):
 
-AQUÍ VA IMAGEN 
+
+![13](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/14singleplayerselecion.png) 
 
 
 - Nombre de la pantalla: Tienda.
@@ -334,15 +362,19 @@ AQUÍ VA IMAGEN
 - Estados del juego involucrados: 2, 5, 13, 14, 15.
 - Referencias visuales: 
 
-AQUÍ VA IMAGEN
 
+![14](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/17tienda1.png)
+
+
+![15](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/18tienda2.png)
 
 * Nombre de la pantalla: Pantalla de ajustes.
 * Descripción: En esta pantalla se podrá seleccionar el idioma, volumen de los efectos sonoros y de la música.
 * Estados del juego involucrados: 5, 16.
 * Referencias visuales:
 
-AQUÍ VAN VARIAS IMÁGENES (2)
+
+![16](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/19ajustes.png)
 
 
 + Nombre de la pantalla: Créditos/contacto.
@@ -350,7 +382,8 @@ AQUÍ VAN VARIAS IMÁGENES (2)
 + Estados del juego involucrados: 5, 20.
 + Referencias visuales: 
 
-AQUÍ VA IMAGEN 
+
+![17](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/21creditos.png)
 
 
 - Nombre de la pantalla: Colección.
@@ -358,14 +391,17 @@ AQUÍ VA IMAGEN
 - Estados del juego involucrados: 5, 17, 18, 19.
 - Referencias visuales: 
 
-AQUÍ VA IMAGEN
+
+![18](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/20coleccion.png)
 
 
 * Nombre de la pantalla: Interfaz de partida (un jugador).
 * Descripción: En esta pantalla se muestra toda la información relevante al combate: vida, *cooldowns*, botones, puntuación, tiempo y botón de menú de opciones *in game*.
 * Estados del juego involucrados: 2, 7, 8, 9, 10, 11 12, 21.
 * Referencias visuales: 
-AQUÍ VA IMAGEN
+
+
+![19](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/15singleplayerpartida.png)
 
 
 + Nombre de la pantalla: Interfaz de partida (multijugador).
@@ -373,7 +409,8 @@ AQUÍ VA IMAGEN
 + Estados del juego involucrados: 2, 7, 8, 9, 10, 11 12, 21.
 + Referencias visuales: 
 
-AQUÍ VA IMAGEN
+
+![20](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/12enpartida.png)
 
 
 - Nombre de la pantalla: Pantalla de ajustes o salida de partida *in game*.
@@ -381,7 +418,11 @@ AQUÍ VA IMAGEN
 - Estados del juego involucrados: 2, 8, 9, 11, 12, 21.
 - Referencias visuales: 
 
-AQUÍ VAN VARIAS IMÁGENES (2)
+
+![21](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/22ajuste%20ingame1.png)
+
+
+![22](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/23ajuste%20ingame2.png)
 
 
 * Nombre de la pantalla: Tabla de puntuación y recompensa post-partida.
@@ -389,12 +430,14 @@ AQUÍ VAN VARIAS IMÁGENES (2)
 * Estados del juego involucrados: 2, 5, 9, 12, 21.
 * Referencias visuales (un jugador): 
 
-AQUÍ VA IMAGEN 
+
+![23](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/16singleplayerpuntuacion.png)
 
 
 + Referencias visuales (multijugador):
 
-AQUÍ VA IMAGEN
+
+![24](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Interfaz/13final%20partida.png)
 
 
 ## NIVELES
@@ -666,23 +709,23 @@ El estilo de los personajes bebe de referencias de forma como *Patapon* y refere
 
 #### CONCEPT ART PERSONAJES
 ###### Ahikoa
-AQUÍ VA IMAGEN
+![25](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Personajes/ahikoa_fuego.jpg)
 
 
 ###### Makani
-AQUÍ VA IMAGEN
+![26](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Personajes/makani_viento.jpg)
 
 
 ###### Naluko
-AQUÍ VA IMAGEN
+![27](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Personajes/naluko_agua.jpg)
 
 
 ###### Pohaku
-AQUÍ VA IMAGEN
+![28](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Personajes/pohaku_piedra.jpg)
 
 
-#### 3D PERSONAJES
-No se especifica por el momento.
+###### Tótems
+![29](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Personajes/totem.jpg)
 
 
 #### ESTILO ESCENARIOS
@@ -700,24 +743,30 @@ El mapa para un jugador se dispone como:
 
 
 #### CONCEPT ART ESCENARIOS
-###### Base de distribución de mapa (multiplayer)
-AQUÍ VA IMAGEN
+###### Base de distribución de mapa (multijugador)
+![30](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/EscenarioMultiplayer.png)
 
 
-###### Base de distribución de mapa (singleplayer)
-AQUÍ VA IMAGEN
+###### Base de distribución de mapa (un jugador)
+![31](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/EscenarioSingleplayer.png)
 
 
 ###### Base de color y formas
-AQUÍ VA IMAGEN
+![32](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/escenario.jpg)
 
 
 #### 3D ESCENARIOS
-AQUÍ VAN IMÁGENES
+###### Multijugador (X)
+![33](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/3D_Multijugador_Far.jpg)
 
 
-#### 3D ÍTEMS
-AQUÍ VAN IMÁGENES
+![34](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/3D_Multijugador_Close.jpg)
+
+###### Un jugador (Arena)
+![35](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/3D_UnJugador_Far.jpg)
+
+
+![36](https://github.com/djalfadevs/kanaka/blob/master/Arte/Concept/Escenario/3D_UnJugador_Close.jpg)
 
 
 #### ESTILO VFX
@@ -1103,16 +1152,28 @@ Multiplicadores de dificultad para partidas de un jugador:
         + Personaje nuevo.
         + Caracterización de personajes y escenarios (GRATUITO) de navidad.
 
-AQUÍ VAN IMÁGENES (5)
+![37](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/Roadmap/2019.png)
+
+
+![38](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/Roadmap/PrimerSemestre2020.png)
+
+
+![39](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/Roadmap/SegundoSemestre2020.png)
+
+
+![40](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/Roadmap/PrimerSemestre2021.png)
+
+
+![41](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/Roadmap/SegundoSemestre2021.png)
 
 
 ## MODELO DE LIENZO (ESTRUCTURA DE NEGOCIO)
-AQUÍ VA IMAGEN
+![42](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/ModeloNegocio/ModeloLienzo.jpg)
 
 
 ## MODELO DE CAJA DE HERRAMIENTAS (ESTRUCTURA DE NEGOCIO)
-AQUÍ VA IMAGEN
+![43](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/ModeloNegocio/ModeloCajaHerramientas.png)
 
 
 ## MAPA DE EMPATÍA DE CLIENTES POTENCIALES
-AQUÍ VA IMAGEN
+![44](https://github.com/djalfadevs/kanaka/blob/master/Marketing%20y%20modelo%20de%20negocio/ModeloNegocio/MapaEmpatia.jpg)
