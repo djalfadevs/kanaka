@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
-  duracion: 5
+  duracion: 1
   distancia: 0
-  speed: 2
+  speed: 20
   team: 0
 --- !u!114 &114747482239200180
 MonoBehaviour:

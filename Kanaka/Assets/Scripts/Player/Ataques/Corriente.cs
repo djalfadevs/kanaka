@@ -50,6 +50,11 @@ public class Corriente : Attack
             //if (!PhotonNetwork.IsMasterClient)
             //    return;
             Debug.Log(collider.gameObject.name);
+            if (collider.GetComponent<PhotonView>() == null)
+            {
+                return;
+            }
+
             if (!photonView.IsMine)
             {
                 return;

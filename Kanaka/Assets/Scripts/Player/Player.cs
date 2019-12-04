@@ -48,29 +48,31 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         int aux;
         Color aux2;
-  
-        if (photonView ?? null)
-        {
-            int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
-            team = aux;
-            ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(),out aux2);
-            teamColor = aux2;
-        }
 
+        if (PhotonNetwork.IsConnected)
+        {
+            if (photonView ?? null)
+            {
+                int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
+                team = aux;
+                ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(), out aux2);
+                teamColor = aux2;
+            }
+        }
+        
     }
 
     [PunRPC]
     void RPC_MoveExactlyOnTransform(Vector3 p)
     {
-        transform.position = p;
-        Debug.LogError("Se actualiza la posicion de golpe");
-
+            transform.position = p;
+            Debug.LogError("Se actualiza la posicion de golpe");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!ph.IsMine)
+        if (!ph.IsMine && PhotonNetwork.IsConnected)
         {
             
             transform.position = Vector3.MoveTowards(transform.position, networkPosition, Time.deltaTime * MoveSpeed);
@@ -146,7 +148,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public void DeadFinish()
     {
 
-        if (ph.IsMine)
+        if (ph.IsMine && PhotonNetwork.IsConnected)
         {
             Debug.LogError("Estoy Intentando Resucitar");
             //Restauramos la vida
@@ -201,7 +203,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 transform.rotation = Quaternion.Slerp(transform.rotation, qTo, MoveSpeed * Time.deltaTime);
             }
             cc.Move(move * Time.deltaTime);
+            if(auxAxisHorizontal!=0 && auxAxisVertical != 0)
+            {
+                animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
             cc.SimpleMove(Physics.gravity);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
         }
        
     }
@@ -223,10 +237,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
 
             Vector3 move = vertical * transform.TransformDirection(Vector3.forward) * MoveSpeed;
+            if (vertical != 0)
+            {
+                animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
             cc.Move(move * Time.deltaTime);
             cc.SimpleMove(Physics.gravity);
         }
-        
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     public void attack()
@@ -235,6 +260,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             animator.SetBool("Attack",true);
             attackCD = baseAttackCD;
+           //  Debug.LogError("INTENTA ATACAR");
            // Attack.GetComponent<Attack>().use(this.gameObject);
         }
        
@@ -243,9 +269,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ability()
     {
-        if (abilityCD<=0)
+        if (abilityCD<=0 && !animator.GetBool("Habilidad"))
         {
-            Debug.Log("bolsa");
             animator.SetBool("Habilidad",true);
             abilityCD = baseAbilityCD;
             //Ability.GetComponent<Ability>().use();
