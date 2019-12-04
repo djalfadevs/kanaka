@@ -15,14 +15,14 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Habilidad
-    m_Type: 4
+  - m_Name: HP
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: HP
-    m_Type: 1
+  - m_Name: Habilidad
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -273,7 +273,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1cfb44a7f51bc6b44bea15cf31a83ca6, type: 2}
+  m_Motion: {fileID: 7400000, guid: ee9d19338579adf44ab55469e0b287f2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

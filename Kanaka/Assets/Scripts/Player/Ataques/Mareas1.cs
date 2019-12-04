@@ -7,7 +7,7 @@ public class Mareas1 : Attack, IPunObservable
 {
     [SerializeField] private float duracion;
     [SerializeField] private int distancia;
-    [SerializeField] private int speed=2;
+    [SerializeField] private int speed=100;
 
     private List<GameObject> points=new List<GameObject>();
     private List<Vector3> pointsPos = new List<Vector3>();

@@ -27,7 +27,11 @@ public class CorrienteProfunda : MonoBehaviour
     }
     public void CallCorriente()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && PhotonNetwork.IsConnected)
+        {
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
+        else if (!PhotonNetwork.IsConnected)
         {
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
@@ -43,11 +47,20 @@ public class CorrienteProfunda : MonoBehaviour
     }
     public void LastCallCorriente()
     {
-        if (photonView.IsMine)
+        Debug.Log("holaRR");
+        if (photonView.IsMine && PhotonNetwork.IsConnected)
         {
+            Debug.Log("holaRRR");
             animator.SetBool("Habilidad", false);
             player.GetComponent<Player>().setCanMove(true);
+           
 
+        }
+        else if(!PhotonNetwork.IsConnected)
+        {
+            Debug.Log("holaRRR");
+            animator.SetBool("Habilidad", false);
+            player.GetComponent<Player>().setCanMove(true);
         }
     }
 }
