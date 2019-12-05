@@ -22,13 +22,13 @@ public class PlayerController : MonoBehaviourPun
     private void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
-
+        player = this.GetComponent<Player>();
     }
 
     void Start()
     {
         fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
-        player = this.GetComponent<Player>();
+        
         string text = File.ReadAllText(path);
         if (text != null)
         {

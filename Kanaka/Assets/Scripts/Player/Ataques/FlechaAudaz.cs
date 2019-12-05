@@ -31,10 +31,15 @@ public class FlechaAudaz : MonoBehaviour
     private void SpawnFlecha()
     {
         GameObject q;
-        Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 2;
-        q = Instantiate(Cube,aux,Quaternion.Euler(-90,player.transform.rotation.y,player.transform.rotation.z));
-        q.transform.LookAt(player.transform.position);
+        Vector3 dir = player.transform.TransformDirection(Vector3.forward);
+        
+        Vector3 aux = player.transform.position + dir * 2;
+        q = Instantiate(Cube, aux, Quaternion.identity);    //(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.y));
+        Vector3 dir2 = q.transform.InverseTransformDirection(dir);
+        q.transform.rotation = Quaternion.LookRotation(dir2, Vector3.right);
+        q.transform.Rotate(-90,0,0,Space.Self);
         q.GetComponent<Flecha>().setTeam(player.GetComponent<Player>().GetTeam());
+        q.GetComponent<Flecha>().setDir(dir);
     }
     public void LastCallFlecha()
     {

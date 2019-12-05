@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class MobileButtons : MonoBehaviour
 {
-
+    [SerializeField]GameObject j;
     private PlayerController pc;
     private Player pl;
 
-    void Awake()
+    void Start()
     {
         pc = FindObjectOfType<PlayerController>();
         pl = pc.getPlayer();
@@ -17,10 +17,11 @@ public class MobileButtons : MonoBehaviour
 
     public void Attack()
     {
-        pl.attack();
+        if (j.activeSelf)pl.attack();
+        
     }
     public void Ability()
     {
-        pl.ability();
+        if (j.activeSelf)pl.ability();
     }
 }

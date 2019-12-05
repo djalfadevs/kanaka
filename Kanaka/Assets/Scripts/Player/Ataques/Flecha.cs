@@ -8,6 +8,7 @@ public class Flecha : Attack
     [SerializeField] private float duracion = 30;
     [SerializeField] private int speed;
     private float t;
+    private Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,12 @@ public class Flecha : Attack
         moveManager();
 
     }
+
+    public void setDir(Vector3 d)
+    {
+        this.dir = d;
+    }
+
     private void Timemanager()
     {
         if (duracion > 0)
@@ -105,8 +112,8 @@ public class Flecha : Attack
 
     private void moveManager()
     {
-        Vector3 aux =this.transform.TransformDirection(Vector3.up);
-        transform.Translate(aux * speed * Time.deltaTime);
+        
+        transform.Translate(this.transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
