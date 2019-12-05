@@ -9,20 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/PreLogin.unity
     guid: 21c7bc5d2934dca4087967078cf4bca1
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: b1e98c53158681c4792c9f5de2f95568
+  - enabled: 1
+    path: Assets/Scenes/Test Photon/Escena Photon Prueba2.unity
+    guid: 019cd9d69e50eb9429e5957256ddec61
+  - enabled: 1
+    path: Assets/Scenes/CharSel.unity
+    guid: 0e91efe4a200f544bbdbf4dd5c84ecff
+  - enabled: 1
     path: Assets/Scenes/testno.unity
     guid: 0687e5cf4134e3545b5b2659d5cbc46d
   - enabled: 1
     path: Assets/Scenes/Test Photon/Escena Photon Prueba.unity
     guid: c8d147862d1c46548a83f11de245b0a7
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: b1e98c53158681c4792c9f5de2f95568
-  - enabled: 1
-    path: Assets/Scenes/CharSel.unity
-    guid: 0e91efe4a200f544bbdbf4dd5c84ecff
-  - enabled: 1
-    path: Assets/Scenes/Test Photon/Escena Photon Prueba2.unity
-    guid: 019cd9d69e50eb9429e5957256ddec61
   - enabled: 1
     path: Assets/Scenes/Test Photon/Escena Photon Resultados.unity
     guid: 438b64cf39ad39e408a9cb6826bb4257

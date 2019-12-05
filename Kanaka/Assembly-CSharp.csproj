@@ -162,6 +162,9 @@
     <Compile Include="Assets\Scripts\User\GetUsername.cs" />
     <Compile Include="Assets\Scripts\User\OnlineUser.cs" />
     <Compile Include="Assets\Scripts\User\User.cs" />
+    <Compile Include="Assets\Sounds\PersistMusic.cs" />
+    <Compile Include="Assets\Sounds\SFX\PersistMainMenu.cs" />
+    <Compile Include="Assets\Sounds\SFX\PersistSound.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

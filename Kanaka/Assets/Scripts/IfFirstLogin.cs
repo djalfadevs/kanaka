@@ -37,10 +37,14 @@ public class IfFirstLogin : MonoBehaviour
                 Debug.Log(l.Count);
                 if (l.Count == 0)
                 {
+                    GameObject objs = GameObject.FindGameObjectWithTag("Music");
+                    Destroy(objs);
                     SceneManager.LoadScene(first);
                 }
                 else
                 {
+                    GameObject objs = GameObject.FindGameObjectWithTag("Music");
+                    Destroy(objs);
                     SceneManager.LoadScene(not);
                 }
                 reader.Close();
