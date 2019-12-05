@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 63587ad52610a3448924a8e880102d5a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ' 1'
+    100002: ArmR
+    100004: Base Human001
+    100006: Base Human001AnkleBone001
+    100008: Base Human001AnkleBone001 1
+    100010: Base Human001LArm1
+    100012: Base Human001LArm2
+    100014: Base Human001LArmCollarbone
+    100016: Base Human001LArmPalm
+    100018: Base Human001LLeg1
+    100020: Base Human001LLeg2
+    100022: Base Human001LLegAnkle
+    100024: Base Human001LLegPlatform
+    100026: Base Human001Pelvis
+    100028: Base Human001RArm1
+    100030: Base Human001RArm2
+    100032: Base Human001RArmCollarbone
+    100034: Base Human001RArmPalm
+    100036: Base Human001RLeg1
+    100038: Base Human001RLeg2
+    100040: Base Human001RLegAnkle
+    100042: Base Human001RLegPlatform
+    100044: Base Human00EyebrowL
+    100046: Base Human00EyebrowR
+    100048: Base Human00Nose
+    100050: Box001
+    100052: EyebrowL
+    100054: EyebrowR
+    100056: face
+    100058: flor
+    100060: flor001
+    100062: flor002
+    100064: flor003
+    100066: flor004
+    100068: Hacha
+    100070: HandL
+    100072: HandR
+    100074: LegR
+    100076: Mask
+    100078: Nose
+    100080: //RootNode
+    100082: Ring
+    400000: ' 1'
+    400002: ArmR
+    400004: Base Human001
+    400006: Base Human001AnkleBone001
+    400008: Base Human001AnkleBone001 1
+    400010: Base Human001LArm1
+    400012: Base Human001LArm2
+    400014: Base Human001LArmCollarbone
+    400016: Base Human001LArmPalm
+    400018: Base Human001LLeg1
+    400020: Base Human001LLeg2
+    400022: Base Human001LLegAnkle
+    400024: Base Human001LLegPlatform
+    400026: Base Human001Pelvis
+    400028: Base Human001RArm1
+    400030: Base Human001RArm2
+    400032: Base Human001RArmCollarbone
+    400034: Base Human001RArmPalm
+    400036: Base Human001RLeg1
+    400038: Base Human001RLeg2
+    400040: Base Human001RLegAnkle
+    400042: Base Human001RLegPlatform
+    400044: Base Human00EyebrowL
+    400046: Base Human00EyebrowR
+    400048: Base Human00Nose
+    400050: Box001
+    400052: EyebrowL
+    400054: EyebrowR
+    400056: face
+    400058: flor
+    400060: flor001
+    400062: flor002
+    400064: flor003
+    400066: flor004
+    400068: Hacha
+    400070: HandL
+    400072: HandR
+    400074: LegR
+    400076: Mask
+    400078: Nose
+    400080: //RootNode
+    400082: Ring
+    2100000: 07 - Default
+    2100002: 'Material #117'
+    2100004: 09 - Default
+    2100006: 14 - Default
+    2100008: 13 - Default
+    2100010: 16 - Default
+    2100012: 'Material #647'
+    2100014: 17 - Default
+    2100016: 15 - Default
+    2100018: No Name
+    2100020: 06 - Default
+    2100022: 18 - Default
+    2100024: 12 - Default
+    2100026: 05 - Default
+    2100028: 04 - Default
+    2100030: 11 - Default
+    2100032: 10 - Default
+    2100034: 02 - Default
+    2100036: 03 - Default
+    2300000: Box001
+    2300002: face
+    2300004: flor
+    2300006: flor001
+    2300008: flor002
+    2300010: flor003
+    2300012: flor004
+    2300014: Hacha
+    2300016: Mask
+    2300018: Ring
+    3300000: Box001
+    3300002: face
+    3300004: flor
+    3300006: flor001
+    3300008: flor002
+    3300010: flor003
+    3300012: flor004
+    3300014: Hacha
+    3300016: Mask
+    3300018: Ring
+    4300000: HandL
+    4300002: ArmR
+    4300004: LegR
+    4300006: HandR
+    4300010: Nose
+    4300012: EyebrowR
+    4300014: EyebrowL
+    4300016: Hacha
+    4300018: Ring
+    4300020: face
+    4300022: flor001
+    4300024: flor
+    4300026: flor003
+    4300028: flor002
+    4300030: Mask
+    4300032: flor004
+    4300034: Box001
+    7400000: pohaku_idle
+    7400002: pohaku_correr
+    7400004: pohaku_lanzamiento
+    7400006: pohaku_stun
+    7400008: pohaku_muerte
+    7400010: pohaku_burla_ganar
+    7400012: pohaku_burla_perder
+    7400014: pohaku_ataque
+    7400016: pohaku_habilidad
+    7400018: pohaku_todas
+    9500000: //RootNode
+    13700000: ' 1'
+    13700002: ArmR
+    13700004: EyebrowL
+    13700006: EyebrowR
+    13700008: HandL
+    13700010: HandR
+    13700012: LegR
+    13700014: Nose
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: pohaku_idle
+      takeName: Take 001
+      firstFrame: 5
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_correr
+      takeName: Take 001
+      firstFrame: 35
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_lanzamiento
+      takeName: Take 001
+      firstFrame: 65
+      lastFrame: 78
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_stun
+      takeName: Take 001
+      firstFrame: 80
+      lastFrame: 104
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_muerte
+      takeName: Take 001
+      firstFrame: 110
+      lastFrame: 124
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_burla_ganar
+      takeName: Take 001
+      firstFrame: 130
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_burla_perder
+      takeName: Take 001
+      firstFrame: 150
+      lastFrame: 179
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_ataque
+      takeName: Take 001
+      firstFrame: 180
+      lastFrame: 225
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_habilidad
+      takeName: Take 001
+      firstFrame: 250
+      lastFrame: 267
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pohaku_todas
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

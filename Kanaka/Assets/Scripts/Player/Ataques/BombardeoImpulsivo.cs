@@ -43,10 +43,13 @@ public class BombardeoImpulsivo : MonoBehaviour
     }
     public void LastCallBomba()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             animator.SetBool("Habilidad", false);
-            player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            animator.SetBool("Habilidad", false);
         }
     }
 }

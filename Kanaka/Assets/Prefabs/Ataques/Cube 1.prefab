@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479ac6546e5457f4aade97ced6595436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 0
+  dmg: 50
   duracion: 5
   distancia: 0
   speed: 2

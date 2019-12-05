@@ -47,4 +47,4 @@ MonoBehaviour:
   isBusy: 0
   BusyBoxSize: {x: 0, y: 0, z: 0}
   boxHeight: 2
-  toSpawn: {fileID: 5064146877859455576, guid: 7f0b488bf89250d429e8b90ef5c7f265, type: 3}
+  toSpawn: {fileID: 1943469112565142151, guid: eb9300c6d15521e4cad7c8091c344004, type: 3}

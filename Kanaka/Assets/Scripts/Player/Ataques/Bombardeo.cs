@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bombardeo : MonoBehaviour
+public class Bombardeo : Attack
 {
-    [SerializeField] private int dmg;
     [SerializeField] private float duracion;
     [SerializeField] private int distancia;
     [SerializeField] private int speed = 2;
@@ -113,10 +112,7 @@ public class Bombardeo : MonoBehaviour
     {
         this.dmg = damage;
     }
-    public int getDmg()
-    {
-        return this.dmg;
-    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

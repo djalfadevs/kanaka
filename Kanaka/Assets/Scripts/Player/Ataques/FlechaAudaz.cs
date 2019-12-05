@@ -32,14 +32,19 @@ public class FlechaAudaz : MonoBehaviour
     {
         GameObject q;
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 2;
-        q = Instantiate(Cube,aux,player.transform.rotation);
+        q = Instantiate(Cube,aux,Quaternion.Euler(-90,player.transform.rotation.y,player.transform.rotation.z));
+        q.transform.LookAt(player.transform.position);
         q.GetComponent<Flecha>().setTeam(player.GetComponent<Player>().GetTeam());
     }
     public void LastCallFlecha()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
             animator.SetBool("Attack",false);
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            animator.SetBool("Attack", false);
         }
     }
 }

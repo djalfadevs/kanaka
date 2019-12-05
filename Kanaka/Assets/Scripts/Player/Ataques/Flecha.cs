@@ -105,8 +105,8 @@ public class Flecha : Attack
 
     private void moveManager()
     {
-        Vector3 aux =this.transform.TransformDirection(Vector3.forward);
-        transform.Translate(this.transform.InverseTransformDirection(aux * speed * Time.deltaTime));
+        Vector3 aux =this.transform.TransformDirection(Vector3.up);
+        transform.Translate(aux * speed * Time.deltaTime);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -27,7 +27,7 @@ public class ItemSpawner : MonoBehaviour
     {
         float aux=UnityEngine.Random.Range(1.0f, (float)spawners.Count-1);
         spawners[(int)aux].GetComponent<ItemSpawner>().CalculateItemSpawnPoint(spawners[(int)aux]);
-        PhotonNetwork.Instantiate("AUX AUX AUX AUX",
+        PhotonNetwork.Instantiate("caja",
         spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos, spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
         //Instantiate(spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn,
          //   spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos,spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
