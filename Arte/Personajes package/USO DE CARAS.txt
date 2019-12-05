@@ -1,0 +1,35 @@
+CORRESPONDECIA DE CADA MATERIAL A LAS ANIMACIONES POR CADA PERSONAJE
+
+NALUKO
+------
+Idle - idle, correr
+Pestaneo - evento del idle (pestañeo)
+Ataque - ataque, habilidad, lanzamiento
+Stun - stun (por ataques, bomba o trampa)
+Burla ganar - burla cuando acaba el combate (consultar GDD)
+Burla perder - ídem cuando pierde
+Muerto - muerto
+
+
+AIKOA
+------
+Idle - idle, correr
+Pestaneo - evento del idle (pestañeo)
+Ataque - ataque, habilidad, lanzamiento, burla de ganar
+Stun - stun (por ataques, bomba o trampa)
+Burla perder - ídem cuando pierde
+Muerto - muerto
+
+POHAKU
+------
+Idle - para todo excepto:
+Muerto - muerto
+Stun - stun
+
+MAKANI
+------
+Idle - idle, correr
+Pestaneo - evento del idle (pestañeo)
+Ataque - ataque, habilidad, lanzamiento, burla de ganar
+Stun - stun (por ataques, bomba o trampa)
+Muerto - muerto, burla de perder

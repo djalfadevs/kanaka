@@ -60,7 +60,8 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private Text Team1AliveTotemsText;//Debug
     [SerializeField] private Text Team2TotalTotemsText;//Debug
     [SerializeField] private Text Team2AliveTotemsText;//Debug
-    
+
+    public float TimeBox= 5f;
 
     public GameObject playerPrefab;
     public GameObject menu;
@@ -198,17 +199,30 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (!PhotonNetwork.IsConnected)
-        {
-            return;
-        }
+         if (!PhotonNetwork.IsConnected)
+         {
+              return;
+          }
 
-        RecalculateAliveTotems();
-        if (StartTimers)
-        {
-            CountTimer();
-            CountTimer2();
-        }
+         RecalculateAliveTotems();
+         if (StartTimers)
+            { 
+             CountTimer();
+             CountTimer2();
+         }
+            if (gameStarted && PhotonNetwork.IsMasterClient)
+            {
+                if (TimeBox <= 0)
+                {
+                    ItemSpawner.Spawn();
+                    TimeBox = UnityEngine.Random.Range(5.0f, 10.0f);
+                }
+                else
+                {
+                    TimeBox -= Time.deltaTime;
+                }
+            }
+        
 
         if (matchIsFinished)
         {

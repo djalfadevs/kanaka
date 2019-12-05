@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviourPun
 
     void Start()
     {
-        //fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
+        fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
         player = this.GetComponent<Player>();
         string text = File.ReadAllText(path);
         if (text != null)
@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviourPun
 
     }
 
+    public Player getPlayer()
+    {
+        return this.player;
+    }
+
     void Update()
     {
 
@@ -68,7 +73,6 @@ public class PlayerController : MonoBehaviourPun
                 float auxAxisHorizontal = fj.GetComponent<FixedJoystick>().Horizontal;
                 float auxAxisVertical = fj.GetComponent<FixedJoystick>().Vertical;
                 player.moveAndroid(auxAxisHorizontal, auxAxisVertical);
-
             }
             else
             {
