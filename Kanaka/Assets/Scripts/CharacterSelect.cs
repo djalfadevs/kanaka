@@ -43,7 +43,6 @@ public class CharacterSelect : MonoBehaviour
                 im = ou.ismobile;
                 ou = new OnlineUser(un, ch, im,  (int) Random.Range(0.0f,1.0f));
                 File.WriteAllText(path2, JsonUtility.ToJson(ou));
-                SceneManager.LoadScene("Escena Photon Prueba");
             }
         }
     }

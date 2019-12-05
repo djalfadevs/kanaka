@@ -10,6 +10,8 @@ TagManager:
   - CorruptedTotem
   - Bullet
   - MobileInput
+  - FxTemporaire
+  - invisible
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 

@@ -10,9 +10,6 @@ using System;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
-    public Button connectBtn;
-    public Button joinRandomRoomBtn;
-    public Text Log;
 
     public byte maxPlayersInRoom = 4;
     public byte minPlayersInRoom = 2;
@@ -21,14 +18,16 @@ public class Lobby : MonoBehaviourPunCallbacks
     public Text PlayerCounter;
 
     private string MatchInputFilePath;
-    private int team;
     private string CharacterSelected;
-    [SerializeField] private InputField input;
+
+    private string path2;
+
 
     public void Awake()
     {
+        path2 = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
+
         PhotonNetwork.AutomaticallySyncScene = true;
-        MatchInputFilePath = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
     }
 
     public void Connect()
@@ -39,11 +38,9 @@ public class Lobby : MonoBehaviourPunCallbacks
             //Debug.Log("Do something");
             if (PhotonNetwork.ConnectUsingSettings())
             {
-                Log.text += "\nEstamos conectados al servidor";
             }
             else
             {
-                Log.text += "\nError al conectar al servidor";
             }
         }
     }
@@ -52,29 +49,24 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Ahora estamos conectados al servidor de la region: " +
             PhotonNetwork.CloudRegion);
-        connectBtn.interactable = false;
-        joinRandomRoomBtn.interactable = true;
     }
 
     public void JoinRandomRoom()
     {
         if(!PhotonNetwork.JoinRandomRoom())
         {
-            Log.text += "\nFallo al unirse a la sala";
         }
+
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Log.text += "\n No existen salas a las que unirse, creando una nueva";
 
         if (PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions() { MaxPlayers = maxPlayersInRoom}))
         {
-            Log.text += "\n Sala creada con exito";
         }
         else
         {
-            Log.text += "\n fallo al crear la sala";
         }
     }
 
@@ -90,9 +82,28 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Log.text += "\n Unido a la sala";
-        joinRandomRoomBtn.interactable = false;
-        
+
+        int aux = PhotonNetwork.CurrentRoom.Players.Count;
+        if(aux == 1||aux == 2)
+        {
+            string text2 = File.ReadAllText(path2);
+            if (text2 != null)
+            {
+                OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
+                ou.team = 0;
+                File.WriteAllText(path2, JsonUtility.ToJson(ou));
+            }
+        }
+        else
+        {
+            string text2 = File.ReadAllText(path2);
+            if (text2 != null)
+            {
+                OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
+                ou.team = 1;
+                File.WriteAllText(path2, JsonUtility.ToJson(ou));
+            }
+        }
     }
 
         public void FixedUpdate()
@@ -102,22 +113,5 @@ public class Lobby : MonoBehaviourPunCallbacks
             playerCounter = PhotonNetwork.CurrentRoom.PlayerCount;
         }
         PlayerCounter.text = playerCounter + "/" + maxPlayersInRoom;
-    }
-
-    public void WriteData()
-    {
-        
-    }
-
-    public void setTeam()
-    {
-        this.team = int.Parse(input.text);
-        WriteData();
-    }
-
-    public void setCharacterSelected(string character)
-    {
-        this.CharacterSelected = character;
-        WriteData();
     }
 }

@@ -11,7 +11,7 @@ public class Cooldowncheck : MonoBehaviour
     private Player pl;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         pc = FindObjectOfType<PlayerController>();
         pl = pc.getPlayer();
