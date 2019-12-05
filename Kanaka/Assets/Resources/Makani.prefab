@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096598696097878103}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.87, y: 3.6543558, z: 0.73809147}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5628761399094389255}
@@ -399,56 +399,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1096598696097878096}
     m_Modifications:
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: HP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: MaxHP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: MoveSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 5628761399094389255}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: deadzone
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: baseAttackCD
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: baseAbilityCD
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: baseSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 7261060964032486977}
-    - target: {fileID: 3857257110190225755, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: m_Name
-      value: makani
-      objectReference: {fileID: 0}
     - target: {fileID: 3857257110190122299, guid: a1ef1b7562533014fb2ab1da3d240ea8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -504,6 +454,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3857257110190225755, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: m_Name
+      value: makani
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: HP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: MaxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: MoveSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 5628761399094389255}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: deadzone
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: baseAttackCD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: baseAbilityCD
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: baseSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 7261060964032486977}
     - target: {fileID: 7675843534612308832, guid: a1ef1b7562533014fb2ab1da3d240ea8,
         type: 3}
       propertyPath: player

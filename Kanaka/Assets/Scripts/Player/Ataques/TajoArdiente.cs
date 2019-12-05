@@ -31,13 +31,27 @@ public class TajoArdiente : MonoBehaviour
 
     public void CallDa()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             if (Input.GetMouseButton(0))
             {
+                animator.SetInteger("NumAttack", 2);
                 SpawnCubeDcha();
             }
-            else{
+            else
+            {
+                EndTajo();
+            }
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                animator.SetInteger("NumAttack", 2);
+                SpawnCubeDcha();
+            }
+            else
+            {
                 EndTajo();
             }
         }
@@ -45,10 +59,23 @@ public class TajoArdiente : MonoBehaviour
 
     public void ReturnIz()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
             if (Input.GetMouseButton(0))
             {
+                animator.SetInteger("NumAttack", 1);
+                SpawnCubeIz();
+            }
+            else
+            {
+                EndTajo();
+            }
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                animator.SetInteger("NumAttack", 1);
                 SpawnCubeIz();
             }
             else
@@ -60,8 +87,14 @@ public class TajoArdiente : MonoBehaviour
 
     public void CallIz()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
+            animator.SetInteger("NumAttack", 1);
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            animator.SetInteger("NumAttack", 1);
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
         SpawnCubeIz();
@@ -71,7 +104,7 @@ public class TajoArdiente : MonoBehaviour
     private void SpawnCubeIz()
     {
         GameObject q;
-        q = Instantiate(CubeI, this.point1.transform.position+ this.player.transform.TransformDirection(Vector3.forward) * 3,
+        q = Instantiate(CubeI, this.point1.transform.position+ this.player.transform.TransformDirection(Vector3.forward) * 1.5f,
             player.transform.rotation);
         q.GetComponent<TajoIzq>().setItems(player.GetComponent<Player>().GetTeam(),
             this,this.point2.transform.position+this.player.transform.TransformDirection(Vector3.forward)*3);
@@ -80,7 +113,7 @@ public class TajoArdiente : MonoBehaviour
     public void SpawnCubeDcha()
     {
         GameObject q;
-        q = Instantiate(CubeD, this.point2.transform.position + this.player.transform.TransformDirection(Vector3.forward) * 3
+        q = Instantiate(CubeD, this.point2.transform.position + this.player.transform.TransformDirection(Vector3.forward) * 1.5f
             , player.transform.rotation);
         q.GetComponent<TajoDcha>().setItems(player.GetComponent<Player>().GetTeam(), this,
             this.point1.transform.position+ this.player.transform.TransformDirection(Vector3.forward) * 3);
@@ -88,9 +121,17 @@ public class TajoArdiente : MonoBehaviour
 
     public void EndTajo()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
             animator.SetBool("Attack", false);
+            animator.SetInteger("NumAttack",0);
+            player.GetComponent<Player>().setCanMove(true);
+
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            animator.SetBool("Attack", false);
+            animator.SetInteger("NumAttack", 0);
             player.GetComponent<Player>().setCanMove(true);
         }
     }

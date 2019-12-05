@@ -9,6 +9,7 @@ public class TajoIzq : Attack
     private TajoArdiente tajo;
     [SerializeField]private int speed;
     private Vector3 destino;
+    [SerializeField] private float target; 
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class TajoIzq : Attack
 
     private void moveManager()
     {
-        if (Vector3.Distance(this.gameObject.transform.position,this.destino)>0.5f)
+        if (Vector3.Distance(this.gameObject.transform.position,this.destino)>target)
         {
             Vector3 aux = this.transform.TransformDirection(Vector3.right);
             this.transform.Translate(this.transform.InverseTransformDirection(aux*speed*Time.deltaTime));

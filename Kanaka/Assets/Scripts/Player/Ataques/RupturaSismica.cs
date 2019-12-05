@@ -45,10 +45,19 @@ public class RupturaSismica : MonoBehaviour
     }
     public void LastCallRuptura()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
-            animator.SetBool("Attack",false);
-            player.GetComponent<Player>().setCanMove(true);//El personaje puede volver a moverse;
+            Debug.Log("holaRRR");
+            animator.SetBool("Attack", false);
+            player.GetComponent<Player>().setCanMove(true);
+
+
+        }
+        else if (!PhotonNetwork.IsConnected)
+        {
+            Debug.Log("holaRRR");
+            animator.SetBool("Attack", false);
+            player.GetComponent<Player>().setCanMove(true);
         }
     }
 }

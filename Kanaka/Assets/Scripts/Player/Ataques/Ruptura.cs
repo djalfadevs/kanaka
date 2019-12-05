@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Ruptura : MonoBehaviour
+public class Ruptura : Attack
 {
     [SerializeField]private int dmg;
     [SerializeField] private float duracion;
