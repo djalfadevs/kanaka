@@ -69,13 +69,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Debug.LogError("Se actualiza la posicion de golpe");
     }
 
+
     // Update is called once per frame
     void Update()
     {
         if (!ph.IsMine && PhotonNetwork.IsConnected)
         {
             
-            transform.position = Vector3.MoveTowards(transform.position, networkPosition, Time.deltaTime * MoveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, networkPosition, Time.deltaTime * baseSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.deltaTime * 30);
         }
 
@@ -122,10 +123,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         this.MoveSpeed *= percentage;
     }
 
+    [PunRPC]
     public void Heal(int amount)
     {
-        HP += amount;
-        if (HP >= MaxHP) HP = MaxHP;
+        if (!PhotonNetwork.IsConnected)//offline
+        {
+            HP += amount;
+            if (HP >= MaxHP) HP = MaxHP;
+        }
+        else//ONLINE
+        {
+            if (ph.IsMine)//Solo me curo yo mismo
+            {
+                HP += amount;
+                if (HP >= MaxHP) HP = MaxHP;
+            }
+        }
     }
 
     public void Hit(Collider collider)
