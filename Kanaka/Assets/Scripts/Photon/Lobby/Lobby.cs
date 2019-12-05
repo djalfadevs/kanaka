@@ -106,10 +106,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public void WriteData()
     {
-        string auxS = "";
-        auxS += team.ToString() + Environment.NewLine;
-        auxS += CharacterSelected + Environment.NewLine;
-        File.WriteAllText(MatchInputFilePath, auxS);
+        
     }
 
     public void setTeam()

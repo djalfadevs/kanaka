@@ -191,6 +191,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         return teamColor; 
     }
 
+    public float getAtackCD()
+    {
+        return attackCD;
+    }
+
+    public float getAbilityCD()
+    {
+        return abilityCD;
+    }
+
     public void moveAndroid(float auxAxisHorizontal,float auxAxisVertical)
     {
         if (canMove)
