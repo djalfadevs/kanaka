@@ -76,7 +76,6 @@
     <Compile Include="Assets\EXTERNAL ASSETS\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
     <Compile Include="Assets\EXTERNAL ASSETS\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
     <Compile Include="Assets\EXTERNAL ASSETS\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
-    <Compile Include="Assets\GameSignUpInManager.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="Assets\MobileDepthWater\Scripts\Water\WaterArea.cs" />
     <Compile Include="Assets\MobileDepthWater\Scripts\Water\WaterMaterialSwitcher.cs" />
     <Compile Include="Assets\MobileDepthWater\Scripts\Water\WaterPropertyBlockSetter.cs" />
-    <Compile Include="Assets\PauseScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
@@ -106,8 +104,8 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
-    <Compile Include="Assets\PhotonGameManager.cs" />
-    <Compile Include="Assets\PhotonHeroManager.cs" />
+    <Compile Include="Assets\Scripts\Botella.cs" />
+    <Compile Include="Assets\Scripts\Caja\CajaObjetos.cs" />
     <Compile Include="Assets\Scripts\CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\CheckHeros.cs" />
     <Compile Include="Assets\Scripts\CheckSkins.cs" />
@@ -118,6 +116,7 @@
     <Compile Include="Assets\Scripts\GameHandlers\GameHandler.cs" />
     <Compile Include="Assets\Scripts\GameHandlers\GameHandlerPhoton.cs" />
     <Compile Include="Assets\Scripts\GameHandlers\TestGameHandler\GameHandlerPhotonTry.cs" />
+    <Compile Include="Assets\Scripts\GameSignUpInManager.cs" />
     <Compile Include="Assets\Scripts\HeroGroundCircle.cs" />
     <Compile Include="Assets\Scripts\HeroSpawner\HeroSpawners.cs" />
     <Compile Include="Assets\Scripts\IfFirstLogin.cs" />
@@ -125,7 +124,10 @@
     <Compile Include="Assets\Scripts\Items\ItemSpawner.cs" />
     <Compile Include="Assets\Scripts\keyboardClass.cs" />
     <Compile Include="Assets\Scripts\MobileButtons.cs" />
+    <Compile Include="Assets\Scripts\PauseScript.cs" />
     <Compile Include="Assets\Scripts\Photon\Lobby\Lobby.cs" />
+    <Compile Include="Assets\Scripts\PhotonGameManager.cs" />
+    <Compile Include="Assets\Scripts\PhotonHeroManager.cs" />
     <Compile Include="Assets\Scripts\Player\Ataques\Bombardeo.cs" />
     <Compile Include="Assets\Scripts\Player\Ataques\BombardeoImpulsivo.cs" />
     <Compile Include="Assets\Scripts\Player\Ataques\Corriente.cs" />
