@@ -35,5 +35,7 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RPC_MoveExactlyOnTransform
+  - Heal
+  - ActiveAnim
   DisableAutoOpenWizard: 1
   ShowSettings: 1
