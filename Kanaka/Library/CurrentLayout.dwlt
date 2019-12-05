@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 51
+  controlID: 122
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 52
+  controlID: 55
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 53
+  controlID: 56
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,23 +382,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c0580000
-      m_LastClickedID: 22720
-      m_ExpandedIDs: 4edbffff82efffff22f2ffff3ef3ffff044e0000e8500000ee500000fc500000a65100006a580000a2580000
+      m_SelectedIDs: ae3f0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6428ffffa843ffffb243ffffb443ffff1845ffff146affff1e6affff266cffff3671ffffceadffffeec4ffff8aebfffff6f2ffffd4fbffff14e400002e1d01006e1d0100a01d0100922e0100c02e0100d22e0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Canvas
+        m_OriginalName: Canvas
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 77458
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -439,9 +439,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 519.5344, y: 186.10855, z: 359.59106}
+    m_Target: {x: 456.03296, y: 263.81, z: -2.3626099}
     speed: 2
-    m_Value: {x: 519.5344, y: 186.10855, z: 359.59106}
+    m_Value: {x: 456.03296, y: 263.81, z: -2.3626099}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -469,13 +469,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.00991422, y: -0.036569502, z: 0.000362402, w: -0.99928194}
+    m_Target: {x: -0.006921995, y: -0.002078368, z: 0.000014059513, w: -0.99997395}
     speed: 2
-    m_Value: {x: -0.00991422, y: -0.036569502, z: 0.000362402, w: -0.99928194}
+    m_Value: {x: -0.006921995, y: -0.002078368, z: 0.000014059513, w: -0.99997395}
   m_Size:
-    m_Target: 1007.705
+    m_Target: 628.9802
     speed: 2
-    m_Value: 1007.705
+    m_Value: 628.9802
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -768,20 +768,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/UISprites
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/UISprites
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\DigiFire\Documents\GitHub\kanaka\Kanaka
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 828}
-    m_SelectedIDs: 3c490000
-    m_LastClickedID: 18748
-    m_ExpandedIDs: 00000000cc34000006350000ea360000063700003037000042380000f23800004c3b00007c3b0000e43c0000204000002a4000000e410000904200001a430000e0440000e84500008c460000ca470000164800001e4800002c4900002a4d000000ca9a3b
+    scrollPos: {x: 0, y: 636}
+    m_SelectedIDs: ac300000
+    m_LastClickedID: 12460
+    m_ExpandedIDs: 00000000202e0000662e0000ba2e0000842f00006230000082300000ac300000c63100007a320000d83400000835000078360000de370000e6390000f0390000d63a0000e63b00005c3c0000f43c0000ea3e0000fe3e0000f43f0000a0400000fe4100004c42000054420000684300003c53000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -809,7 +809,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc34000006350000ea360000063700003037000042380000f23800004c3b00007c3b0000e43c0000204000002a4000000e410000904200001a430000e0440000e84500008c460000ca470000164800001e4800002c4900002a4d0000
+    m_ExpandedIDs: 00000000202e0000662e00006230000082300000ac300000c63100007a320000d83400000835000078360000e6390000f0390000d63a00005c3c0000f43c0000ea3e0000f43f0000a0400000fe4100004c42000054420000684300003c530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
