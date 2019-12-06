@@ -112,6 +112,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         if(PhotonNetwork.CurrentRoom != null )
         {
             playerCounter = PhotonNetwork.CurrentRoom.PlayerCount;
+            if(PlayerCounter!=null)
             PlayerCounter.text = playerCounter + "/" + maxPlayersInRoom;
         }
 
