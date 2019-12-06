@@ -1,0 +1,19 @@
+VISUAL:
+Modelado terminado, Assets terminados 
+DISEÑO DEL JUEGO Y MISCELANEO
+Gdd terminado, musica terminada, presentacion en desarrollo, portfolio en desarrollo,trailer en desarrollo
+PROGRAMACION
+Personajes casi terminados, cambio de habilidades por falta de tiempo
+Interfaz completa
+Multijugador casi terminado, colisiones arregladas con el escenario
+______________________________________________
+Falta terminar VFX, Efectos de sonido, modo offline
+Descartes: objetos no salen en direccion random, objetos descartados bombas, trampas y escudos, habilidades originales de fuego y roca, animacion facial, stuns.
+______________________________________________
+NOTAS APARTE
+Fernando opina que como se ha terminado todo lo visual, todo debe estar implementado, descontento con los resultados del equipo de programacion.
+Denis tambien descontento con el desarrollo del equipo de programacion, considera que el desarrollo de programacion podria haber hecho mas
+El grupo de programacion postula que por la falta de tiempo ha sido imposible no recortar los elementos descartados.
+
+
+
