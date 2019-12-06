@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CorrienteProfunda : MonoBehaviour
+public class LlamaradaImpulsiva : MonoBehaviour
 {
-    public GameObject Sphere;
-    public GameObject Tornado;
-    public GameObject player;
+    public GameObject cube;
+    public Player player;
     private Animator animator;
     private PhotonView photonView;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +20,14 @@ public class CorrienteProfunda : MonoBehaviour
     {
         photonView = GetComponent<PhotonView>();
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void CallCorriente()
+    public void CallLlamarada()
     {
-        if (photonView.IsMine && PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
@@ -36,32 +35,27 @@ public class CorrienteProfunda : MonoBehaviour
         {
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
-        SpawnCorriente();
-        Debug.Log("holaR");
+        SpawnLlamarada();
     }
 
-    private void SpawnCorriente()
+    private void SpawnLlamarada()
     {
+        Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward);
         GameObject q;
-        q = Instantiate(Sphere, player.transform.position, player.transform.rotation);
-        Vector3 aux = new Vector3(player.transform.position.x,
-            player.transform.position.y - player.GetComponent<CharacterController>().height / 2,
-            player.transform.position.z);
-        Instantiate(Tornado,aux,Quaternion.EulerAngles(-90,0,0));
-        q.GetComponent<Corriente>().setPlayer(player.GetComponent<Player>().GetTeam());
+        q = Instantiate(cube, aux, player.transform.rotation,player.transform);
+        q.GetComponent<Llamarada>().setPlayer(this.player,this);
     }
-    public void LastCallCorriente()
+    public void LastCallLlamarada()
     {
-        Debug.Log("holaRR");
-        if (photonView.IsMine && PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             Debug.Log("holaRRR");
             animator.SetBool("Habilidad", false);
             player.GetComponent<Player>().setCanMove(true);
-           
+
 
         }
-        else if(!PhotonNetwork.IsConnected)
+        else if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("holaRRR");
             animator.SetBool("Habilidad", false);

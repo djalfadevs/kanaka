@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2115466792984386264}
   - component: {fileID: 2115466792984386267}
   - component: {fileID: 2115466792984386266}
+  - component: {fileID: 934410773809549497}
   m_Layer: 0
   m_Name: Ahikoa
   m_TagString: Untagged
@@ -167,6 +168,20 @@ MonoBehaviour:
   player: {fileID: 7524264179141855097}
   point1: {fileID: 2115466793470236498}
   point2: {fileID: 2115466793923340853}
+--- !u!114 &934410773809549497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115466792984386261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e8f3012fff7ec45b5a8911b454be3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 7504075994471544136, guid: c29ad93ba2386c54592fcf5a09eb4556, type: 3}
+  player: {fileID: 2075143996310107379}
 --- !u!1 &2115466793081448417
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,11 +446,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ahikoa 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8444297339713876310, guid: b17bcc6cd91e8c844b328d2c61993e49,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 8444297339713908086, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -491,15 +501,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114773274012975836, guid: b17bcc6cd91e8c844b328d2c61993e49,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 7524264179142089561}
     - target: {fileID: 114069883551814478, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
       propertyPath: viewIdField
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681219819928773723, guid: b17bcc6cd91e8c844b328d2c61993e49,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b17bcc6cd91e8c844b328d2c61993e49, type: 3}

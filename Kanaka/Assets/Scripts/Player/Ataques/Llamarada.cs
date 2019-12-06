@@ -3,42 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Ruptura : Attack
+public class Llamarada : Attack
 {
-    [SerializeField] private float duracion;
-    [SerializeField] private int distancia;
+    [SerializeField] private int duracion;
     [SerializeField] private int speed = 2;
     [SerializeField] private float team;
+    private int time0=0;
+    private LlamaradaImpulsiva a;
     private PhotonView photonView;
+    private Player player;
+    private bool dash;
     // Start is called before the first frame update
     void Start()
     {
         
+        dash = true;
     }
-
-    private void Awake()
+    void Awake()
     {
-
     }
-
+    public void setPlayer(Player p,LlamaradaImpulsiva aa)
+    {
+        this.player = p;
+        this.team = p.GetComponent<Player>().GetTeam();
+        this.a = aa;
+    }
     // Update is called once per frame
     void Update()
     {
-        Timemanager();
+            while (dash && time0 < duracion)
+            {
+                time0+=1;
+                Movemanager();
+            }
+        float aa = 0;
+            if (time0 >= duracion)
+            {
+            do
+            {
+                aa+=Time.deltaTime;
+               
+            } while (aa<2);
+            a.LastCallLlamarada();
+            Destroy(this.gameObject);
+        }
+        
+
     }
 
-    private void Timemanager()
+    private void Movemanager()
     {
-        if (duracion > 0)
-        {
-            duracion -= Time.deltaTime;
-            if (duracion < 0) duracion = 0;
-        }
-        if (duracion <= 0)
-        {
-            Destroy(this.gameObject, 0.1f);
-        }
+        this.player.GetComponent<CharacterController>().Move(this.player.transform.TransformDirection(Vector3.forward*speed*Time.deltaTime));
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -53,7 +68,10 @@ public class Ruptura : Attack
                 {
                     if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
                     {
+                        time0 = duracion;
                         collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                       
+
                     }
                 }
             }
@@ -67,7 +85,9 @@ public class Ruptura : Attack
                 //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
                 if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
                 {
+                    time0 = duracion;
                     collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                    
                 }
             }
         }
@@ -81,7 +101,9 @@ public class Ruptura : Attack
                 //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
                 if (collider.gameObject.GetComponent<Totem>().GetTeam() != team)
                 {
+                    time0 = duracion;
                     collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                   
                 }
             }
             //player
@@ -89,14 +111,18 @@ public class Ruptura : Attack
             {
                 if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
                 {
+                    time0 = duracion;
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                    
                 }
             }
 
             //Corrupted Totem
             if (collider.gameObject.CompareTag("CorruptedTotem"))
             {
+                time0 = duracion;
                 collider.gameObject.GetComponent<CorruptedTotem>().Hit(this.GetComponent<Collider>());
+               
             }
         }
 
@@ -118,5 +144,4 @@ public class Ruptura : Attack
             this.dmg = (int)stream.ReceiveNext();
         }
     }
-
 }

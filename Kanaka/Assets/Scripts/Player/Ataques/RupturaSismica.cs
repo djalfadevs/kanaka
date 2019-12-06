@@ -10,7 +10,6 @@ public class RupturaSismica : MonoBehaviour
     public List<GameObject> points;
     private Animator animator;
     private PhotonView photonView;
-    [SerializeField] private int dmg;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +28,11 @@ public class RupturaSismica : MonoBehaviour
     }
     public void CallRuptura()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
+        {
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
+        else if (!PhotonNetwork.IsConnected)
         {
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
@@ -41,13 +44,11 @@ public class RupturaSismica : MonoBehaviour
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 2;
         GameObject q;
         q =Instantiate(cube2, aux, player.transform.rotation);
-        q.GetComponent<Ruptura>().setDamage(dmg);
     }
     public void LastCallRuptura()
     {
         if (PhotonNetwork.IsConnected&&photonView.IsMine)
         {
-            Debug.Log("holaRRR");
             animator.SetBool("Attack", false);
             player.GetComponent<Player>().setCanMove(true);
 
@@ -55,7 +56,6 @@ public class RupturaSismica : MonoBehaviour
         }
         else if (!PhotonNetwork.IsConnected)
         {
-            Debug.Log("holaRRR");
             animator.SetBool("Attack", false);
             player.GetComponent<Player>().setCanMove(true);
         }

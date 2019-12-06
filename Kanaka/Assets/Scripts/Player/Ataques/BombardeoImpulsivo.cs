@@ -28,7 +28,11 @@ public class BombardeoImpulsivo : MonoBehaviour
     }
     public void CallBomba()
     {
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsConnected&&photonView.IsMine)
+        {
+            player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
+        }
+        else if (!PhotonNetwork.IsConnected)
         {
             player.GetComponent<Player>().setCanMove(false);//El personaje no se puede mover
         }
