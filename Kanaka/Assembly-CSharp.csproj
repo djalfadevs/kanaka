@@ -151,6 +151,7 @@
     <Compile Include="Assets\Scripts\SaveToDB.cs" />
     <Compile Include="Assets\Scripts\SceneLoad.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
+    <Compile Include="Assets\Scripts\Store.cs" />
     <Compile Include="Assets\Scripts\Team\Team.cs" />
     <Compile Include="Assets\Scripts\Totem\Totem.cs" />
     <Compile Include="Assets\Scripts\Touchable\GameManagerPlayerSelection.cs" />

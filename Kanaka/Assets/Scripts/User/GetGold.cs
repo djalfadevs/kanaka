@@ -27,4 +27,13 @@ public class GetGold : MonoBehaviour
             reader.Close();
         }
     }
+    public void updateGold()
+    {
+        FileInfo fileinfo = new FileInfo(path);
+        StreamReader reader = fileinfo.OpenText();
+        string text = reader.ReadLine();
+        u = JsonUtility.FromJson<User>(text);
+        t.text = u.gameMoney.ToString();
+        reader.Close();
+    }
 }

@@ -38,12 +38,12 @@ public class CheckHeros : MonoBehaviour
         }
         if (l.Contains(2))
         {
-            hero2.interactable = true;
+            hero3.interactable = true;
 
         }
         if (l.Contains(3))
         {
-            hero2.interactable = true;
+            hero4.interactable = true;
 
         }
     }
