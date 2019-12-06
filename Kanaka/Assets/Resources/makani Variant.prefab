@@ -44,21 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc14d23fa96bc3747995edfd479dca2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  MaxHP: 0
+  HP: 100
+  MaxHP: 100
   Item: {fileID: 0}
   team: 0
   teamColor: {r: 0, g: 0, b: 0, a: 0}
-  MoveSpeed: 0
+  MoveSpeed: 8
   canMove: 1
   target: {fileID: 3857257110190122299}
-  deadzone: 0
+  deadzone: 20
   attackCD: 0
-  baseAttackCD: 0
+  baseAttackCD: 1
   abilityCD: 0
-  baseAbilityCD: 0
+  baseAbilityCD: 8
   animator: {fileID: 0}
-  baseSpeed: 0
+  baseSpeed: 10
 --- !u!114 &7675843534612308832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 114879929404743304}
+--- !u!114 &4431799106981566825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857257110190225755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6885708584602376486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857257110190225755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1001 &2705875807753926193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,7 +119,7 @@ PrefabInstance:
     - target: {fileID: 1155887240782679914, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_Name
-      value: makani Variant
+      value: makani
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782679914, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
@@ -107,22 +144,22 @@ PrefabInstance:
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
@@ -137,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155887240782910218, guid: d75725777e19fc04aa1b8329cdcb7442,
         type: 3}
@@ -159,8 +196,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8940963
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1155887240792210628, guid: d75725777e19fc04aa1b8329cdcb7442, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d75725777e19fc04aa1b8329cdcb7442, type: 3}
 --- !u!1 &3857257110190225755 stripped
 GameObject:

@@ -59,7 +59,7 @@ public class Bombardeo : Attack
                     else
                     {
                         collider.gameObject.GetComponent<Player>().Heal(this.dmg);
-                        collider.gameObject.GetComponent<Player>().changeSpeed(0.8f, 1f);
+                        collider.gameObject.GetComponent<Player>().changeSpeed(2f, 1f);
                     }
                 }
             }
@@ -96,6 +96,11 @@ public class Bombardeo : Attack
                 if (collider.gameObject.GetComponent<Player>().GetTeam() != team)
                 {
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
+                }
+                else
+                {
+                    collider.gameObject.GetComponent<Player>().Heal(this.dmg);
+                    collider.gameObject.GetComponent<Player>().changeSpeed(2f, 1f);
                 }
             }
 
