@@ -363,15 +363,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7255152000461164748}
     m_Modifications:
-    - target: {fileID: 4431887309015434738, guid: e31685565f418f7478743150b6538028,
-        type: 3}
-      propertyPath: baseSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 829870024227313903, guid: e31685565f418f7478743150b6538028,
         type: 3}
       propertyPath: m_Name
       value: pohaku 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431887309015434738, guid: e31685565f418f7478743150b6538028,
+        type: 3}
+      propertyPath: baseSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 829870024227800271, guid: e31685565f418f7478743150b6538028,
         type: 3}

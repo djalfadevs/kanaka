@@ -128,7 +128,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
                 //Debug.LogError(spawnPoint);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 GameObject a = PhotonNetwork.Instantiate(this.herolist[ou.selchar].name, spawnPoint, Quaternion.identity, 0,instanceData);
-                cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.transform;
+                cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
             }          
             
         }
@@ -318,7 +318,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("MainMenu");
+           // PhotonNetwork.LoadLevel("MainMenu");
         }
 
         //FALTA GESTIONAR TODO EL TEMA DE VICTORIA DERROTA
