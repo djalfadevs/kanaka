@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 2122122721525075420}
   - component: {fileID: 1254114758375162366}
   - component: {fileID: 8045775301053583686}
+  - component: {fileID: 1025924211716928608}
   m_Layer: 0
   m_Name: Pohaku
   m_TagString: Untagged
@@ -341,6 +342,20 @@ MonoBehaviour:
   cube2: {fileID: 6853959956044118081, guid: 186da08c57bd7d5428b540b44d1f4be8, type: 3}
   player: {fileID: 7612580975331447164}
   points: []
+--- !u!114 &1025924211716928608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8550154564438741349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e8f3012fff7ec45b5a8911b454be3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 7504075994471544136, guid: c29ad93ba2386c54592fcf5a09eb4556, type: 3}
+  player: {fileID: 6890545317850778721}
 --- !u!1001 &7070959775258200467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,3 +457,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7070959775258200467}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6890545317850778721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4431887309015434738, guid: e31685565f418f7478743150b6538028,
+    type: 3}
+  m_PrefabInstance: {fileID: 7070959775258200467}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612580975331447164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14d23fa96bc3747995edfd479dca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
