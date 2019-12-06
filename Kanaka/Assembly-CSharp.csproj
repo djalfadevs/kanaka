@@ -202,6 +202,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\URLopener.cs" />
     <Compile Include="Assets\WebGLNativeInputField\Scripts\WebGLNativeInputField.cs" />
     <Compile Include="Assets\WebGLNativeInputField\Scripts\WebNativeDialog.cs" />
     <None Include="Assets\LowPolyWater_Pack\LowPoly Island\Credits.txt" />
