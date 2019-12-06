@@ -25,8 +25,8 @@ public class Store : MonoBehaviour
         u = JsonUtility.FromJson<User>(text);
         reader.Close();
         u.gameMoney += moneydelta;
-        goldtext.GetComponent<GetGold>().updateGold();
         File.WriteAllText(path, JsonUtility.ToJson(u));
+        goldtext.GetComponent<GetGold>().updateGold();
     }
 
     public void addChar(int newchar)
@@ -36,10 +36,10 @@ public class Store : MonoBehaviour
         string text = reader.ReadLine();
         u = JsonUtility.FromJson<User>(text);
         reader.Close();
-        if (u.gameMoney >= 100)
+        if (u.gameMoney >= 120)
         {
             u.charactersID.Add(newchar);
-            u.gameMoney += -100;
+            u.gameMoney += -120;
             File.WriteAllText(path, JsonUtility.ToJson(u));
             goldtext.GetComponent<GetGold>().updateGold();
             this.gameObject.SetActive(false);
