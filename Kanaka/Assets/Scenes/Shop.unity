@@ -2795,6 +2795,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624444100}
   m_CullTransparentMesh: 0
+--- !u!1 &1684146860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684146862}
+  - component: {fileID: 1684146861}
+  m_Layer: 0
+  m_Name: Initialize
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684146861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684146860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ca3003b933804f92fe5809e1f6566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero1: {fileID: 6184980998479168924}
+  hero2: {fileID: 7851682736851134784}
+  hero3: {fileID: 3792349695401983680}
+  hero4: {fileID: 4373028412204848432}
+--- !u!4 &1684146862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684146860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 467, y: 244.98749, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1727863441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,10 +4098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 6184980998479168924}
-  hero2: {fileID: 7851682736851134784}
-  hero3: {fileID: 3792349695401983680}
-  hero4: {fileID: 4373028412204848432}
   goldtext: {fileID: 66832388}
 --- !u!222 &2650727477193480167
 CanvasRenderer:
@@ -4257,10 +4300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 0}
-  hero2: {fileID: 0}
-  hero3: {fileID: 0}
-  hero4: {fileID: 0}
   goldtext: {fileID: 66832388}
 --- !u!114 &3177541609043411323
 MonoBehaviour:
@@ -4274,10 +4313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 6184980998479168924}
-  hero2: {fileID: 7851682736851134784}
-  hero3: {fileID: 3792349695401983680}
-  hero4: {fileID: 4373028412204848432}
   goldtext: {fileID: 66832388}
 --- !u!222 &3231466081946958871
 CanvasRenderer:
@@ -5063,10 +5098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 0}
-  hero2: {fileID: 0}
-  hero3: {fileID: 0}
-  hero4: {fileID: 0}
   goldtext: {fileID: 66832388}
 --- !u!114 &5579031693950777895
 MonoBehaviour:
@@ -5080,10 +5111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 6184980998479168924}
-  hero2: {fileID: 7851682736851134784}
-  hero3: {fileID: 3792349695401983680}
-  hero4: {fileID: 4373028412204848432}
   goldtext: {fileID: 66832388}
 --- !u!114 &5681616642010648324
 MonoBehaviour:
@@ -5493,10 +5520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 0}
-  hero2: {fileID: 0}
-  hero3: {fileID: 0}
-  hero4: {fileID: 0}
   goldtext: {fileID: 66832388}
 --- !u!114 &7684941611059579091
 MonoBehaviour:
@@ -5744,10 +5767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f8b6e46e49d3647a8bc6424bab9cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero1: {fileID: 6184980998479168924}
-  hero2: {fileID: 7851682736851134784}
-  hero3: {fileID: 3792349695401983680}
-  hero4: {fileID: 4373028412204848432}
   goldtext: {fileID: 66832388}
 --- !u!1 &8406386471004152248
 GameObject:
