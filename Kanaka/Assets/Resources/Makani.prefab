@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104c974dcab5e9540ba4db15e014c406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube2: {fileID: 1212481659124670112, guid: d3ff99d69bad99d4fa05ac85d62b6118, type: 3}
+  cube2: {fileID: 8648483071944823698, guid: 141398baab099744687a0c45cdfc9a76, type: 3}
   player: {fileID: 5628761399094425191}
 --- !u!114 &1822603597843175759
 MonoBehaviour:
@@ -399,6 +399,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1096598696097878096}
     m_Modifications:
+    - target: {fileID: 3857257110190225755, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+        type: 3}
+      propertyPath: m_Name
+      value: makani
+      objectReference: {fileID: 0}
     - target: {fileID: 3857257110190122299, guid: a1ef1b7562533014fb2ab1da3d240ea8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -454,11 +459,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3857257110190225755, guid: a1ef1b7562533014fb2ab1da3d240ea8,
+    - target: {fileID: 7675843534612308832, guid: a1ef1b7562533014fb2ab1da3d240ea8,
         type: 3}
-      propertyPath: m_Name
-      value: makani
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8791863080007307700}
     - target: {fileID: 114879929404743304, guid: a1ef1b7562533014fb2ab1da3d240ea8,
         type: 3}
       propertyPath: HP
@@ -504,11 +509,6 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 7261060964032486977}
-    - target: {fileID: 7675843534612308832, guid: a1ef1b7562533014fb2ab1da3d240ea8,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 8791863080007307700}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1ef1b7562533014fb2ab1da3d240ea8, type: 3}
 --- !u!1 &5628761399094425191 stripped

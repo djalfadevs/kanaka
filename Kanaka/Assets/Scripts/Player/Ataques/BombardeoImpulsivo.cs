@@ -50,10 +50,12 @@ public class BombardeoImpulsivo : MonoBehaviour
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             animator.SetBool("Habilidad", false);
+            player.GetComponent<Player>().setCanMove(true);
         }
         else if (!PhotonNetwork.IsConnected)
         {
             animator.SetBool("Habilidad", false);
+            player.GetComponent<Player>().setCanMove(true);
         }
     }
 }

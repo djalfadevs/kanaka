@@ -32,11 +32,11 @@ public class Bombardeo : Attack
         if (duracion > 0)
         {
             duracion -= Time.deltaTime;
-            if (duracion < 0) duracion = 0;
+            if (duracion < 0) { duracion = 0; }
         }
         if (duracion <= 0)
         {
-            Destroy(this.gameObject, 0.1f);
+            Destroy(this.gameObject);
         }
     }
 
