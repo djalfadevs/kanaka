@@ -507,6 +507,7 @@ En esta sección se muestran todos los personajes, desde su diseño a su impleme
 + Habilidades: Ninguna.
 + Vida: Un impacto de ataque o habilidad, si no se golpea en 3 segundos desde su aparición desaparece.
 + PNJ: Sí.
++ Recompensa: 3 segundos de tiempo extra al ser destruido.
 + Respawn: 4 segundos en normal, 3 segundos en difícil, 2 segundos en extremo.
 
 
