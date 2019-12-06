@@ -84,7 +84,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
 
         int aux = PhotonNetwork.CurrentRoom.Players.Count;
-        if(aux == 1||aux == 2)
+        Debug.LogError(aux +" currentPlayersroom");
+        if (aux == 0||aux == 1)
         {
             string text2 = File.ReadAllText(path2);
             if (text2 != null)
@@ -111,7 +112,8 @@ public class Lobby : MonoBehaviourPunCallbacks
         if(PhotonNetwork.CurrentRoom != null )
         {
             playerCounter = PhotonNetwork.CurrentRoom.PlayerCount;
+            PlayerCounter.text = playerCounter + "/" + maxPlayersInRoom;
         }
-        PlayerCounter.text = playerCounter + "/" + maxPlayersInRoom;
+
     }
 }

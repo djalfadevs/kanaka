@@ -25,6 +25,7 @@ public class CajaObjetos : MonoBehaviourPun, IPunObservable
     {
         
         open = true;
+        ItemSpawner.numCajas--;
         GameObject objetoSpawn = objetosSpawn[Random.Range(0, objetosSpawn.Count)];
         if (!PhotonNetwork.IsConnected)//OFFLINE
         {
@@ -37,6 +38,7 @@ public class CajaObjetos : MonoBehaviourPun, IPunObservable
             if(PhotonNetwork.IsMasterClient)
             PhotonNetwork.Instantiate(objetoSpawn.name, transform.position, Quaternion.Euler(0, 0, 0));
         }
+        
 
     }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1887984668651231282}
   - component: {fileID: 1887984668650169350}
   - component: {fileID: 1887984668645605824}
+  - component: {fileID: 5782457416074838877}
   m_Layer: 0
   m_Name: rock_b
   m_TagString: Untagged
@@ -91,3 +92,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.68447095, y: 1.182688, z: 0.713956}
   m_Center: {x: 0.009795487, y: 0.39134398, z: 0.013170019}
+--- !u!54 &5782457416074838877
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887984668652135014}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

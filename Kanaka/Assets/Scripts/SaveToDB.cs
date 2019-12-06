@@ -7,10 +7,10 @@ using UnityEngine;
 public class SaveToDB : MonoBehaviour
 {
 
-    string path = Application.dataPath + "/UsersData/User.json";
-    string path2 = Application.dataPath + "/UsersData/Users.json";
+    static string path = Application.streamingAssetsPath + "/UsersData/User.json";
+    static string path2 = Application.streamingAssetsPath + "/UsersData/Users.json";
 
-    public void savetoDB()
+    public static void savetoDB()
     {
         string text = File.ReadAllText(path);
         if (text != null)

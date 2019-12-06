@@ -114,6 +114,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
                 string text2 = File.ReadAllText(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
                 OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
                 int aux = ou.team;
+                Debug.LogError(aux + "team i support");
                 object[] instanceData = new object[2];
                 instanceData[0] = aux;
                 instanceData[1] = "#"+ ColorUtility.ToHtmlStringRGBA(teamColorList[aux]);
@@ -203,7 +204,16 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     {
          if (!PhotonNetwork.IsConnected)
          {
-              return;
+            if (TimeBox <= 0)
+            {
+                ItemSpawner.Spawn();
+                TimeBox = UnityEngine.Random.Range(5.0f, 10.0f);
+            }
+            else
+            {
+                TimeBox -= Time.deltaTime;
+            }
+            return;
           }
 
          RecalculateAliveTotems();

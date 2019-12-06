@@ -234,7 +234,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             {
                 animator.SetBool("IsMoving", false);
             }
-            cc.SimpleMove(Physics.gravity);
+            cc.SimpleMove(new Vector3(0,-98f,0));
         }
         else
         {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 600522872245390638}
   - component: {fileID: 600522872246390766}
   - component: {fileID: 600522872234812142}
+  - component: {fileID: 803781024101090659}
   m_Layer: 0
   m_Name: marker
   m_TagString: Untagged
@@ -99,3 +100,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &803781024101090659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600522872244195630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3349589, y: 4.8920608, z: 1.0131382}
+  m_Center: {x: -0.07336205, y: 2.460664, z: 0.19721459}

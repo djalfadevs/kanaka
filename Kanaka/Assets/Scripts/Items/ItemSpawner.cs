@@ -12,6 +12,8 @@ public class ItemSpawner : MonoBehaviour
     private static List<Transform> spawners = new List<Transform>();
     [SerializeField] private GameObject toSpawn;
     private Vector3 spawnPos;
+    [SerializeField] private static int MaxCajasInScene = 5;
+    public static int numCajas = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +27,24 @@ public class ItemSpawner : MonoBehaviour
 
     public static void Spawn()
     {
-        float aux=UnityEngine.Random.Range(1.0f, (float)spawners.Count-1);
-        spawners[(int)aux].GetComponent<ItemSpawner>().CalculateItemSpawnPoint(spawners[(int)aux]);
-        PhotonNetwork.Instantiate("caja",
-        spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos, spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
-        //Instantiate(spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn,
-         //   spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos,spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
+        int aux=Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, (float)spawners.Count-1));
+        spawners[aux].GetComponent<ItemSpawner>().CalculateItemSpawnPoint(spawners[(int)aux]);
+        
+        if(numCajas< MaxCajasInScene)
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Instantiate("caja",
+             spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos, spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
+                numCajas++;
+            }
+            else
+            {
+                Instantiate(spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn,
+                   spawners[(int)aux].GetComponent<ItemSpawner>().spawnPos, spawners[(int)aux].GetComponent<ItemSpawner>().toSpawn.transform.rotation);
+                numCajas++;
+            }
+        }
     }
 
     private void CalculateItemSpawnPoint(Transform pos)

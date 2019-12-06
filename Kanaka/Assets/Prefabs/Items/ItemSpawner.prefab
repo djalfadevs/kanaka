@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acaf9312c967c1c46a24952c94abdc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 4
   isBusy: 0
   BusyBoxSize: {x: 0, y: 0, z: 0}
   boxHeight: 2
