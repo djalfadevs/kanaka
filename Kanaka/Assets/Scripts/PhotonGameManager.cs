@@ -7,6 +7,7 @@ using ExitGames.Client.Photon;
 using System;
 using System.IO;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable 
 {
@@ -41,7 +42,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private int loserTeam = -1;
     [SerializeField] private bool matchIsFinished = false;
     [SerializeField] public bool recalculateAliveTotems = false;
-
+    [SerializeField] private GameObject cameraController;
     public List<GameObject> herolist = new List<GameObject>();
 
     private bool StartTimers = false;
@@ -127,6 +128,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
                 //Debug.LogError(spawnPoint);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 GameObject a = PhotonNetwork.Instantiate(this.herolist[ou.selchar].name, spawnPoint, Quaternion.identity, 0,instanceData);
+                cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.transform;
             }          
             
         }
@@ -316,7 +318,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            //PhotonNetwork.LoadLevel("Escena Photon Resultados");
+            PhotonNetwork.LoadLevel("MainMenu");
         }
 
         //FALTA GESTIONAR TODO EL TEMA DE VICTORIA DERROTA
@@ -469,7 +471,6 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
 
     public override void OnLeftRoom()
     {
-        //PhotonNetwork.LoadLevel("");
-        Debug.LogError("Se cargaria un mensaje de que alguien ha abandonado la sala y al aceptar se permitiria volver al menu principal");
+        PhotonNetwork.LoadLevel("MainMenu");
     }
 }

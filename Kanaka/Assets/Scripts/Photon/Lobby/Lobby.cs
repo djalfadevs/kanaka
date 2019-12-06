@@ -75,7 +75,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == minPlayersInRoom)
         {
             if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.LoadLevel("Escena Photon Prueba2");
+                PhotonNetwork.LoadLevel("Multiplayer");
         }
     }
     
