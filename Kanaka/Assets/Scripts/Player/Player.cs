@@ -31,6 +31,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private Quaternion networkRotation;
     private float changeDuration;
     [SerializeField] private float baseSpeed;
+    public GameObject healEffect;
+    public GameObject buffEffect;
+    public GameObject deathEffect;
+    public GameObject slowEffect;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -53,11 +58,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (photonView ?? null)
             {
-                int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
+               int.TryParse(photonView.InstantiationData[0].ToString(), out aux);
                 team = aux;
                 ColorUtility.TryParseHtmlString(photonView.InstantiationData[1].ToString(), out aux2);
                 teamColor = aux2;
-            }
+           }
         }
         
     }
@@ -119,6 +124,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void changeSpeed(float percentage, float d )
     {
+        if (percentage<1)
+        {
+            Instantiate(slowEffect, this.transform.position, this.transform.rotation);
+        }
+        else
+        {
+            Instantiate(buffEffect, this.transform.position, this.transform.rotation);
+        }
         this.changeDuration = d;
         this.MoveSpeed *= percentage;
     }
@@ -126,6 +139,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void Heal(int amount)
     {
+        Instantiate(healEffect,this.transform.position,this.transform.rotation);   
         if (!PhotonNetwork.IsConnected)//offline
         {
             HP += amount;
@@ -143,6 +157,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Hit(Collider collider)
     {
+        
         float damage = collider.gameObject.GetComponent<Attack>().getDmg();
         Debug.Log("He recibido "+ damage +" puntos de dmg");
         if (HP - damage>0)
@@ -186,6 +201,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             HP = 0;
+            Instantiate(deathEffect, this.transform.position, this.transform.rotation);
             animator.SetBool("IsDead", true);
         }
        

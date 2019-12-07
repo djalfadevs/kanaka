@@ -178,9 +178,6 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         {
             StartTimers = (bool)PhotonNetwork.CurrentRoom.CustomProperties["StartTimers"];
         }
-            
-
-
     }
     void SetStartTime()
     {

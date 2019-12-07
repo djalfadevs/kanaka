@@ -8,6 +8,7 @@ public class FlechaAudaz : MonoBehaviour
     public GameObject player;
     private Animator animator;
     private PhotonView photonView;
+    public GameObject effect;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class FlechaAudaz : MonoBehaviour
         Vector3 dir = player.transform.TransformDirection(Vector3.forward);
         
         Vector3 aux = player.transform.position + dir * 2;
+        Instantiate(effect,player.transform.position,player.transform.rotation);
         q = Instantiate(Cube, aux, Quaternion.identity);    //(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.y));
         Vector3 dir2 = q.transform.InverseTransformDirection(dir);
         q.transform.rotation = Quaternion.LookRotation(dir2, Vector3.right);

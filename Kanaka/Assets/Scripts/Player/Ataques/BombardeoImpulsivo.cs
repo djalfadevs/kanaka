@@ -9,6 +9,8 @@ public class BombardeoImpulsivo : MonoBehaviour
     public GameObject player;
     private Animator animator;
     private PhotonView photonView;
+    public GameObject effect;
+    public GameObject effect2;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,9 @@ public class BombardeoImpulsivo : MonoBehaviour
     {
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 10;
         GameObject q;
+        GameObject qq;
+        Instantiate(effect, player.transform.position, player.transform.rotation);
+        qq=Instantiate(effect2, aux, player.transform.rotation);
         q = Instantiate(cube2, aux, player.transform.rotation);
     }
     public void LastCallBomba()

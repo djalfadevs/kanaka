@@ -11,7 +11,8 @@ public class CorruptedTotemSpawner : MonoBehaviour
     [SerializeField] private bool keepSpawning;
     [SerializeField] private int numberOfTotems;
     [SerializeField] private float raycastDepth = 10;
-
+    [SerializeField] private int MaxTotems;
+    private int SpawnedTotems;
     private Transform transformSpawner;
     private float currentRespawnTime;
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class CorruptedTotemSpawner : MonoBehaviour
     {
         transformSpawner = this.gameObject.GetComponent<Transform>();
         currentRespawnTime = respawnTime;
+        SpawnedTotems = 0;
     }
 
     // Update is called once per frame
@@ -29,19 +31,28 @@ public class CorruptedTotemSpawner : MonoBehaviour
 
     public void SpawnTotems(int numberOfTotems)
     {
-        Vector3 center = transformSpawner.position;
-        for (int i = 0; i < numberOfTotems; i++)
+        if (SpawnedTotems <= MaxTotems)
         {
-            Vector3 pos = RandomCircle(center, radius);
-            float auxY = FindPositionInY(pos);
-            //Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos);
-            if (auxY != -1)
+            SpawnedTotems++;
+            Vector3 center = transformSpawner.position;
+            for (int i = 0; i < numberOfTotems; i++)
             {
-                pos.y = auxY;//Cambiamos la posicion en Y
-                //La rotacion del totem en Y es aleatoria
-                Instantiate(totem, pos, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0.0f, 360.0f), 0)));
-            }     
+                Vector3 pos = RandomCircle(center, radius);
+                float auxY = FindPositionInY(pos);
+                //Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos);
+                if (auxY != -1)
+                {
+                    pos.y = auxY;//Cambiamos la posicion en Y
+                    //La rotacion del totem en Y es aleatoria
+                    GameObject q=Instantiate(totem, pos, Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0.0f, 360.0f), 0)));
+                    q.GetComponent<CorruptedTotem>().setSpawner(this);
+                }
+            }
         }
+    }
+    public void DespawnTotems()
+    {
+        SpawnedTotems--;
     }
 
     //Devuelve -1 si ya hay un totem en esa posicion

@@ -9,7 +9,7 @@ public class LlamaradaImpulsiva : MonoBehaviour
     public Player player;
     private Animator animator;
     private PhotonView photonView;
-
+    public GameObject effect;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +42,9 @@ public class LlamaradaImpulsiva : MonoBehaviour
     {
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward);
         GameObject q;
+        Instantiate(effect, player.transform.position, player.transform.rotation);
         q = Instantiate(cube, aux, player.transform.rotation,player.transform);
+        
         q.GetComponent<Llamarada>().setPlayer(this.player,this);
     }
     public void LastCallLlamarada()

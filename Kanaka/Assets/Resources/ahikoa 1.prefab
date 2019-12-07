@@ -1848,7 +1848,11 @@ MonoBehaviour:
   abilityCD: 0
   baseAbilityCD: 4
   animator: {fileID: 0}
-  baseSpeed: 10
+  baseSpeed: 12
+  healEffect: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+  buffEffect: {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
+  deathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  slowEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
 --- !u!114 &2115466793196303955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1992,6 +1996,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8444297339713908086}
     m_Modifications:
+    - target: {fileID: 1654641142046120556, guid: eca0eef796a2e7d478e8540de0707187,
+        type: 3}
+      propertyPath: m_Name
+      value: UI
+      objectReference: {fileID: 0}
     - target: {fileID: 1654641142046120557, guid: eca0eef796a2e7d478e8540de0707187,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2097,11 +2106,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1654641142046120556, guid: eca0eef796a2e7d478e8540de0707187,
-        type: 3}
-      propertyPath: m_Name
-      value: UI
-      objectReference: {fileID: 0}
     - target: {fileID: 1654641142852080922, guid: eca0eef796a2e7d478e8540de0707187,
         type: 3}
       propertyPath: info
@@ -2122,6 +2126,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8444297339713908086}
     m_Modifications:
+    - target: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: m_Name
+      value: vfx_curacion
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.04
@@ -2177,14 +2189,6 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
       propertyPath: m_LocalScale.z
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
-      propertyPath: m_Name
-      value: vfx_curacion
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
@@ -2280,6 +2284,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8444297339713908086}
     m_Modifications:
+    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+      propertyPath: m_Name
+      value: vfx_habilidad
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2511444
@@ -2322,14 +2334,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
-      propertyPath: m_Name
-      value: vfx_habilidad
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2505,6 +2509,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8444297339713908086}
     m_Modifications:
+    - target: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+      propertyPath: m_Name
+      value: vfx_muerte
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.04
@@ -2560,14 +2572,6 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
       propertyPath: m_LocalScale.z
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
-      propertyPath: m_Name
-      value: vfx_muerte
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}

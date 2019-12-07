@@ -12,6 +12,7 @@ public class TajoArdiente : MonoBehaviour
     private PhotonView photonView;
     public GameObject point1;
     public GameObject point2;
+    public GameObject effect;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +107,7 @@ public class TajoArdiente : MonoBehaviour
         GameObject q;
         q = Instantiate(CubeI, this.point1.transform.position+ this.player.transform.TransformDirection(Vector3.forward) * 1.5f,
             player.transform.rotation);
+        Instantiate(effect,player.transform.position + this.player.transform.TransformDirection(Vector3.forward) * 3, player.transform.rotation);
         q.GetComponent<TajoIzq>().setItems(player.GetComponent<Player>().GetTeam(),
             this,this.point2.transform.position+this.player.transform.TransformDirection(Vector3.forward)*3);
     }
@@ -113,8 +115,9 @@ public class TajoArdiente : MonoBehaviour
     public void SpawnCubeDcha()
     {
         GameObject q;
+        Instantiate(effect, player.transform.position + this.player.transform.TransformDirection(Vector3.forward) * 3, player.transform.rotation);
         q = Instantiate(CubeD, this.point2.transform.position + this.player.transform.TransformDirection(Vector3.forward) * 1.5f
-            , player.transform.rotation);
+            , player.transform.rotation);  
         q.GetComponent<TajoDcha>().setItems(player.GetComponent<Player>().GetTeam(), this,
             this.point1.transform.position+ this.player.transform.TransformDirection(Vector3.forward) * 3);
     }

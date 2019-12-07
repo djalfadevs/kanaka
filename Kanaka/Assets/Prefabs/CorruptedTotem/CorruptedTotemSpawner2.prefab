@@ -49,3 +49,4 @@ MonoBehaviour:
   keepSpawning: 1
   numberOfTotems: 1
   raycastDepth: 10
+  MaxTotems: 5

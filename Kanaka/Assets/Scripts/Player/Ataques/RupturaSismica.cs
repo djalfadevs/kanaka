@@ -9,6 +9,7 @@ public class RupturaSismica : MonoBehaviour
     public GameObject player;
     public List<GameObject> points;
     private Animator animator;
+    public GameObject effect;
     private PhotonView photonView;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class RupturaSismica : MonoBehaviour
     {
         Vector3 aux = player.transform.position + player.transform.TransformDirection(Vector3.forward) * 2;
         GameObject q;
+        Instantiate(effect, aux, player.transform.rotation);
         q =Instantiate(cube2, aux, player.transform.rotation);
     }
     public void LastCallRuptura()

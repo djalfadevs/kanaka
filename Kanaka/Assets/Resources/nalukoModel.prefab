@@ -1552,7 +1552,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 1.38
-  m_SlopeLimit: 0
+  m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1596,7 +1596,11 @@ MonoBehaviour:
   abilityCD: 0
   baseAbilityCD: 5
   animator: {fileID: 0}
-  baseSpeed: 2
+  baseSpeed: 12
+  healEffect: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+  buffEffect: {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
+  deathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  slowEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
 --- !u!114 &2589902155837630754
 MonoBehaviour:
   m_ObjectHideFlags: 0

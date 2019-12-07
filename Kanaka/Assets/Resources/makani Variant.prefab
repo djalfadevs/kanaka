@@ -58,20 +58,11 @@ MonoBehaviour:
   abilityCD: 0
   baseAbilityCD: 8
   animator: {fileID: 0}
-  baseSpeed: 10
---- !u!114 &7675843534612308832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857257110190225755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 114879929404743304}
+  baseSpeed: 12
+  healEffect: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+  buffEffect: {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
+  deathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  slowEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
 --- !u!114 &4431799106981566825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +100,19 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &7675843534612308832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857257110190225755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6565ea6141ea34a6f8b1b7ec81398f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114879929404743304}
 --- !u!1001 &2705875807753926193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,7 +200,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8940963
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1155887240792210628, guid: d75725777e19fc04aa1b8329cdcb7442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d75725777e19fc04aa1b8329cdcb7442, type: 3}
 --- !u!1 &3857257110190225755 stripped
 GameObject:
@@ -217,6 +222,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3857257110190122299}
     m_Modifications:
+    - target: {fileID: 1654641142046120556, guid: eca0eef796a2e7d478e8540de0707187,
+        type: 3}
+      propertyPath: m_Name
+      value: UI
+      objectReference: {fileID: 0}
     - target: {fileID: 1654641142046120557, guid: eca0eef796a2e7d478e8540de0707187,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -321,11 +331,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1654641142046120556, guid: eca0eef796a2e7d478e8540de0707187,
-        type: 3}
-      propertyPath: m_Name
-      value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 1654641142852080922, guid: eca0eef796a2e7d478e8540de0707187,
         type: 3}
