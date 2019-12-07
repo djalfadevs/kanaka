@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CharSel.unity
+- path: Assets/Stages/Stage_SinglePlayer.unity
   isLoaded: 1
   isActive: 1

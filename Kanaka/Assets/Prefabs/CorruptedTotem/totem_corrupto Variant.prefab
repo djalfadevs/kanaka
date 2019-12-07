@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  aliveTime: 4
+  aliveTime: 7
 --- !u!65 &108699651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,10 +124,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CorruptedTotem
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: aaa7676c14b81f44aa2c589fdc60b308, type: 2}
     - target: {fileID: 400010, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.73
@@ -172,6 +168,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: aaa7676c14b81f44aa2c589fdc60b308, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
 --- !u!1 &6469678576119574146 stripped

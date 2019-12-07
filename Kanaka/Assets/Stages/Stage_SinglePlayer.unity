@@ -4145,7 +4145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50.000004, y: -30, z: 0}
 --- !u!1 &672500863
 GameObject:
@@ -8267,7 +8267,7 @@ PrefabInstance:
     - target: {fileID: 6375452471879392180, guid: 3add646e6b975b94aa577dac7b10df94,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6375452471879392180, guid: 3add646e6b975b94aa577dac7b10df94,
         type: 3}
@@ -14064,16 +14064,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnPauseButt
-        m_Mode: 1
+      - m_Target: {fileID: 184079651876056442}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &184079650878270628
 GameObject:
@@ -14387,7 +14387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 184079651876056445}
-  - component: {fileID: 4879756088642671989}
+  - component: {fileID: 184079651876056443}
   m_Layer: 5
   m_Name: PauseGameObject
   m_TagString: Untagged
@@ -14395,6 +14395,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &184079651876056443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184079651876056442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367c54c38e46d4545923ea75945ec547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &184079651876056445
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15588,7 +15600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4879756088642671989}
+      - m_Target: {fileID: 184079651876056443}
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -15647,7 +15659,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4879756088642671989}
+      - m_Target: {fileID: 184079651876056443}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -15893,18 +15905,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4879756088642671989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184079651876056442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed077a5ee87bb1a428e7a02917c5129b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5241483717466684502
 MonoBehaviour:
   m_ObjectHideFlags: 0

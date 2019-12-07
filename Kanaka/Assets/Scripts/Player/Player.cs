@@ -124,6 +124,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void changeSpeed(float percentage, float d )
     {
+        if (this.MoveSpeed!=this.baseSpeed) return;
         if (percentage<1)
         {
             Instantiate(slowEffect, this.transform.position, this.transform.rotation);
@@ -168,7 +169,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             HP = 0;
             animator.SetBool("IsDead", true);
-            Debug.LogError("Estoy Muerto");
+        }
+    }
+
+    public void Hit(float dmg)
+    {
+        if (HP - dmg > 0)
+        {
+            HP -= dmg;
+        }
+        else
+        {
+            HP = 0;
+            animator.SetBool("IsDead", true);
         }
     }
 
@@ -299,7 +312,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             animator.SetBool("Attack",true);
             attackCD = baseAttackCD;
-            Debug.LogError("INTENTA ATACAR");
            // Attack.GetComponent<Attack>().use(this.gameObject);
         }
        

@@ -9,7 +9,7 @@
 {"name":"lmml","userName":"luis","password":"1234","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[0],"skinsIDList":[]}
 {"name":"1","userName":"luis4","password":"1234","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[0],"skinsIDList":[]}
 {"name":"1","userName":"uu","password":"1","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[0],"skinsIDList":[]}
-{"name":"a","userName":"a","password":"a","level":1,"gameMoney":570.0,"realMoney":100.0,"charactersID":[2,0],"skinsIDList":[]}
+{"name":"a","userName":"a","password":"a","level":1,"gameMoney":330.0,"realMoney":100.0,"charactersID":[2,0,1,3],"skinsIDList":[]}
 {"name":"B","userName":"B","password":"B","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[0],"skinsIDList":[]}
 {"name":"C","userName":"C","password":"C","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[1],"skinsIDList":[]}
 {"name":"D","userName":"D","password":"D","level":1,"gameMoney":100.0,"realMoney":100.0,"charactersID":[2],"skinsIDList":[]}

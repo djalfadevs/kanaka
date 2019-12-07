@@ -41,10 +41,10 @@ public class CorruptedTotem : MonoBehaviour
     void Dead()
     {
         animator.SetInteger("STATE",2);
-        Destroy();
     }
-    void Destroy()
+    void DestroyThis()
     {  
+        
         Destroy(this.gameObject);
 
     }
@@ -69,6 +69,7 @@ public class CorruptedTotem : MonoBehaviour
     {
         hp = 0;
         offlinegm.destroyTotem();
+        offlinegmlife.destroyTotem();
         animator.SetInteger("STATE",1);
         this.spawner.DespawnTotems();
         Dead();
