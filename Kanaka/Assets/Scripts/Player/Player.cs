@@ -299,7 +299,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             animator.SetBool("Attack",true);
             attackCD = baseAttackCD;
-           //  Debug.LogError("INTENTA ATACAR");
+            Debug.LogError("INTENTA ATACAR");
            // Attack.GetComponent<Attack>().use(this.gameObject);
         }
        

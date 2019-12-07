@@ -47,7 +47,7 @@ public class CorrienteProfunda : MonoBehaviour
         Vector3 aux = new Vector3(player.transform.position.x,
             player.transform.position.y - player.GetComponent<CharacterController>().height / 2,
             player.transform.position.z);
-        Instantiate(Tornado,aux,Quaternion.EulerAngles(-90,0,0));
+        Instantiate(Tornado,aux,Quaternion.Euler(-90,0,0));
         q.GetComponent<Corriente>().setPlayer(player.GetComponent<Player>().GetTeam());
     }
     public void LastCallCorriente()

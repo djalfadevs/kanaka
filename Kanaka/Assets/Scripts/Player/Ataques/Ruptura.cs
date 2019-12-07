@@ -41,6 +41,11 @@ public class Ruptura : Attack
         }
     }
 
+    public void setPlayer(Player p)
+    {
+        this.team = p.GetComponent<Player>().GetTeam();
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         //PARTE ONLINE PLAYERS
@@ -102,21 +107,4 @@ public class Ruptura : Attack
 
 
     }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // We own this player: send the others our data
-            stream.SendNext(team);
-            stream.SendNext(dmg);
-        }
-        else
-        {
-            // Network player, receive data
-            this.team = (float)stream.ReceiveNext();
-            this.dmg = (int)stream.ReceiveNext();
-        }
-    }
-
 }

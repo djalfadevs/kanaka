@@ -46,6 +46,7 @@ public class RupturaSismica : MonoBehaviour
         GameObject q;
         Instantiate(effect, aux, player.transform.rotation);
         q =Instantiate(cube2, aux, player.transform.rotation);
+        q.GetComponent<Ruptura>().setPlayer(player.GetComponent<Player>());
     }
     public void LastCallRuptura()
     {
