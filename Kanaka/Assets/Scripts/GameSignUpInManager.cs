@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -39,13 +40,15 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile(string formData)
     {
-        byte[] myData = System.Text.Encoding.UTF8.GetBytes(formData);
-        UnityWebRequest www = UnityWebRequest.Put(path, myData);
-        yield return www.SendWebRequest();
+        var request = new UnityWebRequest(path, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        yield return request.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(www.error);
+            Debug.Log(request.error);
         }
         else
         {
@@ -55,13 +58,16 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile2(string formData)
     {
-        byte[] myData = System.Text.Encoding.UTF8.GetBytes(formData);
-        UnityWebRequest www = UnityWebRequest.Put(path2, myData);
-        yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        var request = new UnityWebRequest(path2, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        yield return request.SendWebRequest();
+
+        if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(www.error);
+            Debug.Log(request.error);
         }
         else
         {
