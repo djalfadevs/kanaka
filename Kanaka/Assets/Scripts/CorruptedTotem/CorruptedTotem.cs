@@ -6,10 +6,13 @@ public class CorruptedTotem : MonoBehaviour
 {
     [SerializeField] private float hp = 1;
     [SerializeField] private float aliveTime = 10;
+    public GameObject HitEffect;
+    public GameObject KillEffect;
+    public GameObject DissapearEffect;
     private CorruptedTotemSpawner spawner;
     private float currentAliveTime;
 
-
+    Vector3 aux;
     //Animator
     private Animator animator;
     // Start is called before the first frame update
@@ -18,6 +21,7 @@ public class CorruptedTotem : MonoBehaviour
         currentAliveTime = aliveTime;
         animator = GetComponent<Animator>();
         animator.SetInteger("STATE",0);
+        aux = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
     }
     public void setSpawner(CorruptedTotemSpawner cts)
     {
@@ -43,8 +47,15 @@ public class CorruptedTotem : MonoBehaviour
         animator.SetInteger("STATE",2);
     }
     void DestroyThis()
-    {  
-        
+    {
+        if (hp>0)
+        {
+            Instantiate(DissapearEffect,aux, Quaternion.Euler(-90, 0, 0));
+        }
+        else
+        {
+            Instantiate(KillEffect, aux, Quaternion.Euler(-90, 0, 0));
+        }
         Destroy(this.gameObject);
 
     }
@@ -72,6 +83,7 @@ public class CorruptedTotem : MonoBehaviour
         offlinegmlife.destroyTotem();
         animator.SetInteger("STATE",1);
         this.spawner.DespawnTotems();
+        Instantiate(HitEffect, aux, Quaternion.Euler(-90, 0, 0));
         Dead();
     }
 }

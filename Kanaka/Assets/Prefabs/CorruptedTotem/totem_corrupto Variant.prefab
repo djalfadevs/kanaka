@@ -56,6 +56,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   aliveTime: 7
+  HitEffect: {fileID: 1845240806346120, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
+  KillEffect: {fileID: 100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+  DissapearEffect: {fileID: 100000, guid: 3d4907e6bd39f474b8fd8220920e65c4, type: 3}
 --- !u!65 &108699651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,6 +127,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CorruptedTotem
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: aaa7676c14b81f44aa2c589fdc60b308, type: 2}
     - target: {fileID: 400010, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.73
@@ -168,10 +175,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: aaa7676c14b81f44aa2c589fdc60b308, type: 2}
+    - target: {fileID: 400010, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0224ce9c21c0e458a646f3eaa0fca7, type: 3}
 --- !u!1 &6469678576119574146 stripped

@@ -16,7 +16,7 @@ public class offlinegm : MonoBehaviour
     private bool StartTimers = false;
     [SerializeField] private Text TimerText;//Debug
     [SerializeField] private Text TotalTotemsText;//Debug
-    [SerializeField] private static int totemsDestroyed;
+    [SerializeField] public static int totemsDestroyed;
     [SerializeField] private static double matchduration = 15;
     [SerializeField] private double prematch=3;
     public GameObject menu;
@@ -29,6 +29,7 @@ public class offlinegm : MonoBehaviour
         prematch = 3;
         matchduration = 15;
         totemsDestroyed = 0;
+        ResultScript.LastScene = "Timed";
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class offlinegm : MonoBehaviour
 
     void RecalculateTotems()
     {
-        TotalTotemsText.text = "Totems killed: " + totemsDestroyed;
+        TotalTotemsText.text = totemsDestroyed.ToString();
     }
 
     public static void destroyTotem()
@@ -110,6 +111,6 @@ public class offlinegm : MonoBehaviour
 
     public void FinDePartida()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("ResultadoOffline");
     }
 }

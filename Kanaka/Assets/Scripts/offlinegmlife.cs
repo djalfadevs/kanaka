@@ -15,9 +15,8 @@ public class offlinegmlife : MonoBehaviour
     [SerializeField] private GameObject cameraController;
     private bool StartTimers = false;
     [SerializeField] private Text TimerText;//Debug
-    [SerializeField] private Text TotalTotemsText;//Debug
     [SerializeField] private static int totemsDestroyed;
-    [SerializeField] private double matchduration = 0;
+    [SerializeField] public static double matchduration = 0;
     [SerializeField] private double prematch=3;
     private float TimeLastHit;
     public GameObject menu;
@@ -32,12 +31,12 @@ public class offlinegmlife : MonoBehaviour
         matchduration = 0;
         totemsDestroyed = 0;
         TimeLastHit = Time.time;
+        ResultScript.LastScene = "Survival";
     }
 
     // Update is called once per frame
     void Update()
     {
-        RecalculateTotems();
         if (prematch>0)
         {
             TimeManager();
@@ -54,10 +53,7 @@ public class offlinegmlife : MonoBehaviour
         
     }
 
-    void RecalculateTotems()
-    {
-        TotalTotemsText.text = "Totems killed: " + totemsDestroyed;
-    }
+
 
     public static void destroyTotem()
     {
@@ -117,6 +113,7 @@ public class offlinegmlife : MonoBehaviour
 
     public void FinDePartida()
     {
-        SceneManager.LoadScene("MainMenu");
+        
+        SceneManager.LoadScene("ResultadoOffline");
     }
 }
