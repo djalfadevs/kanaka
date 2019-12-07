@@ -49,6 +49,7 @@ public class BombardeoImpulsivo : MonoBehaviour
         Instantiate(effect, player.transform.position, player.transform.rotation);
         qq=Instantiate(effect2, aux, player.transform.rotation);
         q = Instantiate(cube2, aux, player.transform.rotation);
+        q.GetComponent<Bombardeo>().setPlayer(player.GetComponent<Player>());
     }
     public void LastCallBomba()
     {

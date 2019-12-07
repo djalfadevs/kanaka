@@ -27,6 +27,11 @@ public class Bombardeo : Attack
         Timemanager();
     }
 
+    public void setPlayer(Player p)
+    {
+        this.team = p.GetComponent<Player>().GetTeam();
+    }
+
     private void Timemanager()
     {
         if (duracion > 0)
