@@ -40,15 +40,16 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile(string formData)
     {
-        var request = new UnityWebRequest(path, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        yield return request.SendWebRequest();
+        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
+        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
+        formData2.Add(new MultipartFormFileSection(formData, "Users.txt"));
 
-        if (request.isNetworkError || request.isHttpError)
+        UnityWebRequest www = UnityWebRequest.Post(path, formData2);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log(request.error);
+            Debug.Log(www.error);
         }
         else
         {
@@ -58,16 +59,16 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile2(string formData)
     {
+        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
+        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
+        formData2.Add(new MultipartFormFileSection(formData, "User.json"));
 
-        var request = new UnityWebRequest(path2, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        yield return request.SendWebRequest();
+        UnityWebRequest www = UnityWebRequest.Post(path2, formData2);
+        yield return www.SendWebRequest();
 
-        if (request.isNetworkError || request.isHttpError)
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log(request.error);
+            Debug.Log(www.error);
         }
         else
         {
@@ -77,7 +78,7 @@ public class GameSignUpInManager : MonoBehaviour
 
     void Awake()
     {
-       path = Application.streamingAssetsPath + "/UsersData/Users.json";
+       path = Application.streamingAssetsPath + "/UsersData/Users.txt";
        path2 = Application.streamingAssetsPath + "/UsersData/User.json";
        correctlog = false;
     }
