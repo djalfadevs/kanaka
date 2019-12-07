@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\camOrbit.cs" />
     <Compile Include="Assets\EXTERNAL ASSETS\BOXOPHOBIC\Utils\PropertyDrawers\BCategoryAttribute.cs" />
     <Compile Include="Assets\EXTERNAL ASSETS\BOXOPHOBIC\Utils\PropertyDrawers\BInteractiveAttribute.cs" />
     <Compile Include="Assets\EXTERNAL ASSETS\BOXOPHOBIC\Utils\PropertyDrawers\BMessageAttribute.cs" />
@@ -106,6 +105,7 @@
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Botella.cs" />
     <Compile Include="Assets\Scripts\Caja\CajaObjetos.cs" />
+    <Compile Include="Assets\Scripts\camOrbit.cs" />
     <Compile Include="Assets\Scripts\CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\CheckHeros.cs" />
     <Compile Include="Assets\Scripts\CheckSkins.cs" />
@@ -125,7 +125,9 @@
     <Compile Include="Assets\Scripts\keyboardClass.cs" />
     <Compile Include="Assets\Scripts\MobileButtons.cs" />
     <Compile Include="Assets\Scripts\offlinegm.cs" />
+    <Compile Include="Assets\Scripts\offlinegmlife.cs" />
     <Compile Include="Assets\Scripts\PauseScript.cs" />
+    <Compile Include="Assets\Scripts\PauseScriptoffline.cs" />
     <Compile Include="Assets\Scripts\Photon\Lobby\Lobby.cs" />
     <Compile Include="Assets\Scripts\PhotonGameManager.cs" />
     <Compile Include="Assets\Scripts\PhotonHeroManager.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Assets\Scripts\Totem\Totem.cs" />
     <Compile Include="Assets\Scripts\Touchable\GameManagerPlayerSelection.cs" />
     <Compile Include="Assets\Scripts\Touchable\Touchable.cs" />
+    <Compile Include="Assets\Scripts\URLopener.cs" />
     <Compile Include="Assets\Scripts\User\CharacterInfo.cs" />
     <Compile Include="Assets\Scripts\User\GetGems.cs" />
     <Compile Include="Assets\Scripts\User\GetGold.cs" />
@@ -203,7 +206,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\URLopener.cs" />
     <Compile Include="Assets\WebGLNativeInputField\Scripts\WebGLNativeInputField.cs" />
     <Compile Include="Assets\WebGLNativeInputField\Scripts\WebNativeDialog.cs" />
     <None Include="Assets\LowPolyWater_Pack\LowPoly Island\Credits.txt" />

@@ -67,6 +67,7 @@ public class Corriente : Attack
                     {
                         Vector3 dir = (collider.gameObject.transform.position - this.transform.position);
                         Vector3 aux = Vector3.Normalize(dir) * (Vector3.Distance((this.radius * Vector3.Normalize(dir)+this.transform.position),collider.gameObject.transform.position));
+                        aux = new Vector3(aux.x, collider.transform.position.y, aux.z);
                         collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>(),aux);
                     }
 

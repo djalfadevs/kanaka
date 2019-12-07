@@ -145,7 +145,7 @@ public class GameSignUpInManager : MonoBehaviour
         {
             if(auxlistUsers[auxN].userName==username && auxlistUsers[auxN].password == password)
             {
-                Debug.LogError("Exito al loguear");
+                //Debug.LogError("Exito al loguear");
                 isfound = true;
                 //Lo que sea que hace la escena si acierta  va AQUI
                 //Empezamos guardando un archivo con la informacion del usuario logueado
@@ -157,7 +157,7 @@ public class GameSignUpInManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Fallo en usuario o contraseña");
+                //Debug.LogError("Fallo en usuario o contraseña");
                 //Lo que sea que hace la escena si falla  va AQUI
                 //////////////
             }

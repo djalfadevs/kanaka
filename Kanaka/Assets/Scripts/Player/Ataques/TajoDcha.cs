@@ -57,6 +57,14 @@ public class TajoDcha : Attack
                     collider.gameObject.GetComponent<Player>().Hit(this.GetComponent<Collider>());
                 }
             }
+            if (collider.gameObject.CompareTag("Totem"))
+            {
+                //Debug.Log(photonView.GetInstanceID() + " " + collider.gameObject.ToString());
+                if (collider.gameObject.GetComponent<Totem>().GetTeam() != t)
+                {
+                    collider.gameObject.GetComponent<Totem>().Hit(this.GetComponent<Collider>());
+                }
+            }
         }
         else
         {

@@ -26,7 +26,7 @@ public class IfFirstLogin : MonoBehaviour
     {
         if (gsm.correctlog)
         {
-            Debug.LogError("LLEGA AQUI");
+            //Debug.LogError("LLEGA AQUI");
             if (System.IO.File.Exists(path))
             {
                 FileInfo fileinfo = new FileInfo(path);
