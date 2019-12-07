@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class StoreStart : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class StoreStart : MonoBehaviour
     private string path;
     private User u;
 
+
+    IEnumerator getRequest(string uri)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(path);
+        yield return request.SendWebRequest();
+        u = JsonUtility.FromJson<User>(request.downloadHandler.text);
+
+    }
+
     void Awake()
     {
         path = Application.streamingAssetsPath + "/UsersData/User.json";
@@ -19,11 +29,18 @@ public class StoreStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FileInfo fileinfo = new FileInfo(path);
-        StreamReader reader = fileinfo.OpenText();
-        string text = reader.ReadLine();
-        u = JsonUtility.FromJson<User>(text);
-        reader.Close();
+        if(Application.platform == RuntimePlatform.WebGLPlayer){
+            StartCoroutine(getRequest(path));
+        }
+        else
+        {
+            FileInfo fileinfo = new FileInfo(path);
+            StreamReader reader = fileinfo.OpenText();
+            string text = reader.ReadLine();
+            u = JsonUtility.FromJson<User>(text);
+            reader.Close();
+        }
+
         List<int> l = u.charactersID;
         if (l.Contains(0))
         {

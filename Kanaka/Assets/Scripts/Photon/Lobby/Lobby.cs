@@ -7,6 +7,7 @@ using Photon.Chat;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using UnityEngine.Networking;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
@@ -21,13 +22,47 @@ public class Lobby : MonoBehaviourPunCallbacks
     private string CharacterSelected;
 
     private string path2;
+    string text2;
 
+    IEnumerator getRequest(string uri)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(path2);
+        yield return request.SendWebRequest();
+        text2 = request.downloadHandler.text;
+
+    }
+
+    IEnumerator UploadFile(string formData)
+    {
+        byte[] myData = System.Text.Encoding.UTF8.GetBytes(formData);
+        UnityWebRequest www = UnityWebRequest.Put(path2, myData);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("Form upload complete!");
+        }
+    }
 
     public void Awake()
     {
         path2 = Application.streamingAssetsPath + "/UsersData/MatchInput.json";
 
         PhotonNetwork.AutomaticallySyncScene = true;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            StartCoroutine(getRequest(path2));
+        }
+        else
+        {
+           text2 = File.ReadAllText(path2);
+           
+        }
     }
 
     public void Connect()
@@ -86,23 +121,37 @@ public class Lobby : MonoBehaviourPunCallbacks
         int aux = PhotonNetwork.CurrentRoom.Players.Count;
         Debug.LogError(aux +" currentPlayersroom");
         if (aux == 0||aux == 1)
-        {
-            string text2 = File.ReadAllText(path2);
+        {   
             if (text2 != null)
             {
                 OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
-                ou.team = 0;
-                File.WriteAllText(path2, JsonUtility.ToJson(ou));
+                ou.team = 0;         
+                if (Application.platform == RuntimePlatform.WebGLPlayer)
+                {
+                    StartCoroutine(UploadFile(JsonUtility.ToJson(ou)));
+                }
+                else
+                {
+                    File.WriteAllText(path2, JsonUtility.ToJson(ou));
+
+                }
             }
         }
         else
         {
-            string text2 = File.ReadAllText(path2);
             if (text2 != null)
             {
                 OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
                 ou.team = 1;
-                File.WriteAllText(path2, JsonUtility.ToJson(ou));
+                if (Application.platform == RuntimePlatform.WebGLPlayer)
+                {
+                    StartCoroutine(UploadFile(JsonUtility.ToJson(ou)));
+                }
+                else
+                {
+                    File.WriteAllText(path2, JsonUtility.ToJson(ou));
+
+                }
             }
         }
     }

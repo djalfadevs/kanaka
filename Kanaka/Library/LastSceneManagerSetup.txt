@@ -1,7 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MainMenu.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/Scenes/PreLogin.unity
+- path: Assets/Scenes/Kanaka/SignIn-Up/SignIn.unity
   isLoaded: 1
   isActive: 1

@@ -4,12 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Networking;
 
 public class GetUsername : MonoBehaviour
 {
     private string path;
     private User u;
     public TextMeshProUGUI t;
+
+
+    IEnumerator getRequest(string uri)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(path);
+        yield return request.SendWebRequest();
+        string text = request.downloadHandler.text;
+        u = JsonUtility.FromJson<User>(text);
+        t.text = u.name;
+
+    }
 
     void Awake()
     {
@@ -18,15 +30,22 @@ public class GetUsername : MonoBehaviour
 
     void Start()
     {
-        if (System.IO.File.Exists(path))
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            FileInfo fileinfo = new FileInfo(path);
-            StreamReader reader = fileinfo.OpenText();
-            string text = reader.ReadLine();
-            u = JsonUtility.FromJson<User>(text);
-            t.text = u.name;
-            reader.Close();
-
+            StartCoroutine(getRequest(path));
         }
+        else
+        {
+            if (System.IO.File.Exists(path))
+            {
+                FileInfo fileinfo = new FileInfo(path);
+                StreamReader reader = fileinfo.OpenText();
+                string text = reader.ReadLine();
+                u = JsonUtility.FromJson<User>(text);
+                t.text = u.name;
+                reader.Close();
+            }
+        }
+  
     }
 }

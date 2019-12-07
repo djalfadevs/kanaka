@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 498}
   m_MaxSize: {x: 14002, y: 14048}
   vertical: 0
-  controlID: 122
+  controlID: 116
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 55
+  controlID: 52
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 56
+  controlID: 53
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,9 +382,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 82260000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 62e4fcff84e4fcff1aedfcffaaf2fcffbcf2fcffd6f2fcfff0f2fcff2af3fcff3af3fcff4cf3fcff8c03fdffb603fdffe203fdffee03fdfffe03fdff3408fdff4e08fdffe60cfdff2019fdff8819fdffc8a1feffe6a1feffe4a6feffa0bcfeffbebcfeffbac1feffb2c4ffffd4c4ffff6ecdfffffed2ffff10d3ffff2ad3ffff44d3ffff7ed3ffff8ed3ffffa0d3ffffe0e3ffff0ae4ffff36e4ffff42e4ffff52e4ffff88e8ffffa2e8ffff3aedffff74f9ffffdcf9ffff
+      m_ExpandedIDs: cc69ffffee69ffff8872ffff1a78ffff3078ffff4478ffff5e78ffff9c78ffffb078ffffc678ffff0889ffff3689ffff6689ffff7689ffff8889ffffc28dffffe08dffff7892ffffb49effff349fffffd4a1ffff08b1ffff2ab1ffffc4b9ffff56bfffff6cbfffff8abfffffa8bfffffe6bffffffabfffff10c0ffff52d0ffff80d0ffffb0d0ffffc0d0ffffd4d0ffff0ed5ffff2cd5ffffc8d9ffff04e6ffff6ee6ffffe2f000000af10000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -439,9 +439,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.043978, y: 32.490242, z: 28.7853}
+    m_Target: {x: 296.74792, y: 182.21083, z: 108.89259}
     speed: 2
-    m_Value: {x: 9.043978, y: 32.490242, z: 28.7853}
+    m_Value: {x: 296.74792, y: 182.21083, z: 108.89259}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -469,13 +469,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.14205214, y: -0.8577794, z: 0.3400485, w: -0.3583332}
+    m_Target: {x: -0.025560258, y: -0.9723728, z: 0.19298722, w: -0.12881695}
     speed: 2
-    m_Value: {x: -0.14205216, y: -0.85777944, z: 0.34004852, w: -0.35833323}
+    m_Value: {x: -0.025560258, y: -0.9723728, z: 0.19298722, w: -0.12881695}
   m_Size:
-    m_Target: 652.1674
+    m_Target: 435.97046
     speed: 2
-    m_Value: 652.1674
+    m_Value: 435.97046
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -757,7 +757,7 @@ MonoBehaviour:
     height: 319
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: signup
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -768,21 +768,21 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/GameHandlers
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/GameHandlers
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\lmml_\Desktop\URJC\Primer Cuatrimestre\Juegos para Web
     y Redes Sociales\kanaka\Kanaka
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 498}
-    m_SelectedIDs: 7a3e0000
-    m_LastClickedID: 15994
-    m_ExpandedIDs: 00000000662e0000b22e0000d82f00002031000098350000d0350000d03700003e390000883a0000923b0000943b0000123e00002a45000000ca9a3b
+    scrollPos: {x: 0, y: 754}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000662e0000b22e0000d82f0000203100002431000098350000d0350000d03700003e3900007c390000883a0000923b0000943b0000cc3d0000123e00007a3e0000d63e0000a6420000fa4200002a45000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

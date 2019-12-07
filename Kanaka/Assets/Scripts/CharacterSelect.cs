@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -14,8 +15,27 @@ public class CharacterSelect : MonoBehaviour
     private OnlineUser ou;
     private string un;
     private bool im;
-    
 
+    IEnumerator getRequest(string uri)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        yield return request.SendWebRequest();
+        string text = request.downloadHandler.text;
+        u = JsonUtility.FromJson<User>(text);
+        un = u.name;
+    }
+
+
+    IEnumerator getRequest2(string uri,int ch)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        yield return request.SendWebRequest();
+        string text = request.downloadHandler.text;
+        ou = JsonUtility.FromJson<OnlineUser>(text);
+        un = ou.userName;
+        im = ou.ismobile;
+        ou = new OnlineUser(un, ch, im, (int)Random.Range(0.0f, 1.0f));
+    }
 
     void Awake()
     {
@@ -26,24 +46,34 @@ public class CharacterSelect : MonoBehaviour
 
     public void CharSelected(int ch)
     {
-        if (System.IO.File.Exists(path))
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            FileInfo fileinfo = new FileInfo(path);
-            StreamReader reader = fileinfo.OpenText();
-            string text = reader.ReadLine();
-            u = JsonUtility.FromJson<User>(text);
-            un = u.name;
-            reader.Close();
+            StartCoroutine(getRequest(path));
+            StartCoroutine(getRequest2(path2,ch));
 
-            string text2 = File.ReadAllText(path2);
-            if (text != null)
+        }
+        else
+        {
+            if (System.IO.File.Exists(path))
             {
-                ou = JsonUtility.FromJson<OnlineUser>(text);
-                un = ou.userName;
-                im = ou.ismobile;
-                ou = new OnlineUser(un, ch, im,  (int) Random.Range(0.0f,1.0f));
-                File.WriteAllText(path2, JsonUtility.ToJson(ou));
+                FileInfo fileinfo = new FileInfo(path);
+                StreamReader reader = fileinfo.OpenText();
+                string text = reader.ReadLine();
+                u = JsonUtility.FromJson<User>(text);
+                un = u.name;
+                reader.Close();
+
+                string text2 = File.ReadAllText(path2);
+                if (text != null)
+                {
+                    ou = JsonUtility.FromJson<OnlineUser>(text);
+                    un = ou.userName;
+                    im = ou.ismobile;
+                    ou = new OnlineUser(un, ch, im, (int)Random.Range(0.0f, 1.0f));
+                    File.WriteAllText(path2, JsonUtility.ToJson(ou));
+                }
             }
         }
+        
     }
 }

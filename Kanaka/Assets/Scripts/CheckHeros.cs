@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class CheckHeros : MonoBehaviour
@@ -13,6 +14,14 @@ public class CheckHeros : MonoBehaviour
     private string path;
     private User u;
 
+    IEnumerator getRequest(string uri)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(path);
+        yield return request.SendWebRequest();
+        string text = request.downloadHandler.text;
+        u = JsonUtility.FromJson<User>(text);
+
+    }
 
     void Awake()
     {
@@ -22,10 +31,18 @@ public class CheckHeros : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FileInfo fileinfo = new FileInfo(path);
-        StreamReader reader = fileinfo.OpenText();
-        string text = reader.ReadLine();
-        u = JsonUtility.FromJson<User>(text);
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            StartCoroutine(getRequest(path));
+        }
+        else
+        {
+            FileInfo fileinfo = new FileInfo(path);
+            StreamReader reader = fileinfo.OpenText();
+            string text = reader.ReadLine();
+            u = JsonUtility.FromJson<User>(text);
+        }
+        
         List<int> l = u.charactersID;
         if (l.Contains(0))
         {
