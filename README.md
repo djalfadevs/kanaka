@@ -1,4 +1,15 @@
 # HAKAPUNI
+
+## Portfolio:
+http://djalfadevs.github.io
+
+## Redes sociales
+- **Twitter:** https://twitter.com/DJALFA_dev
+- **Instagram:** https://www.instagram.com/djalfa_dev/
+- **Youtube:** https://www.youtube.com/channel/UC3AbbLPjMgXdeAemHnZdYhQ
+- **Facebook**: https://www.facebook.com/
+- **Itch.io:** https://djalfa-devs.itch.io/
+
 ## CONCEPTO GENERAL DEL JUEGO
 En esta sección se mostrarán la base general que sigue el juego en cuestión de diseño.
 
