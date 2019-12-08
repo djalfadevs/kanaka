@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Kanaka/SignIn-Up/SignUp.unity
+- path: Assets/Scenes/Kanaka/SignIn-Up/SignIn.unity
   isLoaded: 1
   isActive: 1

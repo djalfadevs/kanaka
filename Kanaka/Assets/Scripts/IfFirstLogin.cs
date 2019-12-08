@@ -26,7 +26,7 @@ public class IfFirstLogin : MonoBehaviour
 
     IEnumerator getRequest(string uri)
     {
-        UnityWebRequest request = UnityWebRequest.Get(path);
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
         yield return request.SendWebRequest();
         string text2 = request.downloadHandler.text;
         u = JsonUtility.FromJson<User>(text2);
@@ -39,7 +39,7 @@ public class IfFirstLogin : MonoBehaviour
         if (gsm.correctlog)
         {
             l = new List<int>();
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            if (true)
             {
                 StartCoroutine(getRequest(path));
             }

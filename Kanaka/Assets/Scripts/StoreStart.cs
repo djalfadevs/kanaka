@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -16,10 +17,30 @@ public class StoreStart : MonoBehaviour
 
     IEnumerator getRequest(string uri)
     {
-        UnityWebRequest request = UnityWebRequest.Get(path);
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
         yield return request.SendWebRequest();
-        u = JsonUtility.FromJson<User>(request.downloadHandler.text);
+        u = JsonConvert.DeserializeObject<User>(request.downloadHandler.text);
 
+        List<int> l = u.charactersID;
+        if (l.Contains(0))
+        {
+            hero1.SetActive(false);
+        }
+        if (l.Contains(1))
+        {
+            hero2.SetActive(false);
+
+        }
+        if (l.Contains(2))
+        {
+            hero3.SetActive(false);
+
+        }
+        if (l.Contains(3))
+        {
+            hero4.SetActive(false);
+
+        }
     }
 
     void Awake()
@@ -29,7 +50,7 @@ public class StoreStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Application.platform == RuntimePlatform.WebGLPlayer){
+        if(true){
             StartCoroutine(getRequest(path));
         }
         else

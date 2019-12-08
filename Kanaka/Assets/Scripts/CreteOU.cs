@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
 
 public class CreteOU : MonoBehaviour
 {
@@ -15,27 +16,24 @@ public class CreteOU : MonoBehaviour
 
     IEnumerator getRequest(string uri)
     {
-        UnityWebRequest request = UnityWebRequest.Get(uri);
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
         yield return request.SendWebRequest();
         string text = request.downloadHandler.text;
         u = JsonUtility.FromJson<User>(text);
+
         ou = new OnlineUser(u.name, u.charactersID[0], false, (int)Random.Range(0.0f, 1.0f));
-    }
 
-    IEnumerator UploadFile(string formData)
-    {
-        UnityWebRequest www = UnityWebRequest.Put(path2, formData);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
+        var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/88as0", JsonConvert.SerializeObject(ou));
+        uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+        yield return uwr.SendWebRequest();
+        if (uwr.isNetworkError || uwr.isHttpError)
+            Debug.LogError(uwr.error);
         else
         {
-            Debug.Log("Form upload complete!");
+            // file data successfully sent
         }
     }
+
 
     void Awake()
     {
@@ -46,10 +44,9 @@ public class CreteOU : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        if(true)
         {
             StartCoroutine(getRequest(path));
-            StartCoroutine(UploadFile(JsonUtility.ToJson(ou)));
         }
         else
         {

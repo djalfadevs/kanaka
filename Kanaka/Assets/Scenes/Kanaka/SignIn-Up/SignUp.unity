@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f585b229b2ee09458e9c8717ee32daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toLoad: SignIn
+  toLoad: 
 --- !u!1 &1530232223
 GameObject:
   m_ObjectHideFlags: 0

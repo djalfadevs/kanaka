@@ -5,6 +5,8 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Web;
+using Newtonsoft.Json;
 
 public class GameSignUpInManager : MonoBehaviour
 {
@@ -18,31 +20,71 @@ public class GameSignUpInManager : MonoBehaviour
     private string path;
     private string path2;
     public bool correctlog;
+    public bool playerloaded;
     // Start is called before the first frame update
 
 
     IEnumerator getRequest(string uri, List<User> auxlistUsers)
     {
-        UnityWebRequest request = UnityWebRequest.Get(path);
+
+        UnityWebRequest request = UnityWebRequest.Get(uri);
         yield return request.SendWebRequest();
         string text2 = request.downloadHandler.text;
-        string [] data =  text2.Split(new[] { Environment.NewLine },StringSplitOptions.None);
-        int k = 0;
-        while (data.Length > k)
+        auxlistUsers = JsonConvert.DeserializeObject<List<User>>(text2);
+        playerloaded = true;
+    }
+
+    IEnumerator getRequest2(string uri, List<User> auxlistUsers)
+    {
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/ejhsg");
+        yield return request.SendWebRequest();
+        string text2 = request.downloadHandler.text;
+        auxlistUsers = JsonConvert.DeserializeObject<List<User>>(text2);
+
+        int auxN = 0;
+        bool isfound = false;
+        while (auxN < auxlistUsers.Count && !isfound)
         {
-            //Console.WriteLine(text);
-            User userAux = JsonUtility.FromJson<User>(data[k]);
-            if (userAux != null)
-                auxlistUsers.Add(userAux);//Se cargan los anteriores usuarios si existe tal archivo
-            k++;
+            Debug.Log("entro while");
+            if (auxlistUsers[auxN].userName == username && auxlistUsers[auxN].password == password)
+            {
+                Debug.Log("entro if");
+
+                //Debug.LogError("Exito al loguear");
+                isfound = true;
+                //Lo que sea que hace la escena si acierta  va AQUI
+                //Empezamos guardando un archivo con la informacion del usuario logueado
+                string a = JsonConvert.SerializeObject((auxlistUsers[auxN]));
+
+                if (true)
+                {
+                    StartCoroutine(UploadFile2(a));
+                }
+                else
+                {
+                    File.WriteAllText(path2, a);
+                }
+
+                //////////////
+                correctlog = true;
+
+            }
+            else
+            {
+                //Debug.LogError("Fallo en usuario o contraseña");
+                //Lo que sea que hace la escena si falla  va AQUI
+                //////////////
+            }
+            auxN++;
         }
     }
 
-    IEnumerator UploadFile(byte[] payload)
+    IEnumerator UploadFile(string payload)
     {
-        using (var uwr = new UnityWebRequest(path, UnityWebRequest.kHttpVerbPUT))
         {
-            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            Debug.Log(payload);
+            var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/ejhsg", payload);
+            uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)
                 Debug.LogError(uwr.error);
@@ -53,12 +95,12 @@ public class GameSignUpInManager : MonoBehaviour
         }
     }
 
-    IEnumerator UploadFile2(byte[] payload)
+    IEnumerator UploadFile2(string payload)
     {
-        using (var uwr = new UnityWebRequest(path2, UnityWebRequest.kHttpVerbPUT))
-
         {
-            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            Debug.Log(payload);
+            var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/asgog", payload);
+            uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
             yield return uwr.SendWebRequest();
             if (uwr.isNetworkError || uwr.isHttpError)
                 Debug.LogError(uwr.error);
@@ -74,12 +116,12 @@ public class GameSignUpInManager : MonoBehaviour
        path = Application.streamingAssetsPath + "/UsersData/Users.json";
        path2 = Application.streamingAssetsPath + "/UsersData/User.json";
        correctlog = false;
+       playerloaded = false;
     }
 
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -91,10 +133,9 @@ public class GameSignUpInManager : MonoBehaviour
     public void SignUp()
     {
         List<User> auxlistUsers = new List<User>();
-
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (true)
         {
-            StartCoroutine(getRequest(path,auxlistUsers));
+            StartCoroutine(getRequest("https://api.myjson.com/bins/ejhsg",auxlistUsers));
         }
         else
         {
@@ -129,17 +170,16 @@ public class GameSignUpInManager : MonoBehaviour
         if (!exist)
             auxlistUsers.Add(new User(username, password, gameUserName, baseLevel, baseGameMoney, baseRealGameMoney));//Se añade el nuevo usuario
 
-        
-        String auxS = JsonUtility.ToJson(auxlistUsers);
+        string auxS = JsonConvert.SerializeObject(auxlistUsers);
+
         Debug.Log("Se han guardado " + auxlistUsers.Count);
         Debug.Log("El nuevo usuario es " + username);
         Debug.Log("El nuevo pass es " + password);
         //Guardamos los datos de nuevo
 
-        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        if(true)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(auxS);
-            StartCoroutine(UploadFile(bytes));
+            StartCoroutine(UploadFile(auxS));
         }
         else
         {
@@ -167,9 +207,9 @@ public class GameSignUpInManager : MonoBehaviour
     {
         List<User> auxlistUsers = new List<User>();
 
-        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        if (true)
         {
-            StartCoroutine(getRequest(path, auxlistUsers));
+            StartCoroutine(getRequest2("https://api.myjson.com/bins/ejhsg", auxlistUsers));
         }
         else
         {
@@ -182,47 +222,14 @@ public class GameSignUpInManager : MonoBehaviour
             }
         }
       
-
+ 
         //Por si falla la lectura
-        if (auxlistUsers == null)
+       /* if (auxlistUsers == null)
         {
             auxlistUsers = new List<User>();
-        }
+        }*/
 
         //Recorremos la lista de usuarios y comprobamos si alguno coincide su nombre y password
-        int auxN = 0;
-        bool isfound = false;
-        while(auxN<auxlistUsers.Count && !isfound)
-        {
-            if(auxlistUsers[auxN].userName==username && auxlistUsers[auxN].password == password)
-            {
-                //Debug.LogError("Exito al loguear");
-                isfound = true;
-                //Lo que sea que hace la escena si acierta  va AQUI
-                //Empezamos guardando un archivo con la informacion del usuario logueado
-                string a = JsonUtility.ToJson((auxlistUsers[auxN]));
 
-                if(Application.platform == RuntimePlatform.WebGLPlayer)
-                {
-                    byte[] bytes = Encoding.UTF8.GetBytes(a);
-                    StartCoroutine(UploadFile2(bytes));
-                }
-                else
-                {
-                    File.WriteAllText(path2, a);
-                }
-                
-                //////////////
-                correctlog = true;
-
-            }
-            else
-            {
-                //Debug.LogError("Fallo en usuario o contraseña");
-                //Lo que sea que hace la escena si falla  va AQUI
-                //////////////
-            }
-            auxN++;
-        }
     }
 }
