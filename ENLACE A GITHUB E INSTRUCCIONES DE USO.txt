@@ -1,0 +1,35 @@
+ENLACE A GITHUB: https://github.com/djalfadevs/kanaka
+
+LOS CONTROLES DEL JUEGO Y DE NAVEGACIÓN POR LA UI SE MUESTRAN EN 
+LA SECCIÓN DE MECÁNICA DE JUEGO (4ª SECCIÓN), APARTADO DE CONTROLES 
+Y CONTROLES DE UI (4º Y 5º APARTADO RESPECTIVAMENTE), DEL GDD EN
+EL README DE GITHUB. SE ADJUNTA POR SI ACASO COPIA DE LOS MISMOS AQUÍ:
+
+CONTROLES:
+
+	-PC:
+
+		-Tecla W para moverse.
+		-Movimiento de ratón para dirección.
+		-Clic izquierdo del ratón para atacar.
+		-Clic derecho del ratón para realizar habilidad/usar objeto.
+		-Tecla ESC para mostrar pantalla de salida de partida o cambiar ajustes.
+
+	-Móviles y tablet:
+
+		-Joystick virtual para movimiento (esquina inferior izquierda).
+		-Botón sobre la pantalla para atacar (esquina inferior derecha).
+		-Botón sobre la pantalla para habilidad/usar objeto (esquina inferior derecha).
+		-Botón para mostrar pantalla de salida de partida o cambiar ajustes (esquina superior derecha).
+
+
+CONTROLES DE UI:
+
+	-PC:
+
+		-Clic izquierdo del ratón sobre los iconos de la intefaz para moverse entre pantallas.
+		-Clic en los iconos de salida o pulsar tecla ESC para volver al menú anterior.
+
+	-Móviles y tablet:
+
+		-Tap en los iconos de la interfaz para moverse entre pantallas.
