@@ -249,14 +249,14 @@ Tras seleccionar a un ganador de la partida (en multijugador) o al finalizar el 
     + Botón para mostrar pantalla de salida de partida o cambiar ajustes (esquina superior derecha).
 
 #### CONTROLES DE UI
--PC:
++ PC:
 
-		-Clic izquierdo del ratón sobre los iconos de la intefaz para moverse entre pantallas.
-		-Clic en los iconos de salida o pulsar tecla *ESC* para volver al menú anterior.
+    + Clic izquierdo del ratón sobre los iconos de la intefaz para moverse entre pantallas.
+    + Clic en los iconos de salida o pulsar tecla *ESC* para volver al menú anterior.
         
--Móviles y tablet:
++ Móviles y tablet:
 
-		-Tap en los iconos de la interfaz para moverse entre pantallas.
+    + Tap en los iconos de la interfaz para moverse entre pantallas.
 
 #### PUNTUACIÓN
 La puntuación se indica como:
