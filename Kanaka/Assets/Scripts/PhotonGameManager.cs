@@ -59,9 +59,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private double preMatchDuration = 60;
 
     [SerializeField] private Text TimerText;//Debug
-    [SerializeField] private Text Team1TotalTotemsText;//Debug
     [SerializeField] private Text Team1AliveTotemsText;//Debug
-    [SerializeField] private Text Team2TotalTotemsText;//Debug
     [SerializeField] private Text Team2AliveTotemsText;//Debug
 
     public float TimeBox= 5f;
@@ -155,10 +153,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         AddHerosTeams();
 
         //DEBUG
-        Team1TotalTotemsText.text = "TotalTotems: " + teamList[0].TotalTotemsTeam;
         Team1AliveTotemsText.text = "AliveTotems: " + teamList[0].AliveTotemTeam;
-
-        Team2TotalTotemsText.text = "TotalTotems: " + teamList[1].TotalTotemsTeam;
         Team2AliveTotemsText.text = "AliveTotems: " + teamList[1].AliveTotemTeam;
         //DEBUG
     }
@@ -248,10 +243,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         if (recalculateAliveTotems)
         {
             this.CountAliveTotemsinTeams();
-            Team1TotalTotemsText.text = "TotalTotems: " + teamList[0].TotalTotemsTeam;
             Team1AliveTotemsText.text = "AliveTotems: " + teamList[0].AliveTotemTeam;
-
-            Team2TotalTotemsText.text = "TotalTotems: " + teamList[1].TotalTotemsTeam;
             Team2AliveTotemsText.text = "AliveTotems: " + teamList[1].AliveTotemTeam;
 
             if (!PhotonNetwork.IsMasterClient)
