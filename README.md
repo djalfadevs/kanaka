@@ -5,7 +5,7 @@ http://djalfadevs.github.io
 - **Twitter:** https://twitter.com/DJALFA_dev
 - **Instagram:** https://www.instagram.com/djalfa_dev/
 - **Youtube:** https://www.youtube.com/channel/UC3AbbLPjMgXdeAemHnZdYhQ
-- **Facebook**: 
+- **Facebook**: https://es-es.facebook.com/djalfa.devs.1
 - **Itch.io:** https://djalfa-devs.itch.io/
 
 # HAKAPUNI (DOCUMENTO GENERAL DE DISEÑO)
