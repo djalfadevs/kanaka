@@ -64,7 +64,7 @@ public class Store : MonoBehaviour
 
     public void moneyUpdate(int moneydelta)
     {
-        getRequestmoney(moneydelta);
+        StartCoroutine(getRequestmoney(moneydelta));
         /*FileInfo fileinfo = new FileInfo(path);
         StreamReader reader = fileinfo.OpenText();
         string text = reader.ReadLine();
@@ -77,7 +77,7 @@ public class Store : MonoBehaviour
 
     public void addChar(int newchar)
     {
-        getRequestaddchar(newchar);
+        StartCoroutine( getRequestaddchar(newchar));
         /*FileInfo fileinfo = new FileInfo(path);
         StreamReader reader = fileinfo.OpenText();
         string text = reader.ReadLine();

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviourPun
@@ -19,6 +20,18 @@ public class PlayerController : MonoBehaviourPun
     private GameObject fj;
 
 
+    IEnumerator getRequest(string uri)
+    {
+
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        yield return request.SendWebRequest();
+        string text2 = request.downloadHandler.text;
+        if (text2 != null)
+        {
+            ou = JsonUtility.FromJson<OnlineUser>(text2);
+        }
+    }
+
     private void Awake()
     {
         ph = GetComponentInParent<PhotonView>();
@@ -28,12 +41,20 @@ public class PlayerController : MonoBehaviourPun
     void Start()
     {
         fj = GameObject.FindGameObjectWithTag("MobileInput").transform.GetChild(0).gameObject;
-        
-        string text = File.ReadAllText(path);
-        if (text != null)
+
+        if (true)
         {
-            ou = JsonUtility.FromJson<OnlineUser>(text);
+            StartCoroutine(getRequest("https://api.myjson.com/bins/88as0"));
         }
+        else
+        {
+            string text = File.ReadAllText(path);
+            if (text != null)
+            {
+                ou = JsonUtility.FromJson<OnlineUser>(text);
+            }
+        }
+      
     }
 
     void attackInput()

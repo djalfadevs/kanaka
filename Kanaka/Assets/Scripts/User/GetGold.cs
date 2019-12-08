@@ -13,7 +13,7 @@ public class GetGold : MonoBehaviour
 
     IEnumerator getRequest(string uri)
     {
-        UnityWebRequest request = UnityWebRequest.Get(path);
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
         yield return request.SendWebRequest();
         string text = request.downloadHandler.text;
         u = JsonUtility.FromJson<User>(text);
@@ -28,7 +28,12 @@ public class GetGold : MonoBehaviour
 
     void Start()
     {
-        if (System.IO.File.Exists(path))
+        if (true)
+        {
+            StartCoroutine(getRequest(path));
+        }
+
+        else if (System.IO.File.Exists(path))
         {
             FileInfo fileinfo = new FileInfo(path);
             StreamReader reader = fileinfo.OpenText();
@@ -40,7 +45,7 @@ public class GetGold : MonoBehaviour
     }
     public void updateGold()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (true)
         {
             StartCoroutine(getRequest(path));
         }

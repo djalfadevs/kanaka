@@ -18,24 +18,8 @@ public class CharacterSelect : MonoBehaviour
     private bool im;
 
 
-
-    IEnumerator getRequest2(string uri,int ch)
+    IEnumerator UploadFile(OnlineUser ou)
     {
-        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
-        yield return request.SendWebRequest();
-        string text = request.downloadHandler.text;
-        u = JsonUtility.FromJson<User>(text);
-        un = u.name;
-
-        UnityWebRequest request2 = UnityWebRequest.Get("https://api.myjson.com/bins/88as0");
-        yield return request2.SendWebRequest();
-        string text2 = request2.downloadHandler.text;
-
-        ou = JsonUtility.FromJson<OnlineUser>(text2);
-        un = ou.userName;
-        im = ou.ismobile;
-        ou = new OnlineUser(un, ch, im, (int)Random.Range(0.0f, 1.0f));
-
         var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/88as0", JsonConvert.SerializeObject(ou));
         uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
         yield return uwr.SendWebRequest();
@@ -45,6 +29,34 @@ public class CharacterSelect : MonoBehaviour
         {
             // file data successfully sent
         }
+    }
+
+    IEnumerator getRequest(int ch)
+    {
+ 
+        UnityWebRequest request2 = UnityWebRequest.Get("https://api.myjson.com/bins/88as0");
+        yield return request2.SendWebRequest();
+        string text2 = request2.downloadHandler.text;
+
+        ou = JsonUtility.FromJson<OnlineUser>(text2);
+        un = ou.userName;
+        im = ou.ismobile;
+        ou = new OnlineUser(un, ch, im, (int)Random.Range(0.0f, 1.0f));
+        StartCoroutine(UploadFile(ou));
+    }
+
+
+    IEnumerator getRequest2(string uri,int ch)
+    {
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
+        yield return request.SendWebRequest();
+        string text = request.downloadHandler.text;
+        u = JsonUtility.FromJson<User>(text);
+        un = u.name;
+
+        StartCoroutine(getRequest(ch));
+       
+     
 
 
     }

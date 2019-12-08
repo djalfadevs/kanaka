@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.Networking;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable 
 {
@@ -63,7 +64,6 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
     [SerializeField] private Text Team2AliveTotemsText;//Debug
 
     public float TimeBox= 5f;
-
     public GameObject playerPrefab;
     public GameObject menu;
     //public static GameObject LocalPlayerInstance;
@@ -83,6 +83,30 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         InstanciateHero();
         InitializeTeamsInfo();
         InitializeMatch();
+    }
+
+    IEnumerator getRequest(string uri)
+    {
+
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        yield return request.SendWebRequest();
+        string text2 = request.downloadHandler.text;
+        OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
+        int aux = ou.team;
+        Debug.LogError(aux + "team i support");
+        object[] instanceData = new object[2];
+        instanceData[0] = aux;
+        instanceData[1] = "#" + ColorUtility.ToHtmlStringRGBA(teamColorList[aux]);
+
+        Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
+        Player p = this.herolist[ou.selchar].GetComponentInChildren<Player>();
+        Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, aux);
+
+        //Debug.DrawLine(spawnPoint,spawnPoint+Vector3.up,Color.yellow);
+        //Debug.LogError(spawnPoint);
+        // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+        GameObject a = PhotonNetwork.Instantiate(this.herolist[ou.selchar].name, spawnPoint, Quaternion.identity, 0, instanceData);
+        cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
     }
 
     void SetTimers()
@@ -106,28 +130,72 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         }
         else
         {
-
-            //LEEMOS LOS DATOS FIJADOS EN LA ANTERIOR PANTALLA Y GUARDADOS EN MATCHINPUT
-            if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
+            if (true)
             {
-                string text2 = File.ReadAllText(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
-                OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
-                int aux = ou.team;
-                Debug.LogError(aux + "team i support");
-                object[] instanceData = new object[2];
-                instanceData[0] = aux;
-                instanceData[1] = "#"+ ColorUtility.ToHtmlStringRGBA(teamColorList[aux]);
                 
+                object[] instanceData = new object[2];
+                Photon.Realtime.Player [] auxPlayerlist = PhotonNetwork.PlayerList;
+                int cont = 0;
+                int perteneciente = 0;
+                foreach(Photon.Realtime.Player pl in auxPlayerlist)
+                {
+                    if (pl.IsLocal)
+                    {
+                        perteneciente = cont;
+                    }
+                    cont++;
+                }
+                int team;
+                 if (perteneciente == 0 || perteneciente == 1) { team = 0; }
+                 else { team = 1; }
+
+                instanceData[0] = team;
+                instanceData[1] = "#" + ColorUtility.ToHtmlStringRGBA(teamColorList[team]);
+
+                int playerID = UnityEngine.Random.Range(0, 4);
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-                Player p = this.herolist[ou.selchar].GetComponentInChildren<Player>();
-                Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, aux);
+                Player p = this.herolist[playerID].GetComponentInChildren<Player>();
+                Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, team);
 
                 //Debug.DrawLine(spawnPoint,spawnPoint+Vector3.up,Color.yellow);
                 //Debug.LogError(spawnPoint);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                GameObject a = PhotonNetwork.Instantiate(this.herolist[ou.selchar].name, spawnPoint, Quaternion.identity, 0,instanceData);
+                GameObject a = PhotonNetwork.Instantiate(this.herolist[playerID].name, spawnPoint, Quaternion.identity, 0, instanceData);
                 cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
-            }          
+            }
+            else
+            {
+                if (true)
+                {
+                    StartCoroutine(getRequest("https://api.myjson.com/bins/88as0"));
+                }
+                else
+                {
+                    //LEEMOS LOS DATOS FIJADOS EN LA ANTERIOR PANTALLA Y GUARDADOS EN MATCHINPUT
+                    if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
+                    {
+                        string text2 = File.ReadAllText(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
+                        OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
+                        int aux = ou.team;
+                        Debug.LogError(aux + "team i support");
+                        object[] instanceData = new object[2];
+                        instanceData[0] = aux;
+                        instanceData[1] = "#" + ColorUtility.ToHtmlStringRGBA(teamColorList[aux]);
+
+                        Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
+                        Player p = this.herolist[ou.selchar].GetComponentInChildren<Player>();
+                        Vector3 spawnPoint = (teamList[0].GetSpawnsTeam()[0]).GetComponent<HeroSpawners>().Spawn(p, aux);
+
+                        //Debug.DrawLine(spawnPoint,spawnPoint+Vector3.up,Color.yellow);
+                        //Debug.LogError(spawnPoint);
+                        // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                        GameObject a = PhotonNetwork.Instantiate(this.herolist[ou.selchar].name, spawnPoint, Quaternion.identity, 0, instanceData);
+                        cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
+                    }
+                }
+            }
+           
+                  
             
         }
     }

@@ -21,6 +21,12 @@ public class CreteOU : MonoBehaviour
         string text = request.downloadHandler.text;
         u = JsonUtility.FromJson<User>(text);
 
+        UnityWebRequest request2 = UnityWebRequest.Get("https://api.myjson.com/bins/88as0");
+        yield return request2.SendWebRequest();
+        string text2 = request.downloadHandler.text;
+        OnlineUser AuxOu = JsonConvert.DeserializeObject<OnlineUser>(text2);
+
+        if (AuxOu == null)
         ou = new OnlineUser(u.name, u.charactersID[0], false, (int)Random.Range(0.0f, 1.0f));
 
         var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/88as0", JsonConvert.SerializeObject(ou));

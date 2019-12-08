@@ -11,4 +11,9 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene(toLoad);
     }
+
+    public void leftRoom()
+    {
+        Photon.Pun.PhotonNetwork.Disconnect();
+    }
 }

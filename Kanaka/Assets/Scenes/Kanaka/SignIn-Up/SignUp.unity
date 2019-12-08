@@ -747,6 +747,7 @@ MonoBehaviour:
   baseGameMoney: 100
   baseRealGameMoney: 100
   correctlog: 0
+  playerloaded: 0
 --- !u!1 &850408914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,7 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f585b229b2ee09458e9c8717ee32daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toLoad: 
+  toLoad: SignIn
 --- !u!1 &1530232223
 GameObject:
   m_ObjectHideFlags: 0

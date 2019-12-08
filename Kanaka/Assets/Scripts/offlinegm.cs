@@ -6,6 +6,8 @@ using Cinemachine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using Newtonsoft.Json;
 
 public class offlinegm : MonoBehaviour
 {
@@ -30,6 +32,22 @@ public class offlinegm : MonoBehaviour
         matchduration = 15;
         totemsDestroyed = 0;
         ResultScript.LastScene = "Timed";
+    }
+
+    IEnumerator getRequest(string uri)
+    {
+
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        yield return request.SendWebRequest();
+        string text2 = request.downloadHandler.text;
+        OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
+        Player p = this.herolist[ou.selchar].GetComponentInChildren<Player>();
+        //Debug.DrawLine(spawnPoint,spawnPoint+Vector3.up,Color.yellow);
+        //Debug.LogError(spawnPoint);
+        // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+        GameObject a = Instantiate(this.herolist[ou.selchar], this.transform.position, Quaternion.identity);
+        Debug.Log(a);
+        cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
     }
 
     // Update is called once per frame
@@ -82,8 +100,14 @@ public class offlinegm : MonoBehaviour
     void InstanciateHero()
     {
         //LEEMOS LOS DATOS FIJADOS EN LA ANTERIOR PANTALLA Y GUARDADOS EN MATCHINPUT
-         if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
-         {
+        if (true)
+        {
+            StartCoroutine(getRequest("https://api.myjson.com/bins/88as0"));
+        }
+        else
+        {
+            if (System.IO.File.Exists(Application.streamingAssetsPath + "/UsersData/MatchInput.json"))
+            {
                 string text2 = File.ReadAllText(Application.streamingAssetsPath + "/UsersData/MatchInput.json");
                 OnlineUser ou = JsonUtility.FromJson<OnlineUser>(text2);
                 Player p = this.herolist[ou.selchar].GetComponentInChildren<Player>();
@@ -91,9 +115,11 @@ public class offlinegm : MonoBehaviour
                 //Debug.LogError(spawnPoint);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 GameObject a = Instantiate(this.herolist[ou.selchar], this.transform.position, Quaternion.identity);
-            Debug.Log(a);
+                Debug.Log(a);
                 cameraController.GetComponent<CinemachineVirtualCamera>().Follow = a.GetComponentInChildren<Player>().transform;
-           }
+            }
+        }
+     
 
         
     }

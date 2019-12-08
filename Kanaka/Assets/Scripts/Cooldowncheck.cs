@@ -18,27 +18,36 @@ public class Cooldowncheck : MonoBehaviour
     }
     private void Update()
     {
-        if (isAbility)
+        if(pl != null)
         {
-            if (pl.getAbilityCD() <= 0.0f)
+            if (isAbility)
             {
-                button.interactable = true;
+                if (pl.getAbilityCD() <= 0.0f)
+                {
+                    button.interactable = true;
+                }
+                else
+                {
+                    button.interactable = false;
+                }
             }
             else
             {
-                button.interactable = false;
+                if (pl.getAtackCD() <= 0.0f)
+                {
+                    button.interactable = true;
+                }
+                else
+                {
+                    button.interactable = false;
+                }
             }
         }
         else
         {
-            if (pl.getAtackCD() <= 0.0f)
-            {
-                button.interactable = true;
-            }
-            else
-            {
-                button.interactable = false;
-            }
+            pc = FindObjectOfType<PlayerController>();
+            pl = pc.getPlayer();
         }
+        
     }
 }

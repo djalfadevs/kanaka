@@ -11,8 +11,20 @@ public class MobileButtons : MonoBehaviour
 
     void Start()
     {
-        pc = FindObjectOfType<PlayerController>();
-        pl = pc.getPlayer();
+   
+       
+    }
+
+    void Update()
+    {
+       
+        if (pc == null)
+        {
+            pc = FindObjectOfType<PlayerController>();
+            pl = pc.getPlayer();
+        }
+        
+
     }
 
     public void Attack()

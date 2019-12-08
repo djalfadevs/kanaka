@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Stages/Stage_SinglePlayer 1.unity
     guid: 40b9dd5beeb2e654cbb2ccdfc582581e
+  - enabled: 1
+    path: Assets/Scenes/ResultadoOffline.unity
+    guid: a66e223cd94bba042b425acf8449eb50
   m_configObjects: {}

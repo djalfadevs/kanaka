@@ -26,30 +26,36 @@ public class Settings : MonoBehaviour
         tg.isOn = ou.ismobile;
     }
 
+    IEnumerator UploadFile(OnlineUser ou)
+    {
+        {
+            var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/88as0", JsonConvert.SerializeObject(ou));
+            uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+                Debug.LogError(uwr.error);
+            else
+            {
+                Debug.LogError("succes");
+                // file data successfully sent
+            }
+        }
+    }
+
     IEnumerator getRequest2()
     {
         mb = tg.isOn;
-
         UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/88as0");
         yield return request.SendWebRequest();
         ou = JsonConvert.DeserializeObject<OnlineUser>(request.downloadHandler.text);
 
-        ou.ismobile = mb;
-
-        var uwr = UnityWebRequest.Put("https://api.myjson.com/bins/88as0", JsonConvert.SerializeObject(ou));
-        uwr.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
-        yield return uwr.SendWebRequest();
-        if (uwr.isNetworkError || uwr.isHttpError)
-            Debug.LogError(uwr.error);
-        else
-        {
-            // file data successfully sent
-        }
+        ou.ismobile = tg.isOn;
+        StartCoroutine(UploadFile(ou));
     }
 
     private void Awake()
     {
-        getRequest1();
+        StartCoroutine(getRequest1());
         /*FileInfo fileinfo = new FileInfo(path);
         StreamReader reader = fileinfo.OpenText();
         string text = reader.ReadLine();
@@ -67,7 +73,7 @@ public class Settings : MonoBehaviour
     }
     public void SetMobile()
     {
-        getRequest2();/*
+        StartCoroutine(getRequest2());/*
         mb = tg.isOn;
         FileInfo fileinfo = new FileInfo(path);
         StreamReader reader = fileinfo.OpenText();

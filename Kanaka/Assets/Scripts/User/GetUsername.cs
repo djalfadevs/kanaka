@@ -15,7 +15,7 @@ public class GetUsername : MonoBehaviour
 
     IEnumerator getRequest(string uri)
     {
-        UnityWebRequest request = UnityWebRequest.Get(path);
+        UnityWebRequest request = UnityWebRequest.Get("https://api.myjson.com/bins/asgog");
         yield return request.SendWebRequest();
         string text = request.downloadHandler.text;
         u = JsonUtility.FromJson<User>(text);
@@ -30,7 +30,7 @@ public class GetUsername : MonoBehaviour
 
     void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (true)
         {
             StartCoroutine(getRequest(path));
         }
