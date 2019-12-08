@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 42429808}
   m_Layer: 0
   m_Name: Settings_Collection_Shop
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1010,11 +1010,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2871639298822449600, guid: c7f4b3c0d10e06d469e1f86aec8094bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1082711067799971532, guid: c7f4b3c0d10e06d469e1f86aec8094bc,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1034,6 +1029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871639298822449600, guid: c7f4b3c0d10e06d469e1f86aec8094bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f4b3c0d10e06d469e1f86aec8094bc, type: 3}

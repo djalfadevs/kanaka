@@ -38,43 +38,34 @@ public class GameSignUpInManager : MonoBehaviour
         }
     }
 
-    IEnumerator UploadFile(string formData)
+    IEnumerator UploadFile(byte[] payload)
     {
-        var request = new UnityWebRequest(path, "PUT");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        yield return request.SendWebRequest();
-
-        if (request.isNetworkError || request.isHttpError)
+        using (var uwr = new UnityWebRequest(path, UnityWebRequest.kHttpVerbPUT))
         {
-            Debug.Log(request.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
+            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+                Debug.LogError(uwr.error);
+            else
+            {
+                // file data successfully sent
+            }
         }
     }
 
-    IEnumerator UploadFile2(string formData)
+    IEnumerator UploadFile2(byte[] payload)
     {
-        var request = new UnityWebRequest(path2, "PUT");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        using (var uwr = new UnityWebRequest(path2, UnityWebRequest.kHttpVerbPUT))
 
-        yield return request.SendWebRequest();
-
-        if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(request.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
+            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+                Debug.LogError(uwr.error);
+            else
+            {
+                // file data successfully sent
+            }
         }
     }
 
@@ -84,6 +75,7 @@ public class GameSignUpInManager : MonoBehaviour
        path2 = Application.streamingAssetsPath + "/UsersData/User.json";
        correctlog = false;
     }
+
 
     void Start()
     {
@@ -146,7 +138,8 @@ public class GameSignUpInManager : MonoBehaviour
 
         if(Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            StartCoroutine(UploadFile(auxS));
+            byte[] bytes = Encoding.UTF8.GetBytes(auxS);
+            StartCoroutine(UploadFile(bytes));
         }
         else
         {
@@ -211,7 +204,8 @@ public class GameSignUpInManager : MonoBehaviour
 
                 if(Application.platform == RuntimePlatform.WebGLPlayer)
                 {
-                    StartCoroutine(UploadFile2(a));
+                    byte[] bytes = Encoding.UTF8.GetBytes(a);
+                    StartCoroutine(UploadFile2(bytes));
                 }
                 else
                 {
