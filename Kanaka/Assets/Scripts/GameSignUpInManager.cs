@@ -40,16 +40,17 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile(string formData)
     {
-        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
-        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
-        formData2.Add(new MultipartFormFileSection(formData, "Users.txt"));
+        var request = new UnityWebRequest(path, "PUT");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
 
-        UnityWebRequest www = UnityWebRequest.Post(path, formData2);
-        yield return www.SendWebRequest();
+        yield return request.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(www.error);
+            Debug.Log(request.error);
         }
         else
         {
@@ -59,16 +60,17 @@ public class GameSignUpInManager : MonoBehaviour
 
     IEnumerator UploadFile2(string formData)
     {
-        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
-        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
-        formData2.Add(new MultipartFormFileSection(formData, "User.json"));
+        var request = new UnityWebRequest(path2, "PUT");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(formData);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
 
-        UnityWebRequest www = UnityWebRequest.Post(path2, formData2);
-        yield return www.SendWebRequest();
+        yield return request.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(www.error);
+            Debug.Log(request.error);
         }
         else
         {
@@ -78,7 +80,7 @@ public class GameSignUpInManager : MonoBehaviour
 
     void Awake()
     {
-       path = Application.streamingAssetsPath + "/UsersData/Users.txt";
+       path = Application.streamingAssetsPath + "/UsersData/Users.json";
        path2 = Application.streamingAssetsPath + "/UsersData/User.json";
        correctlog = false;
     }
@@ -109,16 +111,7 @@ public class GameSignUpInManager : MonoBehaviour
             {
                 FileInfo fileinfo = new FileInfo(path);
                 StreamReader reader = fileinfo.OpenText();
-                string text = "";
-                while (text != null)
-                {
-                    text = reader.ReadLine();
-                    //Console.WriteLine(text);
-                    User userAux = JsonUtility.FromJson<User>(text);
-                    if (userAux != null)
-                        auxlistUsers.Add(userAux);//Se cargan los anteriores usuarios si existe tal archivo
-                }
-                reader.Close();
+                auxlistUsers = JsonUtility.FromJson < List<User>>(reader.ReadToEnd());
 
             }
 
@@ -144,14 +137,8 @@ public class GameSignUpInManager : MonoBehaviour
         if (!exist)
             auxlistUsers.Add(new User(username, password, gameUserName, baseLevel, baseGameMoney, baseRealGameMoney));//Se añade el nuevo usuario
 
-        String auxS = "";
-        int j = 0;
-        foreach (User auxU in auxlistUsers)
-        {
-            Debug.Log(JsonUtility.ToJson(auxU) + j);
-            auxS += JsonUtility.ToJson(auxU) + Environment.NewLine;
-            j++;
-        }
+        
+        String auxS = JsonUtility.ToJson(auxlistUsers);
         Debug.Log("Se han guardado " + auxlistUsers.Count);
         Debug.Log("El nuevo usuario es " + username);
         Debug.Log("El nuevo pass es " + password);
@@ -198,17 +185,7 @@ public class GameSignUpInManager : MonoBehaviour
             {
                 FileInfo fileinfo = new FileInfo(path);
                 StreamReader reader = fileinfo.OpenText();
-                string text = "";
-                while (text != null)
-                {
-                    text = reader.ReadLine();
-                    //Console.WriteLine(text);
-                    User userAux = JsonUtility.FromJson<User>(text);
-                    if (userAux != null)
-                        auxlistUsers.Add(userAux);//Se cargan los anteriores usuarios si existe tal archivo
-                }
-                reader.Close();
-
+                auxlistUsers = JsonUtility.FromJson<List<User>>(reader.ReadToEnd());
             }
         }
       
