@@ -137,8 +137,10 @@ Reestructuración de documento (esquematizado) y Roadmap de proyecto a 3 meses y
 Arreglo de diagramas, roles y apuntes extra de información. Adición de modelo de caja de herramientas, modelo de lienzo y mapa de empatía de posibles clientes.
 #### VERSIÓN 1.4
 Ajustes de flujo de juego, inclusión de imágenes relativas al arte y explicación de los SFX.
-#### VERSIÓN 2.0 (ACTUAL)
+#### VERSIÓN 2.0
 Maquetación final de documento, explicación de la banda sonora y cierre del documento.
+#### VERSIÓN 2.1 (ACTUAL)
+Ajustes y aclaraciones varios, controles de UI, portfolio y redes sociales.
 
 ## VISIÓN GENERAL DEL JUEGO
 La idea general del juego se basa en la competitividad entre jugadores. El juego posee:
@@ -245,6 +247,16 @@ Tras seleccionar a un ganador de la partida (en multijugador) o al finalizar el 
     + Botón sobre la pantalla para atacar (esquina inferior derecha).
     + Botón sobre la pantalla para habilidad/usar objeto (esquina inferior derecha).
     + Botón para mostrar pantalla de salida de partida o cambiar ajustes (esquina superior derecha).
+
+#### CONTROLES DE UI
+-PC:
+
+		-Clic izquierdo del ratón sobre los iconos de la intefaz para moverse entre pantallas.
+		-Clic en los iconos de salida o pulsar tecla *ESC* para volver al menú anterior.
+        
+-Móviles y tablet:
+
+		-Tap en los iconos de la interfaz para moverse entre pantallas.
 
 #### PUNTUACIÓN
 La puntuación se indica como:
