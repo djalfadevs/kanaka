@@ -38,41 +38,33 @@ public class GameSignUpInManager : MonoBehaviour
         }
     }
 
-    IEnumerator UploadFile(string formData)
+    IEnumerator UploadFile(byte[] payload)
     {
-        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
-        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
-        formData2.Add(new MultipartFormFileSection(formData, "Users.txt"));
-
-        UnityWebRequest www = UnityWebRequest.Post(path, formData2);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
+        using (var uwr = new UnityWebRequest(path, UnityWebRequest.kHttpVerbPUT))
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
+            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+                Debug.LogError(uwr.error);
+            else
+            {
+                // file data successfully sent
+            }
         }
     }
 
-    IEnumerator UploadFile2(string formData)
+    IEnumerator UploadFile2(byte[] payload)
     {
-        List<IMultipartFormSection> formData2 = new List<IMultipartFormSection>();
-        formData2.Add(new MultipartFormDataSection("field1=foo&field2=bar"));
-        formData2.Add(new MultipartFormFileSection(formData, "User.json"));
-
-        UnityWebRequest www = UnityWebRequest.Post(path2, formData2);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
+        using (var uwr = new UnityWebRequest(path2, UnityWebRequest.kHttpVerbPUT))
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
+            uwr.uploadHandler = new UploadHandlerRaw(payload);
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+                Debug.LogError(uwr.error);
+            else
+            {
+                // file data successfully sent
+            }
         }
     }
 
@@ -82,6 +74,7 @@ public class GameSignUpInManager : MonoBehaviour
        path2 = Application.streamingAssetsPath + "/UsersData/User.json";
        correctlog = false;
     }
+
 
     void Start()
     {
@@ -159,7 +152,8 @@ public class GameSignUpInManager : MonoBehaviour
 
         if(Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            StartCoroutine(UploadFile(auxS));
+            byte[] bytes = Encoding.UTF8.GetBytes(auxS);
+            StartCoroutine(UploadFile(bytes));
         }
         else
         {
@@ -234,7 +228,8 @@ public class GameSignUpInManager : MonoBehaviour
 
                 if(Application.platform == RuntimePlatform.WebGLPlayer)
                 {
-                    StartCoroutine(UploadFile2(a));
+                    byte[] bytes = Encoding.UTF8.GetBytes(a);
+                    StartCoroutine(UploadFile2(bytes));
                 }
                 else
                 {
