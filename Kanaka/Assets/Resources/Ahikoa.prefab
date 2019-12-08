@@ -375,6 +375,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ahikoa 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114773274012975836, guid: b17bcc6cd91e8c844b328d2c61993e49,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2115466792984386270}
     - target: {fileID: 8444297339713908086, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,11 +435,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114773274012975836, guid: b17bcc6cd91e8c844b328d2c61993e49,
+    - target: {fileID: 2115466793470236499, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 2115466792984386270}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115466793470236499, guid: b17bcc6cd91e8c844b328d2c61993e49,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2115466793923340858, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -445,15 +455,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2115466793470236499, guid: b17bcc6cd91e8c844b328d2c61993e49,
+    - target: {fileID: 143251377763297376, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115466793470236499, guid: b17bcc6cd91e8c844b328d2c61993e49,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
+      propertyPath: m_Radius
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 136913585377921176, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}
@@ -474,11 +479,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.18287562
-      objectReference: {fileID: 0}
-    - target: {fileID: 143251377763297376, guid: b17bcc6cd91e8c844b328d2c61993e49,
-        type: 3}
-      propertyPath: m_Radius
-      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 6003546752865095753, guid: b17bcc6cd91e8c844b328d2c61993e49,
         type: 3}

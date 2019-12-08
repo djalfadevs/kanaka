@@ -221,8 +221,8 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
         AddHerosTeams();
 
         //DEBUG
-        Team1AliveTotemsText.text = "AliveTotems: " + teamList[0].AliveTotemTeam;
-        Team2AliveTotemsText.text = "AliveTotems: " + teamList[1].AliveTotemTeam;
+        Team1AliveTotemsText.text = teamList[0].AliveTotemTeam.ToString();
+        Team2AliveTotemsText.text = teamList[1].AliveTotemTeam.ToString();
         //DEBUG
     }
 
@@ -373,9 +373,9 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks , IPunObservable
 
     public void FinDePartida()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && ((teamList[0].AliveTotemTeam == 0) || (teamList[1].AliveTotemTeam == 0)))
         {
-           // PhotonNetwork.LoadLevel("MainMenu");
+           PhotonNetwork.LoadLevel("MainMenu");
         }
 
         //FALTA GESTIONAR TODO EL TEMA DE VICTORIA DERROTA
